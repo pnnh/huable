@@ -12,5 +12,9 @@
     "about": "Acerca de",
     "visitTool": "Visitar herramienta",
     "toolDetailTitle": "{name} — Huable",
-    "changeLanguage": "Idioma"
+    "changeLanguage": "Idioma",
+    "cookieMessage": "Usamos almacenamiento del navegador para guardar el historial y preferencias de las herramientas. No se recopilan ni comparten datos personales.",
+    "cookieAccept": "Entendido",
+    "cookieDecline": "No, gracias",
+    "privacyPolicy": "Política de privacidad"
 }

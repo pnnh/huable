@@ -12,5 +12,9 @@
     "about": "詳細",
     "visitTool": "ツールを訪問",
     "toolDetailTitle": "{name} — Huable",
-    "changeLanguage": "言語"
+    "changeLanguage": "言語",
+    "cookieMessage": "ツールの履歴と設定を保存するためにブラウザのローカルストレージを使用します。個人データの収集や共有は行いません。",
+    "cookieAccept": "了解",
+    "cookieDecline": "いいえ",
+    "privacyPolicy": "プライバシーポリシー"
 }

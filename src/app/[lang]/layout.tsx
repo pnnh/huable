@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isValidLang, supportedLanguages } from "@/lib/language";
 import type { LangKey } from "@/lib/language";
 import { t } from "@/lib/i18n";
+import CookieBanner from "@/components/CookieBanner";
 import "../globals.css";
 
 type Props = {
@@ -41,6 +42,7 @@ export default async function LangLayout({ params, children }: Props) {
             </head>
             <body className="min-h-full flex flex-col bg-gray-50 text-gray-900 antialiased">
                 {children}
+                <CookieBanner lang={lang as LangKey} />
             </body>
         </html>
     );

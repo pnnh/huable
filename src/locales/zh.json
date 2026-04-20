@@ -12,5 +12,9 @@
     "about": "关于",
     "visitTool": "前往工具",
     "toolDetailTitle": "{name} — Huable",
-    "changeLanguage": "语言"
+    "changeLanguage": "语言",
+    "cookieMessage": "本站使用浏览器本地存储保存您的工具历史记录和偏好设置，不收集或共享任何个人数据。",
+    "cookieAccept": "知道了",
+    "cookieDecline": "不，谢谢",
+    "privacyPolicy": "隐私政策"
 }

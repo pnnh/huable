@@ -1,0 +1,16 @@
+{
+    "siteName": "Huable",
+    "siteTagline": "開発者と日常ユーザーのための便利なオンラインツール",
+    "siteDescription": "Huableは、プライバシーを重視した無料のオンラインユーティリティのコレクションです。Baseエンコード、ハッシュ、暗号化、乱数生成、時間ツール、JSON処理をブラウザ上で提供します。",
+    "homeTitle": "Huable — 無料の開発者向けオンラインツール",
+    "homeDescription": "厳選された無料オンラインツール：Baseエンコード、ハッシュ、暗号化、乱数ジェネレーター、日付・時刻ユーティリティ、JSON処理。",
+    "launchTool": "ツールを開く",
+    "learnMore": "詳細を見る",
+    "backToHome": "ホームに戻る",
+    "allTools": "すべてのツール",
+    "features": "機能",
+    "about": "詳細",
+    "visitTool": "ツールを訪問",
+    "toolDetailTitle": "{name} — Huable",
+    "changeLanguage": "言語"
+}

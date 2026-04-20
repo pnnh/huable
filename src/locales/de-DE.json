@@ -1,0 +1,16 @@
+{
+    "siteName": "Huable",
+    "siteTagline": "Praktische Online-Tools für Entwickler und Alltagsnutzer",
+    "siteDescription": "Huable ist eine Sammlung kostenloser, datenschutzorientierter Online-Dienstprogramme: Base-Kodierung, Hashing, Verschlüsselung, Zufallsgenerierung, Zeittools und JSON-Verarbeitung.",
+    "homeTitle": "Huable — Kostenlose Online-Tools für Entwickler",
+    "homeDescription": "Eine kuratierte Sammlung kostenloser Online-Tools: Base-Kodierung, Hashing, Verschlüsselung, Zufallsgeneratoren, Datums-/Uhrzeittools und JSON-Verarbeitung.",
+    "launchTool": "Tool starten",
+    "learnMore": "Mehr erfahren",
+    "backToHome": "Zurück zur Startseite",
+    "allTools": "Alle Tools",
+    "features": "Funktionen",
+    "about": "Über",
+    "visitTool": "Tool besuchen",
+    "toolDetailTitle": "{name} — Huable",
+    "changeLanguage": "Sprache"
+}

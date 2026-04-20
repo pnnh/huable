@@ -1,0 +1,16 @@
+{
+    "siteName": "Huable",
+    "siteTagline": "Handy online tools for developers & everyday users",
+    "siteDescription": "Huable is a collection of free, privacy-first online utilities — encoding, hashing, encryption, random generation, time tools, and JSON processing — all running in your browser.",
+    "homeTitle": "Huable — Free Online Developer Tools",
+    "homeDescription": "A curated collection of free online tools: Base encoding, hashing, encryption, random generators, datetime utilities, and JSON processing.",
+    "launchTool": "Launch Tool",
+    "learnMore": "Learn More",
+    "backToHome": "Back to Home",
+    "allTools": "All Tools",
+    "features": "Features",
+    "about": "About",
+    "visitTool": "Visit Tool",
+    "toolDetailTitle": "{name} — Huable",
+    "changeLanguage": "Language"
+}

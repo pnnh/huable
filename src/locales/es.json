@@ -1,0 +1,16 @@
+{
+    "siteName": "Huable",
+    "siteTagline": "Herramientas en línea para desarrolladores y usuarios cotidianos",
+    "siteDescription": "Huable es una colección de utilidades en línea gratuitas y centradas en la privacidad: codificación, hash, cifrado, generación aleatoria, herramientas de tiempo y procesamiento JSON.",
+    "homeTitle": "Huable — Herramientas gratuitas para desarrolladores",
+    "homeDescription": "Una colección de herramientas en línea gratuitas: codificación Base, hash, cifrado, generadores aleatorios, utilidades de fecha y hora y procesamiento JSON.",
+    "launchTool": "Abrir herramienta",
+    "learnMore": "Más información",
+    "backToHome": "Volver al inicio",
+    "allTools": "Todas las herramientas",
+    "features": "Características",
+    "about": "Acerca de",
+    "visitTool": "Visitar herramienta",
+    "toolDetailTitle": "{name} — Huable",
+    "changeLanguage": "Idioma"
+}

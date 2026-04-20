@@ -1,0 +1,16 @@
+{
+    "siteName": "Huable",
+    "siteTagline": "Outils en ligne pratiques pour les développeurs et les utilisateurs quotidiens",
+    "siteDescription": "Huable est une collection d'utilitaires en ligne gratuits et axés sur la confidentialité : encodage, hachage, chiffrement, génération aléatoire, outils de date/heure et traitement JSON.",
+    "homeTitle": "Huable — Outils gratuits pour développeurs",
+    "homeDescription": "Une collection d'outils en ligne gratuits : encodage Base, hachage, chiffrement, générateurs aléatoires, utilitaires de date/heure et traitement JSON.",
+    "launchTool": "Lancer l'outil",
+    "learnMore": "En savoir plus",
+    "backToHome": "Retour à l'accueil",
+    "allTools": "Tous les outils",
+    "features": "Fonctionnalités",
+    "about": "À propos",
+    "visitTool": "Visiter l'outil",
+    "toolDetailTitle": "{name} — Huable",
+    "changeLanguage": "Langue"
+}

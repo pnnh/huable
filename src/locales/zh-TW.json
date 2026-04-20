@@ -1,0 +1,16 @@
+{
+    "siteName": "Huable",
+    "siteTagline": "為開發者和日常用戶提供的實用線上工具",
+    "siteDescription": "Huable 是一套免費、注重隱私的線上實用工具集合，包括 Base 編解碼、雜湊計算、加解密、隨機生成、時間工具和 JSON 處理，所有操作均在瀏覽器本地完成。",
+    "homeTitle": "Huable — 免費線上開發者工具",
+    "homeDescription": "精選免費線上工具：Base 編解碼、雜湊計算、加解密、隨機生成器、日期時間工具和 JSON 處理。",
+    "launchTool": "開始使用",
+    "learnMore": "瞭解更多",
+    "backToHome": "返回首頁",
+    "allTools": "所有工具",
+    "features": "功能特性",
+    "about": "關於",
+    "visitTool": "前往工具",
+    "toolDetailTitle": "{name} — Huable",
+    "changeLanguage": "語言"
+}

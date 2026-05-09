@@ -1,0 +1,16 @@
+src/lib/jwt.ts
+  h_6465a203f88bd5 1-28
+src/app/console/page.tsx
+  h_6465a203f88bd5 1-209
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.4",
+  "base_commit_sha": "b3ba9d5aac64b6871afd767a055c75c7ffc8b263",
+  "prompts": {},
+  "humans": {
+    "h_6465a203f88bd5": {
+      "author": "larry <xspanni@gmail.com>"
+    }
+  }
+}

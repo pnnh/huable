@@ -7,6 +7,7 @@ import { getDb } from "@/db/index";
 import { channels, notes } from "@/db/schema";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import MarkdownContent from "@/components/MarkdownContent";
 
 export const dynamic = "force-dynamic";
 
@@ -47,8 +48,8 @@ export default async function NotePage({ params }: Props) {
                     <time>{new Date(note.updatedAt).toLocaleDateString()}</time>
                 </div>
                 <h1 className="text-3xl font-bold text-gray-900 mb-8">{note.title}</h1>
-                <article className="prose max-w-none whitespace-pre-wrap text-gray-700">
-                    {note.body}
+                <article>
+                    <MarkdownContent content={note.body} />
                 </article>
             </main>
             <SiteFooter lang={l} />

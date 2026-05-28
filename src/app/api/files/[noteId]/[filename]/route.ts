@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStorage } from "@/lib/storage";
+import { getDb } from "@/db/index";
+import { noteAttachments } from "@/db/schema";
+import { and, eq } from "drizzle-orm";
 
 export const runtime = "nodejs";
 
@@ -34,3 +37,23 @@ export async function GET(
         headers: { "Content-Type": contentType },
     });
 }
+
+export async function DELETE(
+    _req: NextRequest,
+    { params }: { params: Promise<Params> }
+) {
+    const { noteId, filename } = await params;
+    const db = getDb();
+    const storage = getStorage();
+
+    // Delete DB record first
+    await db
+        .delete(noteAttachments)
+        .where(and(eq(noteAttachments.noteId, noteId), eq(noteAttachments.filename, filename)));
+
+    // Delete file (ignore if already gone)
+    await storage.delete(noteId, filename).catch(() => undefined);
+
+    return new NextResponse(null, { status: 204 });
+}
+

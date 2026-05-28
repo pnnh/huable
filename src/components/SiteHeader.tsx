@@ -14,13 +14,13 @@ export default function SiteHeader({ lang, pathSuffix = "" }: Props) {
                 </Link>
                 <nav className="flex items-center gap-4 flex-1 ml-6">
                     <Link href={`/${lang}/`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                        Home
+                        {t(lang, "home")}
                     </Link>
                     <Link href={`/${lang}/tools`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                         {t(lang, "allTools")}
                     </Link>
                     <Link href={`/${lang}/console`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                        Console
+                        {t(lang, "console")}
                     </Link>
                 </nav>
                 <LanguageSelector currentLang={lang} pathSuffix={pathSuffix} />

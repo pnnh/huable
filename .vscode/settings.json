@@ -1,5 +1,8 @@
 {
     "chat.tools.terminal.autoApprove": {
-        "pnpx build": true
+        "pnpm build": true,
+        "bd": true,
+        "node-gyp": true,
+        "npx tsc": true
     }
 }

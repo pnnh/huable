@@ -1,5 +1,7 @@
 import { drizzle as drizzleSqlite } from "drizzle-orm/better-sqlite3";
+import { migrate } from "drizzle-orm/better-sqlite3/migrator";
 import { drizzle as drizzleD1 } from "drizzle-orm/d1";
+import path from "node:path";
 
 import * as schema from "./schema";
 
@@ -24,6 +26,9 @@ function getLocalDb() {
     const dbPath = process.env.DB_PATH || "./.data/huable.db";
     ensureLocalDbDirectory(dbPath);
     sqliteDb = drizzleSqlite({ connection: { source: dbPath }, schema });
+    // Auto-migrate on first initialization so `pnpm dev` works without a manual step.
+    const migrationsFolder = path.resolve(process.cwd(), "migrations");
+    migrate(sqliteDb, { migrationsFolder });
   }
 
   return sqliteDb;

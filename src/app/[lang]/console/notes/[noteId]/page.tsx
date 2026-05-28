@@ -8,6 +8,8 @@ import { getDb } from "@/db/index";
 import { channels, createId, notes } from "@/db/schema";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { t } from "@/lib/i18n";
+import AttachmentPanel from "@/components/AttachmentPanel";
 
 export const dynamic = "force-dynamic";
 
@@ -79,7 +81,7 @@ export default async function NoteEditorPage({ params }: Props) {
                 createdAt: now,
                 updatedAt: now,
             });
-            redirect(`/${lang}/console/notes/${id}`);
+            redirect(`/${lang}/console/notes`);
         }
 
         const ownedNote = await db2
@@ -106,11 +108,11 @@ export default async function NoteEditorPage({ params }: Props) {
             <SiteHeader lang={l} />
             <main className="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <h1 className="text-2xl font-bold text-gray-900 mb-8">
-                    {isNew ? "New Note" : "Edit Note"}
+                    {isNew ? t(l, "newNote") : t(l, "editNote")}
                 </h1>
                 <form action={handleSave} className="space-y-6">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">{t(l, "noteTitle")}</label>
                         <input
                             name="title"
                             type="text"
@@ -120,7 +122,7 @@ export default async function NoteEditorPage({ params }: Props) {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Body (Markdown)</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">{t(l, "noteBody")}</label>
                         <textarea
                             name="body"
                             rows={16}
@@ -129,13 +131,13 @@ export default async function NoteEditorPage({ params }: Props) {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Channel</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">{t(l, "noteChannel")}</label>
                         <select
                             name="channelId"
                             defaultValue={existingNote?.channelId ?? ""}
                             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
-                            <option value="">— No channel —</option>
+                            <option value="">{t(l, "noChannel")}</option>
                             {userChannels.map((ch) => (
                                 <option key={ch.id} value={ch.id}>
                                     {ch.name}
@@ -153,7 +155,7 @@ export default async function NoteEditorPage({ params }: Props) {
                             className="h-4 w-4 rounded border-gray-300 text-blue-600"
                         />
                         <label htmlFor="isPublished" className="text-sm font-medium text-gray-700">
-                            Publish to channel
+                            {t(l, "publishToChannel")}
                         </label>
                     </div>
                     <div className="flex gap-3">
@@ -161,16 +163,24 @@ export default async function NoteEditorPage({ params }: Props) {
                             type="submit"
                             className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700"
                         >
-                            Save
+                            {t(l, "save")}
                         </button>
                         <Link
                             href={`/${lang}/console/notes`}
                             className="px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50"
                         >
-                            Cancel
+                            {t(l, "cancel")}
                         </Link>
                     </div>
                 </form>
+                {!isNew && (
+                    <div className="mt-8">
+                        <AttachmentPanel noteId={noteId} />
+                    </div>
+                )}
+                {isNew && (
+                    <p className="mt-4 text-xs text-gray-400">Save the note first to add attachments.</p>
+                )}
             </main>
             <SiteFooter lang={l} />
         </>

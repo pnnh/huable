@@ -7,6 +7,7 @@ import { channels, notes } from "@/db/schema";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
+import MarkdownContent from "@/components/MarkdownContent";
 
 export const dynamic = "force-dynamic";
 
@@ -38,7 +39,7 @@ export default async function ChannelPage({ params }: Props) {
             <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">{channel.name}</h1>
                 {channel.description && (
-                    <p className="text-gray-600 mb-8 whitespace-pre-wrap">{channel.description}</p>
+                    <MarkdownContent content={channel.description} className="mb-8" />
                 )}
                 <h2 className="text-xl font-semibold text-gray-800 mb-4">Notes</h2>
                 {publishedNotes.length === 0 ? (

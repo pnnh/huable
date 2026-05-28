@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "huable",
+  "project_id": "5b6cf739-59fa-423b-8ab6-6ef13c01f6d8"
+}

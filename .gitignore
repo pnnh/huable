@@ -42,3 +42,10 @@ next-env.d.ts
 
 .open-next/
 .wrangler/
+
+.codebase-memory/
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key

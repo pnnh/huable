@@ -1,0 +1,24 @@
+README.md
+  s_2bbf1a167902c1::t_e69e64cb41ccc5 72-123
+  s_2bbf1a167902c1::t_8a83787d8ba684 34,64,67-68
+open-next.config.ts
+  s_2bbf1a167902c1::t_5c76d7975d7bee 2,5
+wrangler.jsonc
+  s_2bbf1a167902c1::t_8c0e47199c3d7c 15-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "5570afbc3d9e36f827df76a87f4df381e695a277",
+  "prompts": {},
+  "sessions": {
+    "s_2bbf1a167902c1": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "toolu_bdrk_01QhLFXU1k4o1SVVnK1L4WQA",
+        "model": "unknown"
+      },
+      "human_author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

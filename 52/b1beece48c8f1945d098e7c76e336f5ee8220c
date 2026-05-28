@@ -1,0 +1,23 @@
+src/app/[lang]/notes/[id]/page.tsx
+  s_dc1c82daec13dd::t_91209040806e76 3,7
+  s_dc1c82daec13dd::t_89acf79a35f80e 1-2,4-6,8-20,33,37-42,45-57
+  s_dc1c82daec13dd::t_6758da5f327acc 43-44
+  s_dc1c82daec13dd::t_e0b0988f018bcc 23-32
+  s_dc1c82daec13dd::t_316053aa90f513 21-22,34-36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "52b1beece48c8f1945d098e7c76e336f5ee8220c",
+  "prompts": {},
+  "sessions": {
+    "s_dc1c82daec13dd": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "toolu_bdrk_016BqFLaLwiTm6QtAwE4hPbE",
+        "model": "unknown"
+      },
+      "human_author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

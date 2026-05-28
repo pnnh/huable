@@ -31,9 +31,7 @@ The main portal site for [huable.xyz](https://huable.xyz). Provides a multilingu
 
 ```bash
 pnpm dev          # starts on http://localhost:7500
-pnpm build        # Next.js static build (67 pages)
-pnpm adapter      # build + OpenNext Cloudflare adapter
-pnpm preview      # preview Cloudflare Worker locally
+pnpm build        # production build
 ```
 
 ## Project Structure
@@ -63,11 +61,63 @@ src/
 
 ## Deployment
 
-Deployed to Cloudflare Workers via `wrangler` + OpenNext adapter:
+Deployed to Cloudflare Workers via `wrangler`:
 
 ```bash
-pnpm adapter      # outputs to .open-next/
-wrangler deploy   # or `wrangler publish`
+pnpm build
+wrangler deploy
 ```
 
 `wrangler.jsonc` targets compatibility date `2026-04-20` with `nodejs_compat`.
+
+## Local Development
+
+### Prerequisites
+- Node.js 20+
+- pnpm 10+
+
+### Setup
+1. Clone the repo and install dependencies:
+   ```bash
+   pnpm install
+   ```
+2. Copy `.env.local.example` to `.env.local`:
+   ```bash
+   cp .env.local.example .env.local
+   ```
+3. Start the development server:
+   ```bash
+   pnpm dev
+   ```
+   The app runs at http://localhost:7500.
+
+### Database
+SQLite (better-sqlite3) is used in development. The database file is created automatically at `.data/huable.db`.
+
+## Cloudflare Deployment
+
+### Prerequisites
+- A Cloudflare account with Workers, D1, and R2 enabled
+- `wrangler` CLI authenticated: `wrangler login`
+
+### Create D1 Database
+```bash
+wrangler d1 create huable-db
+```
+Copy the `database_id` from the output and update `wrangler.jsonc`.
+
+### Create R2 Bucket
+```bash
+wrangler r2 bucket create huable-notes
+```
+
+### Build and Deploy
+```bash
+pnpm build
+wrangler deploy
+```
+
+### Initialize D1 Schema
+```bash
+wrangler d1 execute huable-db --file=./migrations/0000_complex_banshee.sql
+```

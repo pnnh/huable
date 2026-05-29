@@ -1,0 +1,26 @@
+huable.code-workspace
+  h_de2c1989c48e7b 1-27
+package.json
+  s_1909dce509e249::t_529359122eb6a7 35
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "6a0b96f972e8f123f5ff6131786021a4168b5eda",
+  "prompts": {},
+  "humans": {
+    "h_de2c1989c48e7b": {
+      "author": "xspanni <xspanni@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_1909dce509e249": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "11e136b3-b7c0-44a4-8664-8708c1e6e7ad",
+        "model": "gpt-4.1"
+      },
+      "human_author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

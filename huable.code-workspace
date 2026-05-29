@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.openRepositoryInParentFolders": "never",
+		"files.exclude": {
+			"**/.git": true
+		},
+		"chat.tools.terminal.autoApprove": {
+			"rtk": true,
+			"bd": true,  
+			"cmake": true, 
+			"mkdir": true,
+			"tar": true
+		},
+		"search.useIgnoreFiles": false,
+		"search.exclude": {
+			"build/**": true,
+			"**/node_modules/**": true,
+			"**/target/**": true, 
+			"**/.dolt/**": true
+		}
+	}
+}

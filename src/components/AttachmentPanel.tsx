@@ -79,6 +79,9 @@ export default function AttachmentPanel({ noteId }: Props) {
                     />
                 </label>
             </div>
+            <p className="text-xs text-gray-400">
+                Click <span className="font-medium text-gray-500">Copy link</span> to get the markdown reference, then paste it into the note body.
+            </p>
             {attachments.length === 0 ? (
                 <p className="text-xs text-gray-400">No attachments yet.</p>
             ) : (

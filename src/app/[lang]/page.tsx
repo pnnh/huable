@@ -3,11 +3,13 @@ import { isValidLang } from "@/lib/language";
 import type { LangKey } from "@/lib/language";
 import { getDb } from "@/db/index";
 import { notes, channels } from "@/db/schema";
-import { eq, and, desc } from "drizzle-orm";
+import { eq, and, or, like, desc } from "drizzle-orm";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import ChannelSearch from "@/components/ChannelSearch";
 import { t } from "@/lib/i18n";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +31,7 @@ function extractSummary(body: string, maxLen = 150): string {
 
 type Props = {
     params: Promise<{ lang: string }>;
-    searchParams: Promise<{ page?: string }>;
+    searchParams: Promise<{ page?: string; q?: string }>;
 };
 
 export default async function HomePage({ params, searchParams }: Props) {
@@ -38,11 +40,21 @@ export default async function HomePage({ params, searchParams }: Props) {
     const l = lang as LangKey;
 
     const sp = await searchParams;
+    const query = sp.q?.trim() ?? "";
     const page = Math.max(1, parseInt(sp.page ?? "1", 10) || 1);
     const offset = (page - 1) * PAGE_SIZE;
 
     const db = getDb();
-    const condition = and(eq(notes.isPublished, true), eq(channels.isPublic, true));
+    const baseCondition = and(eq(notes.isPublished, true), eq(channels.isPublic, true));
+    const condition = query
+        ? and(
+              baseCondition,
+              or(
+                  like(notes.title, `%${query}%`),
+                  like(notes.body, `%${query}%`),
+              ),
+          )
+        : baseCondition;
 
     // Count all matching notes
     const allIds = await db
@@ -68,9 +80,17 @@ export default async function HomePage({ params, searchParams }: Props) {
         <>
             <SiteHeader lang={l} />
             <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <h1 className="text-3xl font-bold text-gray-900 mb-8">{t(l, "siteName")}</h1>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+                    <h1 className="text-3xl font-bold text-gray-900">{t(l, "siteName")}</h1>
+                    <Suspense>
+                        <ChannelSearch
+                            placeholder={t(l, "searchNotes")}
+                            defaultValue={query}
+                        />
+                    </Suspense>
+                </div>
                 {pageNotes.length === 0 ? (
-                    <p className="text-gray-500">{t(l, "noPublishedNotes")}</p>
+                    <p className="text-gray-500">{query ? t(l, "noNotesFound") : t(l, "noPublishedNotes")}</p>
                 ) : (
                     <ul className="space-y-6">
                         {pageNotes.map(({ notes: note, channels: channel }) => (
@@ -101,7 +121,7 @@ export default async function HomePage({ params, searchParams }: Props) {
                     <div className="mt-10 flex items-center justify-between text-sm text-gray-500">
                         {currentPage > 1 ? (
                             <Link
-                                href={`/${l}?page=${currentPage - 1}`}
+                                href={`/${l}?${new URLSearchParams({ ...(query ? { q: query } : {}), page: String(currentPage - 1) }).toString()}`}
                                 className="px-3 py-1 rounded border border-gray-300 hover:bg-gray-50"
                             >
                                 ← Prev
@@ -110,7 +130,7 @@ export default async function HomePage({ params, searchParams }: Props) {
                         <span>{currentPage} / {totalPages}</span>
                         {currentPage < totalPages ? (
                             <Link
-                                href={`/${l}?page=${currentPage + 1}`}
+                                href={`/${l}?${new URLSearchParams({ ...(query ? { q: query } : {}), page: String(currentPage + 1) }).toString()}`}
                                 className="px-3 py-1 rounded border border-gray-300 hover:bg-gray-50"
                             >
                                 Next →

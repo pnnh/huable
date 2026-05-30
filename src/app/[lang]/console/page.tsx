@@ -30,7 +30,12 @@ export default async function ConsolePage({ params }: Props) {
             <SiteHeader lang={l} />
             <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <h1 className="text-2xl font-bold text-gray-900 mb-2">{t(l, "console")}</h1>
-                <p className="text-gray-500 mb-8">{t(l, "welcomeUser")}, {user.name}</p>
+                <p className="text-gray-500 mb-8">
+                    {t(l, "welcomeUser")},{" "}
+                    <Link href={`/${l}/console/profile`} className="font-medium text-blue-600 hover:underline">
+                        {user.nickname || user.name}
+                    </Link>
+                </p>
                 <div className="grid grid-cols-2 gap-6 mb-10">
                     <div className="rounded-lg border border-gray-200 bg-white p-6">
                         <p className="text-3xl font-bold text-gray-900">{channelCount}</p>

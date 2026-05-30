@@ -23,6 +23,4 @@ export function runMigrations() {
   return db;
 }
 
-if (typeof require !== "undefined" && require.main === module) {
-  runMigrations();
-}
+runMigrations();

@@ -3,6 +3,7 @@
         "pnpm build": true,
         "bd": true,
         "node-gyp": true,
-        "npx tsc": true
+        "npx tsc": true,
+        "pnpm": true
     }
 }

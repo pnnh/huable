@@ -7,6 +7,7 @@ import { getDb } from "@/db/index";
 import { channels, createId } from "@/db/schema";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import ChannelAvatarUpload from "@/components/ChannelAvatarUpload";
 import { t } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
@@ -65,6 +66,17 @@ export default async function ChannelEditorPage({ params }: Props) {
                 <h1 className="text-2xl font-bold text-gray-900 mb-8">
                     {isNew ? t(l, "newChannel") : t(l, "editChannel")}
                 </h1>
+                {!isNew && existingChannel && (
+                    <ChannelAvatarUpload
+                        channelId={channelId}
+                        channelName={existingChannel.name}
+                        labels={{
+                            avatar: t(l, "avatar"),
+                            uploadAvatar: t(l, "uploadAvatar"),
+                            avatarHint: t(l, "avatarHint"),
+                        }}
+                    />
+                )}
                 <form action={handleSave} className="space-y-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">{t(l, "channelName")}</label>

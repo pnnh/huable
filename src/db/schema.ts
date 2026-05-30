@@ -26,6 +26,8 @@ export const users = sqliteTable("users", {
   id: text("id").primaryKey().$defaultFn(createId),
   name: text("name").notNull(),
   email: text("email").notNull().unique(),
+  nickname: text("nickname"),
+  bio: text("bio"),
   createdAt: integer("created_at").notNull().$defaultFn(() => Date.now()),
 });
 

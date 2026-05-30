@@ -11,10 +11,11 @@
 		},
 		"chat.tools.terminal.autoApprove": {
 			"rtk": true,
-			"bd": true,  
-			"cmake": true, 
+			"bd": true,
+			"cmake": true,
 			"mkdir": true,
-			"tar": true
+			"tar": true,
+			"sqlite3": true
 		},
 		"search.useIgnoreFiles": false,
 		"search.exclude": {

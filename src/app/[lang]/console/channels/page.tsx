@@ -61,7 +61,8 @@ export default async function ChannelsListPage({ params }: Props) {
                                     <th className="py-3 pr-4">{t(l, "channelName")}</th>
                                     <th className="py-3 pr-4">{t(l, "channelVisibility")}</th>
                                     <th className="py-3 pr-4">{t(l, "notes")}</th>
-                                    <th className="py-3">{t(l, "created")}</th>
+                                    <th className="py-3 pr-4">{t(l, "created")}</th>
+                                    <th className="py-3"></th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-100">
@@ -78,7 +79,15 @@ export default async function ChannelsListPage({ params }: Props) {
                                             </span>
                                         </td>
                                         <td className="py-3 pr-4 text-gray-500">{noteCounts.get(ch.id) ?? 0}</td>
-                                        <td className="py-3 text-gray-500">{new Date(ch.createdAt).toLocaleDateString()}</td>
+                                        <td className="py-3 pr-4 text-gray-500">{new Date(ch.createdAt).toLocaleDateString()}</td>
+                                        <td className="py-3">
+                                            <Link
+                                                href={`/${l}/console/channels/${ch.id}/notes`}
+                                                className="text-xs text-blue-600 hover:underline whitespace-nowrap"
+                                            >
+                                                {t(l, "manageChannelNotes")}
+                                            </Link>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>

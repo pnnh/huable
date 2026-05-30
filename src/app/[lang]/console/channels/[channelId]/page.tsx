@@ -1,13 +1,14 @@
 import { notFound, redirect } from "next/navigation";
-import { eq } from "drizzle-orm";
+import { eq, and, count } from "drizzle-orm";
 import { isValidLang } from "@/lib/language";
 import type { LangKey } from "@/lib/language";
 import { getCurrentUser } from "@/lib/auth";
 import { getDb } from "@/db/index";
-import { channels, createId } from "@/db/schema";
+import { channels, notes, createId } from "@/db/schema";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ChannelAvatarUpload from "@/components/ChannelAvatarUpload";
+import ChannelDeleteSection from "@/components/ChannelDeleteSection";
 import { t } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
@@ -30,6 +31,12 @@ export default async function ChannelEditorPage({ params }: Props) {
         .then((rows) => rows[0] ?? null);
 
     if (!isNew && (!existingChannel || existingChannel.userId !== user.id)) notFound();
+
+    const publishedNoteCount = isNew ? 0 : await db
+        .select({ cnt: count() })
+        .from(notes)
+        .where(and(eq(notes.channelId, channelId), eq(notes.isPublished, true)))
+        .then(([row]) => row?.cnt ?? 0);
 
     async function handleSave(formData: FormData) {
         "use server";
@@ -117,6 +124,18 @@ export default async function ChannelEditorPage({ params }: Props) {
                         </a>
                     </div>
                 </form>
+                {!isNew && (
+                    <ChannelDeleteSection
+                        channelId={channelId}
+                        redirectTo={`/${lang}/console/channels`}
+                        publishedNoteCount={publishedNoteCount}
+                        labels={{
+                            deleteChannel: t(l, "deleteChannel"),
+                            deleteChannelConfirm: t(l, "deleteChannelConfirm"),
+                            deleteChannelHasNotes: t(l, "deleteChannelHasNotes"),
+                        }}
+                    />
+                )}
             </main>
             <SiteFooter lang={l} />
         </>

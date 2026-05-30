@@ -10,6 +10,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { t } from "@/lib/i18n";
 import AttachmentPanel from "@/components/AttachmentPanel";
+import NoteDeleteSection from "@/components/NoteDeleteSection";
 
 export const dynamic = "force-dynamic";
 
@@ -175,8 +176,22 @@ export default async function NoteEditorPage({ params }: Props) {
                 </form>
                 {!isNew && (
                     <div className="mt-8">
-                        <AttachmentPanel noteId={noteId} />
+                        <AttachmentPanel
+                            noteId={noteId}
+                            labels={{ deleteAttachmentConfirm: t(l, "deleteAttachmentConfirm") }}
+                        />
                     </div>
+                )}
+                {!isNew && (
+                    <NoteDeleteSection
+                        noteId={noteId}
+                        redirectTo={`/${lang}/console/notes`}
+                        labels={{
+                            deleteNote: t(l, "deleteNote"),
+                            deleteNoteConfirm: t(l, "deleteNoteConfirm"),
+                            deleteNoteHasAttachments: t(l, "deleteNoteHasAttachments"),
+                        }}
+                    />
                 )}
                 {isNew && (
                     <p className="mt-4 text-xs text-gray-400">Save the note first to add attachments.</p>

@@ -10,11 +10,16 @@ type Attachment = {
     createdAt: number;
 };
 
-type Props = { noteId: string };
+type Props = {
+    noteId: string;
+    labels: {
+        deleteAttachmentConfirm: string;
+    };
+};
 
 const IMAGE_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
 
-export default function AttachmentPanel({ noteId }: Props) {
+export default function AttachmentPanel({ noteId, labels }: Props) {
     const [attachments, setAttachments] = useState<Attachment[]>([]);
     const [uploading, setUploading] = useState(false);
     const [copied, setCopied] = useState<string | null>(null);
@@ -22,7 +27,11 @@ export default function AttachmentPanel({ noteId }: Props) {
 
     const fetchAttachments = useCallback(async () => {
         const res = await fetch(`/api/attachments/${noteId}`);
-        if (res.ok) setAttachments(await res.json());
+        if (res.ok) {
+            const data = await res.json();
+            setAttachments(data);
+            window.dispatchEvent(new CustomEvent("attachments-changed", { detail: { count: data.length } }));
+        }
     }, [noteId]);
 
     useEffect(() => {
@@ -47,8 +56,13 @@ export default function AttachmentPanel({ noteId }: Props) {
     }
 
     async function handleDelete(filename: string) {
+        if (!window.confirm(labels.deleteAttachmentConfirm)) return;
         const res = await fetch(`/api/files/${noteId}/${encodeURIComponent(filename)}`, { method: "DELETE" });
-        if (res.ok) setAttachments((prev) => prev.filter((a) => a.filename !== filename));
+        if (res.ok) {
+            const next = attachments.filter((a) => a.filename !== filename);
+            setAttachments(next);
+            window.dispatchEvent(new CustomEvent("attachments-changed", { detail: { count: next.length } }));
+        }
     }
 
     function markdownRef(attachment: Attachment) {

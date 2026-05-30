@@ -16,6 +16,9 @@ export default function SiteHeader({ lang, pathSuffix = "" }: Props) {
                     <Link href={`/${lang}/`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                         {t(lang, "home")}
                     </Link>
+                    <Link href={`/${lang}/channels`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                        {t(lang, "channels")}
+                    </Link>
                     <Link href={`/${lang}/tools`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                         {t(lang, "allTools")}
                     </Link>

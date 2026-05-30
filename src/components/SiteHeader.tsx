@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { LangKey } from "@/lib/language";
 import { t } from "@/lib/i18n";
 import LanguageSelector from "@/components/LanguageSelector";
+import { IoAppsSharp } from "react-icons/io5";
+import { BiSolidUserRectangle } from "react-icons/bi";
 
 type Props = { lang: LangKey; pathSuffix?: string };
 
@@ -19,14 +21,24 @@ export default function SiteHeader({ lang, pathSuffix = "" }: Props) {
                     <Link href={`/${lang}/channels`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                         {t(lang, "channels")}
                     </Link>
-                    <Link href={`/${lang}/tools`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                        {t(lang, "allTools")}
-                    </Link>
-                    <Link href={`/${lang}/console`} className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                        {t(lang, "console")}
-                    </Link>
                 </nav>
-                <LanguageSelector currentLang={lang} pathSuffix={pathSuffix} />
+                <div className="flex items-center gap-3">
+                    <LanguageSelector currentLang={lang} pathSuffix={pathSuffix} />
+                    <Link
+                        href={`/${lang}/console`}
+                        title={t(lang, "console")}
+                        className="text-gray-500 hover:text-gray-900 transition-colors"
+                    >
+                        <BiSolidUserRectangle size={22} />
+                    </Link>
+                    <Link
+                        href={`/${lang}/tools`}
+                        title={t(lang, "allTools")}
+                        className="text-gray-500 hover:text-gray-900 transition-colors"
+                    >
+                        <IoAppsSharp size={20} />
+                    </Link>
+                </div>
             </div>
         </header>
     );

@@ -1,10 +1,11 @@
-// Dev-mode auth: reads user_id from cookie, falls back to default dev user.
-// In production, Cloudflare Zero Trust headers will be used instead.
+// Auth: In production, reads user identity from Cloudflare Zero Trust JWT header.
+// In dev, reads user_id from cookie, falls back to default dev user.
 
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { eq } from 'drizzle-orm';
 import { getDb } from '@/db/index';
 import { users } from '@/db/schema';
+import { parseJwtPayload } from '@/lib/jwt';
 
 export interface CurrentUser {
   id: string;
@@ -35,9 +36,21 @@ async function ensureUserRow(id: string, name: string, email: string): Promise<C
 }
 
 // Returns the current user for server components.
+// Prod: reads CF-Access-Jwt-Assertion header set by Cloudflare Zero Trust.
 // Dev: reads user_id cookie, falls back to DEV_USER.
-// Prod hook: read Cloudflare Zero Trust Cf-Access-Authenticated-User-Email header here when needed.
 export async function getCurrentUser(): Promise<CurrentUser> {
+  const headerStore = await headers();
+  const cfJwt = headerStore.get('CF-Access-Jwt-Assertion');
+  if (cfJwt) {
+    const payload = parseJwtPayload(cfJwt);
+    if (payload) {
+      const id = payload.sub ?? payload.email ?? 'unknown';
+      const email = payload.email ?? `${id}@unknown`;
+      const name = payload.name ?? email;
+      return ensureUserRow(id, name, email);
+    }
+  }
+
   const cookieStore = await cookies();
   const userId = cookieStore.get('user_id')?.value;
   const base = userId

@@ -1,0 +1,24 @@
+src/app/[lang]/page.tsx
+  h_de2c1989c48e7b 59-61,67-78,84,92-103
+.devcontainer/Dockerfile
+  h_de2c1989c48e7b 1-36
+src/db/index.ts
+  h_de2c1989c48e7b 45-50
+.devcontainer/devcontainer.json
+  h_de2c1989c48e7b 1-54
+.devcontainer/docker-compose.yml
+  h_de2c1989c48e7b 1-24
+huable.code-workspace
+  h_de2c1989c48e7b 34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "e1f1adb5c2f69432b32c236b46f6c4f076ce781a",
+  "prompts": {},
+  "humans": {
+    "h_de2c1989c48e7b": {
+      "author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

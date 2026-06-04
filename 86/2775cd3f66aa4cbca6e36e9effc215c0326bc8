@@ -1,0 +1,32 @@
+wrangler.jsonc
+  h_de2c1989c48e7b 20,25-26
+huable.code-workspace
+  h_de2c1989c48e7b 10-12
+src/db/index.ts
+  h_de2c1989c48e7b 2,4,12,34-36,38,41
+src/components/MarkdownContent.tsx
+  s_926ff89bfe470a::t_fe4c7c64174e00 29-30
+README.md
+  h_de2c1989c48e7b 143-144
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "862775cd3f66aa4cbca6e36e9effc215c0326bc8",
+  "prompts": {},
+  "humans": {
+    "h_de2c1989c48e7b": {
+      "author": "xspanni <xspanni@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_926ff89bfe470a": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "89d62781-aa73-40c5-ab8a-8a497cfe669f",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

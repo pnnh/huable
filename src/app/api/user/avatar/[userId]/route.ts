@@ -1,15 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import path from "node:path";
-import fs from "node:fs/promises";
-
-export const runtime = "nodejs";
-
-const AVATAR_ROOT = process.env.AVATAR_STORAGE_PATH || "./.data/avatars";
-
-function avatarPath(userId: string): string {
-    const safe = userId.replace(/[^a-zA-Z0-9_-]/g, "_");
-    return path.join(AVATAR_ROOT, safe);
-}
+import { getAvatarStorage } from "@/lib/storage";
 
 type Props = { params: Promise<{ userId: string }> };
 
@@ -21,26 +11,18 @@ export async function GET(_req: NextRequest, { params }: Props) {
         return new NextResponse(null, { status: 400 });
     }
 
-    const filePath = avatarPath(userId);
-    const mimePath = filePath + ".mime";
+    const safe = userId.replace(/[^a-zA-Z0-9_-]/g, "_");
+    const avatarStorage = getAvatarStorage();
+    const result = await avatarStorage.read(`avatars/user/${safe}`);
 
-    try {
-        const [data, mimeRaw] = await Promise.all([
-            fs.readFile(filePath),
-            fs.readFile(mimePath, "utf8").catch(() => "image/jpeg"),
-        ]);
-
-        const mime = ["image/jpeg", "image/png", "image/gif", "image/webp"].includes(mimeRaw.trim())
-            ? mimeRaw.trim()
-            : "image/jpeg";
-
-        return new NextResponse(data, {
-            headers: {
-                "Content-Type": mime,
-                "Cache-Control": "public, max-age=60",
-            },
-        });
-    } catch {
+    if (!result) {
         return new NextResponse(null, { status: 404 });
     }
+
+    return new NextResponse(Buffer.from(result.data), {
+        headers: {
+            "Content-Type": result.mimeType,
+            "Cache-Control": "public, max-age=60",
+        },
+    });
 }

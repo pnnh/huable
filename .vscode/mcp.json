@@ -1,9 +1,13 @@
 {
   "servers": {
-    "codebase-memo": {
+    "codebase-memory-mcp": {
       "type": "stdio",
-      "command": "/home/azureuser/.local/bin/codebase-memory-mcp",
-      "args": []
+      "command": "${userHome}/.local/bin/codebase-memory-mcp",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "CODEBASE_DATA_DIR": "${workspaceFolder}/.codebase"
+      }
     }
   }
 }

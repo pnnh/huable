@@ -3,19 +3,10 @@ import { getCurrentUser } from "@/lib/auth";
 import { getDb } from "@/db/index";
 import { channels } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import path from "node:path";
-import fs from "node:fs/promises";
-
-export const runtime = "nodejs";
+import { getAvatarStorage } from "@/lib/storage";
 
 const ALLOWED_MIME = new Set(["image/jpeg", "image/png", "image/gif", "image/webp"]);
-const AVATAR_ROOT = process.env.CHANNEL_AVATAR_STORAGE_PATH || "./.data/channel-avatars";
 const MAX_SIZE = 2 * 1024 * 1024; // 2 MB
-
-function avatarPath(channelId: string): string {
-    const safe = channelId.replace(/[^a-zA-Z0-9_-]/g, "_");
-    return path.join(AVATAR_ROOT, safe);
-}
 
 type Props = { params: Promise<{ channelId: string }> };
 
@@ -26,28 +17,20 @@ export async function GET(_req: NextRequest, { params }: Props) {
         return new NextResponse(null, { status: 400 });
     }
 
-    const filePath = avatarPath(channelId);
-    const mimePath = filePath + ".mime";
+    const safe = channelId.replace(/[^a-zA-Z0-9_-]/g, "_");
+    const avatarStorage = getAvatarStorage();
+    const result = await avatarStorage.read(`avatars/channel/${safe}`);
 
-    try {
-        const [data, mimeRaw] = await Promise.all([
-            fs.readFile(filePath),
-            fs.readFile(mimePath, "utf8").catch(() => "image/jpeg"),
-        ]);
-
-        const mime = ["image/jpeg", "image/png", "image/gif", "image/webp"].includes(mimeRaw.trim())
-            ? mimeRaw.trim()
-            : "image/jpeg";
-
-        return new NextResponse(data, {
-            headers: {
-                "Content-Type": mime,
-                "Cache-Control": "public, max-age=60",
-            },
-        });
-    } catch {
+    if (!result) {
         return new NextResponse(null, { status: 404 });
     }
+
+    return new NextResponse(Buffer.from(result.data), {
+        headers: {
+            "Content-Type": result.mimeType,
+            "Cache-Control": "public, max-age=60",
+        },
+    });
 }
 
 export async function POST(req: NextRequest, { params }: Props) {
@@ -75,15 +58,14 @@ export async function POST(req: NextRequest, { params }: Props) {
         return NextResponse.json({ error: "Unsupported image type" }, { status: 415 });
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
-    if (buffer.length > MAX_SIZE) {
+    const data = new Uint8Array(await file.arrayBuffer());
+    if (data.length > MAX_SIZE) {
         return NextResponse.json({ error: "File too large" }, { status: 413 });
     }
 
-    const dir = path.dirname(avatarPath(channelId));
-    await fs.mkdir(dir, { recursive: true });
-    await fs.writeFile(avatarPath(channelId), buffer);
-    await fs.writeFile(avatarPath(channelId) + ".mime", file.type, "utf8");
+    const safe = channelId.replace(/[^a-zA-Z0-9_-]/g, "_");
+    const avatarStorage = getAvatarStorage();
+    await avatarStorage.save(`avatars/channel/${safe}`, data, file.type);
 
     return NextResponse.json({ ok: true, url: `/api/channel/avatar/${channelId}` });
 }

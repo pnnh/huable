@@ -22,5 +22,3 @@ export function runMigrations() {
 
   return db;
 }
-
-runMigrations();

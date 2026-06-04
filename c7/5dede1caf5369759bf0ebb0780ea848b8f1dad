@@ -1,0 +1,42 @@
+src/lib/storage.ts
+  h_de2c1989c48e7b 1,4-5,9-14,35-36,42,51,80-109,111-118,121-122,125,127-130,133-138,141-144,148-155,158-165,168-172,175-176,178-179,182-191,193-205
+src/db/index.ts
+  h_de2c1989c48e7b 4,20,29-36,40-49
+package.json
+  s_75ad514a89bd44::t_c7dde59c9f8317 30
+worker-configuration.d.ts
+  h_de2c1989c48e7b 1-54
+src/app/api/user/avatar/[userId]/route.ts
+  h_de2c1989c48e7b 2,14-16,18,21-24
+src/app/api/user/avatar/route.ts
+  h_de2c1989c48e7b 3,21-22,26-28
+next.config.ts
+  h_de2c1989c48e7b 3-5
+src/app/api/channel/avatar/[channelId]/route.ts
+  h_de2c1989c48e7b 6,20-24,27-30,61-62,66-68
+tsconfig.json
+  h_de2c1989c48e7b 33
+wrangler.jsonc
+  h_de2c1989c48e7b 29-31
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "c75dede1caf5369759bf0ebb0780ea848b8f1dad",
+  "prompts": {},
+  "humans": {
+    "h_de2c1989c48e7b": {
+      "author": "xspanni <xspanni@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_75ad514a89bd44": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "504a5a10-3833-4c31-84c4-31983a63a65d",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

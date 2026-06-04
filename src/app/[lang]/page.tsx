@@ -48,33 +48,59 @@ export default async function HomePage({ params, searchParams }: Props) {
     const baseCondition = and(eq(notes.isPublished, true), eq(channels.isPublic, true));
     const condition = query
         ? and(
-              baseCondition,
-              or(
-                  like(notes.title, `%${query}%`),
-                  like(notes.body, `%${query}%`),
-              ),
-          )
+            baseCondition,
+            or(
+                like(notes.title, `%${query}%`),
+                like(notes.body, `%${query}%`),
+            ),
+        )
         : baseCondition;
 
-    // Count all matching notes
-    const allIds = await db
-        .select()
-        .from(notes)
-        .innerJoin(channels, eq(notes.channelId, channels.id))
-        .where(condition);
+    let allIds: { notes: typeof notes.$inferSelect; channels: typeof channels.$inferSelect }[] = [];
+    let pageNotes: typeof allIds = [];
+    try {
+        // Count all matching notes
+        allIds = await db
+            .select()
+            .from(notes)
+            .innerJoin(channels, eq(notes.channelId, channels.id))
+            .where(condition);
+    } catch (err) {
+        const cause = (err as { cause?: unknown }).cause;
+        console.error("[HomePage] DB count query failed", {
+            message: (err as Error).message,
+            cause: cause instanceof Error
+                ? { message: cause.message, stack: cause.stack, name: cause.name }
+                : cause,
+            stack: (err as Error).stack,
+        });
+        throw err;
+    }
     const total = allIds.length;
 
     const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
     const currentPage = Math.min(page, totalPages);
 
-    const pageNotes = await db
-        .select()
-        .from(notes)
-        .innerJoin(channels, eq(notes.channelId, channels.id))
-        .where(condition)
-        .orderBy(desc(notes.updatedAt))
-        .limit(PAGE_SIZE)
-        .offset(offset);
+    try {
+        pageNotes = await db
+            .select()
+            .from(notes)
+            .innerJoin(channels, eq(notes.channelId, channels.id))
+            .where(condition)
+            .orderBy(desc(notes.updatedAt))
+            .limit(PAGE_SIZE)
+            .offset(offset);
+    } catch (err) {
+        const cause = (err as { cause?: unknown }).cause;
+        console.error("[HomePage] DB page query failed", {
+            message: (err as Error).message,
+            cause: cause instanceof Error
+                ? { message: cause.message, stack: cause.stack, name: cause.name }
+                : cause,
+            stack: (err as Error).stack,
+        });
+        throw err;
+    }
 
     return (
         <>

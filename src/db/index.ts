@@ -41,7 +41,14 @@ export function getDb(): BetterSQLite3Database<typeof schema> {
     const { env } = getCloudflareContext();
     if (env.DB) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return drizzleD1(env.DB, { schema }) as any;
+      return drizzleD1(env.DB, {
+        schema,
+        logger: {
+          logQuery(sql: string, params: unknown[]) {
+            console.log("[D1] query", { sql, params });
+          },
+        },
+      }) as any;
     }
   } catch {
     // Not in Worker context (e.g. build time), fall through to local SQLite

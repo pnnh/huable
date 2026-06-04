@@ -8,6 +8,10 @@
       "env": {
         "CODEBASE_DATA_DIR": "${workspaceFolder}/.codebase"
       }
+    },
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"]
     }
   }
 }

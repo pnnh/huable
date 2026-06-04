@@ -31,6 +31,7 @@
 			"**/.next/**": true,
 			"**/.beads/**": true,
 			"**/.idea/**": true,
+			"**/.open-next/**": true,
 		}
 	}
 }

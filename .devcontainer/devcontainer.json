@@ -1,0 +1,54 @@
+{
+  "name": "Next.js Dev Container (Node 22 + Copilot Ready)",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [3000, 3001, 5432],
+  "portsAttributes": {
+    "3000": {
+      "label": "Next.js Dev Server",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.copilot",
+        "github.copilot-chat",
+        "ms-vscode-remote.remote-containers"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "eslint.validate": ["javascript", "typescript", "typescriptreact"],
+        "github.copilot.enable": {
+          "*": true,
+          "plaintext": true
+        },
+        // "chat.tools.autoApprove": true,           // 允许 Agent 自动批准命令
+        "chat.tools.terminal.sandbox.enabled": true
+      }
+    }
+  },
+
+  // 容器创建后执行的命令
+  "postCreateCommand": "corepack enable pnpm && pnpm install --frozen-lockfile --ignore-scripts && echo '✅ Next.js + Copilot 环境初始化完成！'",
+
+  // 远程环境变量
+  "remoteEnv": {
+    "NODE_ENV": "development",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  },
+
+  // 功能特性（可选扩展）
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  // 重启策略
+  "remoteUser": "node"
+}

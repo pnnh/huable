@@ -24,6 +24,10 @@
     {
       "bucket_name": "huable-notes",
       "binding": "HUABLE_NOTES"
+    },
+    {
+      "bucket_name": "huable-notes",           // 可以用同一个 bucket
+      "binding": "NEXT_INC_CACHE_R2_BUCKET"   // 必须是这个名字
     }
   ]
 }

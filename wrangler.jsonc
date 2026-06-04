@@ -22,7 +22,7 @@
   ],
   "r2_buckets": [
     {
-      "bucket_name": "huable_notes",
+      "bucket_name": "huable-notes",
       "binding": "HUABLE_NOTES"
     }
   ]

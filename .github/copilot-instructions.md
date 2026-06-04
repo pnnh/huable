@@ -42,11 +42,6 @@ mcp_codebase-memo_get_architecture({ "project": "<display_name>" })
 - `manage_adr(action)` — CRUD for Architecture Decision Records
 - `ingest_traces(traces)` — Ingest runtime traces to validate HTTP edges
 
-<!-- rtk-instructions v2 -->
-# RTK — Token-Optimized CLI
-
-**rtk** is a CLI proxy that filters and compresses command outputs, saving 60-90% tokens.
-
 ## Rule
 
 Always prefix shell commands with `rtk`:

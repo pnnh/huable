@@ -140,8 +140,8 @@ pnpm db:migrate    # dev: applies all pending migrations to .data/huable.db
 Migrations live in `./migrations/`. To apply them to D1 in production:
 
 ```bash
-wrangler d1 execute huable-db --file=./migrations/0000_complex_banshee.sql
-wrangler d1 execute huable-db --file=./migrations/0001_user_profile.sql
+wrangler d1 execute huable-db --remote --file=./migrations/0000_complex_banshee.sql
+wrangler d1 execute huable-db --remote --file=./migrations/0001_user_profile.sql
 ```
 
 ## Cloudflare Deployment

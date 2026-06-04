@@ -17,13 +17,13 @@
     {
       "binding": "DB",
       "database_name": "huable-db",
-      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+      "database_id": "958f0a31-1b9a-40bb-9fc6-52fecce06e64"
     }
   ],
   "r2_buckets": [
     {
-      "binding": "NOTES_BUCKET",
-      "bucket_name": "huable-notes"
+      "bucket_name": "huable_notes",
+      "binding": "HUABLE_NOTES"
     }
   ]
 }

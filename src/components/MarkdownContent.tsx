@@ -26,8 +26,8 @@ const SANITIZE_OPTIONS: IOptions = {
     allowedSchemesByTag: {
         img: ["http", "https"],
     },
-    // Allow relative URLs (e.g. /api/files/{noteId}/{filename}) for images and links
-    allowedRelativeUrls: true,
+    // Relative URLs (e.g. /api/files/{noteId}/{filename}) are allowed by default
+    // in sanitize-html when the URL has no scheme (naughtyHref returns false).
     allowProtocolRelative: false,
 };
 

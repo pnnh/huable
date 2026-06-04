@@ -1,0 +1,14 @@
+src/lib/auth.ts
+  h_de2c1989c48e7b 1-2,4,8,39,42-53
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "398ce61c70e646a7335d15c4765a925a38d9d468",
+  "prompts": {},
+  "humans": {
+    "h_de2c1989c48e7b": {
+      "author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

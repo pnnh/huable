@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAvatarStorage } from "@/lib/storage";
+import { requireConsoleAuth } from "../../../_auth";
 
 type Props = { params: Promise<{ userId: string }> };
 
 export async function GET(_req: NextRequest, { params }: Props) {
+    const authError = await requireConsoleAuth();
+    if (authError) return authError;
+
     const { userId } = await params;
 
     // Validate: only alphanumeric, dash, underscore (safe path segment)

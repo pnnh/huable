@@ -26,7 +26,7 @@ export default function AttachmentPanel({ noteId, labels }: Props) {
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const fetchAttachments = useCallback(async () => {
-        const res = await fetch(`/api/attachments/${noteId}`);
+        const res = await fetch(`/api/console/attachments/${noteId}`);
         if (res.ok) {
             const data = await res.json();
             setAttachments(data);
@@ -46,7 +46,7 @@ export default function AttachmentPanel({ noteId, labels }: Props) {
             const fd = new FormData();
             fd.append("file", file);
             fd.append("noteId", noteId);
-            const res = await fetch("/api/upload", { method: "POST", body: fd });
+            const res = await fetch("/api/console/upload", { method: "POST", body: fd });
             if (!res.ok) throw new Error("Upload failed");
             await fetchAttachments();
         } finally {

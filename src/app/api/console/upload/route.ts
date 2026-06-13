@@ -3,10 +3,14 @@ import { getStorage } from "@/lib/storage";
 import { getDb } from "@/db/index";
 import { noteAttachments, notes } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { requireConsoleAuth } from "../_auth";
 
 export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
+    const authError = await requireConsoleAuth();
+    if (authError) return authError;
+
     const formData = await req.formData();
     const file = formData.get("file");
     const noteId = formData.get("noteId");

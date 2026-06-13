@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { getAvatarStorage } from "@/lib/storage";
+import { requireConsoleAuth } from "../../_auth";
 
 const ALLOWED_MIME = new Set(["image/jpeg", "image/png", "image/gif", "image/webp"]);
 const MAX_SIZE = 2 * 1024 * 1024; // 2 MB
 
 export async function POST(req: NextRequest) {
+    const authError = await requireConsoleAuth();
+    if (authError) return authError;
+
     const user = await getCurrentUser();
     const formData = await req.formData();
     const file = formData.get("file");
@@ -27,5 +31,5 @@ export async function POST(req: NextRequest) {
     const safe = user.id.replace(/[^a-zA-Z0-9_-]/g, "_");
     await avatarStorage.save(`avatars/user/${safe}`, data, file.type);
 
-    return NextResponse.json({ ok: true, url: `/api/user/avatar/${user.id}` });
+    return NextResponse.json({ ok: true, url: `/api/console/user/avatar/${user.id}` });
 }

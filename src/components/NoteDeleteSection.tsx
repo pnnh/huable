@@ -20,7 +20,7 @@ export default function NoteDeleteSection({ noteId, redirectTo, labels }: NoteDe
 
     // Fetch initial attachment count
     useEffect(() => {
-        fetch(`/api/attachments/${noteId}`)
+        fetch(`/api/console/attachments/${noteId}`)
             .then((r) => r.json())
             .then((data: unknown[]) => setAttachmentCount(data.length))
             .catch(() => setAttachmentCount(0));
@@ -40,7 +40,7 @@ export default function NoteDeleteSection({ noteId, redirectTo, labels }: NoteDe
         if (!window.confirm(labels.deleteNoteConfirm)) return;
         setDeleting(true);
         try {
-            const res = await fetch(`/api/notes/${noteId}`, { method: "DELETE" });
+            const res = await fetch(`/api/console/notes/${noteId}`, { method: "DELETE" });
             if (res.ok) {
                 router.push(redirectTo);
             }

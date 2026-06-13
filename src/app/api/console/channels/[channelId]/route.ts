@@ -3,12 +3,16 @@ import { getCurrentUser } from "@/lib/auth";
 import { getDb } from "@/db/index";
 import { channels, notes } from "@/db/schema";
 import { and, count, eq } from "drizzle-orm";
+import { requireConsoleAuth } from "../../_auth";
 
 export const runtime = "nodejs";
 
 type Props = { params: Promise<{ channelId: string }> };
 
 export async function DELETE(_req: NextRequest, { params }: Props) {
+    const authError = await requireConsoleAuth();
+    if (authError) return authError;
+
     const { channelId } = await params;
 
     if (!channelId || !/^[a-zA-Z0-9_-]+$/.test(channelId)) {

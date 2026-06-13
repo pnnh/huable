@@ -4,12 +4,16 @@ import { getDb } from "@/db/index";
 import { notes, noteAttachments } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
 import { getStorage } from "@/lib/storage";
+import { requireConsoleAuth } from "../../_auth";
 
 export const runtime = "nodejs";
 
 type Props = { params: Promise<{ noteId: string }> };
 
 export async function DELETE(_req: NextRequest, { params }: Props) {
+    const authError = await requireConsoleAuth();
+    if (authError) return authError;
+
     const { noteId } = await params;
 
     if (!noteId || !/^[a-zA-Z0-9_-]+$/.test(noteId)) {
@@ -48,6 +52,9 @@ export async function DELETE(_req: NextRequest, { params }: Props) {
 }
 
 export async function PATCH(req: NextRequest, { params }: Props) {
+    const authError = await requireConsoleAuth();
+    if (authError) return authError;
+
     const { noteId } = await params;
 
     if (!noteId || !/^[a-zA-Z0-9_-]+$/.test(noteId)) {

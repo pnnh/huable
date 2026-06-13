@@ -3,10 +3,14 @@ import { eq } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/auth";
 import { getDb } from "@/db/index";
 import { users } from "@/db/schema";
+import { requireConsoleAuth } from "../../_auth";
 
 export const runtime = "nodejs";
 
 export async function PATCH(req: NextRequest) {
+    const authError = await requireConsoleAuth();
+    if (authError) return authError;
+
     const user = await getCurrentUser();
     const body = await req.json();
 

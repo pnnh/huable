@@ -24,12 +24,12 @@ interface UserProfileClientProps {
 export default function UserProfileClient({ userId, name, email, nickname, bio, labels }: UserProfileClientProps) {
     const [nicknameVal, setNicknameVal] = useState(nickname ?? "");
     const [bioVal, setBioVal] = useState(bio ?? "");
-    const [avatarUrl, setAvatarUrl] = useState(`/api/user/avatar/${userId}`);
+    const [avatarUrl, setAvatarUrl] = useState(`/api/console/user/avatar/${userId}`);
     const [avatarError, setAvatarError] = useState(false);
     const [saving, setSaving] = useState(false);
 
     useEffect(() => {
-        setAvatarUrl(`/api/user/avatar/${userId}?t=${Date.now()}`);
+        setAvatarUrl(`/api/console/user/avatar/${userId}?t=${Date.now()}`);
     }, [userId]);
     const [saved, setSaved] = useState(false);
     const [uploadError, setUploadError] = useState<string | null>(null);
@@ -44,9 +44,9 @@ export default function UserProfileClient({ userId, name, email, nickname, bio, 
         setUploadError(null);
         const formData = new FormData();
         formData.append("file", file);
-        const res = await fetch("/api/user/avatar", { method: "POST", body: formData });
+        const res = await fetch("/api/console/user/avatar", { method: "POST", body: formData });
         if (res.ok) {
-            setAvatarUrl(`/api/user/avatar/${userId}?t=${Date.now()}`);
+            setAvatarUrl(`/api/console/user/avatar/${userId}?t=${Date.now()}`);
             setAvatarError(false);
         } else {
             const data = await res.json().catch(() => ({}));
@@ -58,7 +58,7 @@ export default function UserProfileClient({ userId, name, email, nickname, bio, 
         e.preventDefault();
         setSaving(true);
         setSaved(false);
-        await fetch("/api/user/profile", {
+        await fetch("/api/console/user/profile", {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nickname: nicknameVal, bio: bioVal }),

@@ -17,7 +17,7 @@ export default function RemoveFromChannelButton({ noteId, confirmMessage, label 
         if (!window.confirm(confirmMessage)) return;
         setBusy(true);
         try {
-            await fetch(`/api/notes/${noteId}`, {
+            await fetch(`/api/console/notes/${noteId}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ channelId: null }),

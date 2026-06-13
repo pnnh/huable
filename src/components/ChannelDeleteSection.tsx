@@ -28,7 +28,7 @@ export default function ChannelDeleteSection({
         if (!window.confirm(labels.deleteChannelConfirm)) return;
         setDeleting(true);
         try {
-            const res = await fetch(`/api/channels/${channelId}`, { method: "DELETE" });
+            const res = await fetch(`/api/console/channels/${channelId}`, { method: "DELETE" });
             if (res.ok) {
                 router.push(redirectTo);
             }

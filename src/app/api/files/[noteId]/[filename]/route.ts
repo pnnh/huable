@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStorage } from "@/lib/storage";
 import { getDb } from "@/db/index";
-import { noteAttachments } from "@/db/schema";
+import { noteAttachments, notes, approvalEvents } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
 
 export const runtime = "nodejs";
@@ -50,6 +50,13 @@ export async function DELETE(
     await db
         .delete(noteAttachments)
         .where(and(eq(noteAttachments.noteId, noteId), eq(noteAttachments.filename, filename)));
+
+    // Reset approval status and create approval event only when note is published in a channel
+    const [note] = await db.select({ channelId: notes.channelId, isPublished: notes.isPublished }).from(notes).where(eq(notes.id, noteId)).limit(1);
+    if (note?.channelId && note.isPublished) {
+        await db.update(notes).set({ approvalStatus: "pending", updatedAt: Date.now() }).where(eq(notes.id, noteId));
+        await db.insert(approvalEvents).values({ noteId, action: "updated", createdAt: Date.now() });
+    }
 
     // Delete file (ignore if already gone)
     await storage.delete(noteId, filename).catch(() => undefined);

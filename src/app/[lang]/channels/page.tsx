@@ -33,8 +33,8 @@ export default async function ChannelsPage({ params, searchParams }: Props) {
 
     const db = getDb();
 
-    // Build WHERE clause: always isPublic=true, optionally fuzzy match on name or description
-    const baseCondition = eq(channels.isPublic, true);
+    // Build WHERE clause: always isPublic=true and approvalStatus=approved, optionally fuzzy match on name or description
+    const baseCondition = and(eq(channels.isPublic, true), eq(channels.approvalStatus, "approved"));
     const condition = query
         ? and(
               baseCondition,

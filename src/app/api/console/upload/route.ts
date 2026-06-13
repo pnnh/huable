@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStorage } from "@/lib/storage";
 import { getDb } from "@/db/index";
-import { noteAttachments, notes } from "@/db/schema";
+import { noteAttachments, notes, approvalEvents } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { requireConsoleAuth } from "../_auth";
 
@@ -41,6 +41,13 @@ export async function POST(req: NextRequest) {
         .insert(noteAttachments)
         .values({ noteId, filename, mimeType })
         .onConflictDoNothing();
+
+    // Reset approval status and create approval event only when note is published in a channel
+    const note = existingNotes[0];
+    if (note.channelId && note.isPublished) {
+        await db.update(notes).set({ approvalStatus: "pending", updatedAt: Date.now() }).where(eq(notes.id, noteId));
+        await db.insert(approvalEvents).values({ noteId, action: "updated", createdAt: Date.now() });
+    }
 
     const url = `/api/files/${noteId}/${encodeURIComponent(filename)}`;
     return NextResponse.json({ filename, noteId, url });

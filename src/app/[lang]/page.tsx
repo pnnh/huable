@@ -45,7 +45,7 @@ export default async function HomePage({ params, searchParams }: Props) {
     const offset = (page - 1) * PAGE_SIZE;
 
     const db = getDb();
-    const baseCondition = and(eq(notes.isPublished, true), eq(channels.isPublic, true));
+    const baseCondition = and(eq(notes.isPublished, true), eq(channels.isPublic, true), eq(notes.approvalStatus, "approved"));
     const condition = query
         ? and(
             baseCondition,

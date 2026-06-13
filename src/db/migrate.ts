@@ -19,6 +19,9 @@ export function runMigrations() {
 
   const db = drizzle({ connection: { source: dbPath }, schema });
   migrate(db, { migrationsFolder: "./migrations" });
+  console.log("Migrations applied successfully.");
 
   return db;
 }
+
+runMigrations();

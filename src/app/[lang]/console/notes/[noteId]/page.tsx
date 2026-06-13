@@ -5,7 +5,7 @@ import { isValidLang } from "@/lib/language";
 import type { LangKey } from "@/lib/language";
 import { getCurrentUser } from "@/lib/auth";
 import { getDb } from "@/db/index";
-import { channels, createId, notes } from "@/db/schema";
+import { channels, createId, notes, approvalEvents } from "@/db/schema";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { t } from "@/lib/i18n";
@@ -70,6 +70,9 @@ export default async function NoteEditorPage({ params }: Props) {
             }
         }
 
+        // Approval is only required when the note is published and linked to a channel
+        const needsApproval = !!(channelId && isPublished);
+
         if (isNew) {
             const id = createId();
             await db2.insert(notes).values({
@@ -79,9 +82,17 @@ export default async function NoteEditorPage({ params }: Props) {
                 title,
                 body,
                 isPublished,
+                approvalStatus: needsApproval ? "pending" : "approved",
                 createdAt: now,
                 updatedAt: now,
             });
+            if (needsApproval) {
+                await db2.insert(approvalEvents).values({
+                    noteId: id,
+                    action: "created",
+                    createdAt: now,
+                });
+            }
             redirect(`/${lang}/console/notes`);
         }
 
@@ -98,8 +109,16 @@ export default async function NoteEditorPage({ params }: Props) {
 
         await db2
             .update(notes)
-            .set({ title, body, channelId, isPublished, updatedAt: now })
+            .set({ title, body, channelId, isPublished, approvalStatus: needsApproval ? "pending" : "approved", updatedAt: now })
             .where(and(eq(notes.id, noteId), eq(notes.userId, user2.id)));
+
+        if (needsApproval) {
+            await db2.insert(approvalEvents).values({
+                noteId,
+                action: "updated",
+                createdAt: now,
+            });
+        }
 
         redirect(`/${lang}/console/notes`);
     }

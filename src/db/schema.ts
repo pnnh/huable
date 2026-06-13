@@ -40,6 +40,10 @@ export const channels = sqliteTable("channels", {
   name: text("name").notNull(),
   description: text("description"),
   isPublic: integer("is_public", { mode: "boolean" }).notNull().default(false),
+  approvalStatus: text("approval_status")
+    .notNull()
+    .default("pending")
+    .$type<"pending" | "approved">(),
   createdAt: integer("created_at").notNull().$defaultFn(() => Date.now()),
 });
 
@@ -56,6 +60,10 @@ export const notes = sqliteTable("notes", {
   isPublished: integer("is_published", { mode: "boolean" })
     .notNull()
     .default(false),
+  approvalStatus: text("approval_status")
+    .notNull()
+    .default("pending")
+    .$type<"pending" | "approved">(),
   createdAt: integer("created_at").notNull().$defaultFn(() => Date.now()),
   updatedAt: integer("updated_at").notNull().$defaultFn(() => Date.now()),
 });
@@ -93,6 +101,36 @@ export const notesRelations = relations(notes, ({ one, many }) => ({
     references: [channels.id],
   }),
   attachments: many(noteAttachments),
+}));
+
+export const approvalEvents = sqliteTable("approval_events", {
+  id: text("id").primaryKey().$defaultFn(createId),
+  type: text("type").notNull().default("note").$type<"note" | "channel">(),
+  noteId: text("note_id")
+    .references(() => notes.id, { onDelete: "cascade" }),
+  channelId: text("channel_id")
+    .references(() => channels.id, { onDelete: "cascade" }),
+  action: text("action").notNull().$type<"created" | "updated">(),
+  isHandled: integer("is_handled", { mode: "boolean" }).notNull().default(false),
+  handledAt: integer("handled_at"),
+  handledBy: text("handled_by").references(() => users.id, { onDelete: "set null" }),
+  result: text("result").$type<"approved" | "rejected">(),
+  createdAt: integer("created_at").notNull().$defaultFn(() => Date.now()),
+});
+
+export const approvalEventsRelations = relations(approvalEvents, ({ one }) => ({
+  note: one(notes, {
+    fields: [approvalEvents.noteId],
+    references: [notes.id],
+  }),
+  channel: one(channels, {
+    fields: [approvalEvents.channelId],
+    references: [channels.id],
+  }),
+  handler: one(users, {
+    fields: [approvalEvents.handledBy],
+    references: [users.id],
+  }),
 }));
 
 export const noteAttachmentsRelations = relations(noteAttachments, ({ one }) => ({

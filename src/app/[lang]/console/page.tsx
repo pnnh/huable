@@ -72,6 +72,12 @@ export default async function ConsolePage({ params }: Props) {
                         >
                             {t(l, "manageUsers")}
                         </Link>
+                        <Link
+                            href={`/${l}/console/approvals`}
+                            className="inline-flex items-center px-4 py-2 bg-amber-600 text-white text-sm font-medium rounded-md hover:bg-amber-700"
+                        >
+                            {t(l, "manageApprovals")}
+                        </Link>
                     </div>
                 )}
             </main>

@@ -4,7 +4,7 @@ import { isValidLang } from "@/lib/language";
 import type { LangKey } from "@/lib/language";
 import { getCurrentUser } from "@/lib/auth";
 import { getDb } from "@/db/index";
-import { channels, notes, createId } from "@/db/schema";
+import { channels, notes, createId, approvalEvents } from "@/db/schema";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ChannelAvatarUpload from "@/components/ChannelAvatarUpload";
@@ -55,13 +55,30 @@ export default async function ChannelEditorPage({ params }: Props) {
                 name,
                 description,
                 isPublic,
+                approvalStatus: isPublic ? "pending" : "approved",
                 createdAt: now,
             });
+            if (isPublic) {
+                await db2.insert(approvalEvents).values({
+                    type: "channel",
+                    channelId: id,
+                    action: "created",
+                    createdAt: now,
+                });
+            }
         } else {
             await db2
                 .update(channels)
-                .set({ name, description, isPublic })
+                .set({ name, description, isPublic, approvalStatus: isPublic ? "pending" : "approved" })
                 .where(eq(channels.id, channelId));
+            if (isPublic) {
+                await db2.insert(approvalEvents).values({
+                    type: "channel",
+                    channelId,
+                    action: "updated",
+                    createdAt: now,
+                });
+            }
         }
         redirect(`/${lang}/console/channels`);
     }

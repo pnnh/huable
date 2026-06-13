@@ -25,12 +25,12 @@ export default async function ChannelPage({ params }: Props) {
         .where(eq(channels.id, id))
         .limit(1);
 
-    if (!channel || !channel.isPublic) notFound();
+    if (!channel || !channel.isPublic || channel.approvalStatus !== "approved") notFound();
 
     const publishedNotes = await db
         .select()
         .from(notes)
-        .where(and(eq(notes.channelId, id), eq(notes.isPublished, true)))
+        .where(and(eq(notes.channelId, id), eq(notes.isPublished, true), eq(notes.approvalStatus, "approved")))
         .orderBy(desc(notes.updatedAt));
 
     return (

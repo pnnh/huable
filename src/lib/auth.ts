@@ -1,5 +1,6 @@
 // Auth: In production, reads user identity from Cloudflare Zero Trust JWT header.
-// In dev, reads user_id from cookie, falls back to default dev user.
+// In dev, reads user_id cookie (legacy) or dev_user_email/dev_user_name cookies (set by /signin),
+// falls back to DEV_USER_* env vars.
 
 import { cookies, headers } from 'next/headers';
 import { eq } from 'drizzle-orm';
@@ -37,7 +38,7 @@ async function ensureUserRow(id: string, name: string, email: string): Promise<C
 
 // Returns the current user for server components.
 // Prod: reads CF-Access-Jwt-Assertion header set by Cloudflare Zero Trust.
-// Dev: reads user_id cookie, falls back to DEV_USER.
+// Dev: reads dev_user_email (preferred for signin) or user_id cookie, falls back to DEV_USER_*.
 export async function getCurrentUser(): Promise<CurrentUser> {
   const headerStore = await headers();
   const cfJwt = headerStore.get('CF-Access-Jwt-Assertion');
@@ -52,9 +53,33 @@ export async function getCurrentUser(): Promise<CurrentUser> {
   }
 
   const cookieStore = await cookies();
+  // Preferred: dev sign-in via /[lang]/signin sets these (supports arbitrary email)
+  const devEmail = cookieStore.get('dev_user_email')?.value;
+  if (devEmail) {
+    const devName = cookieStore.get('dev_user_name')?.value || devEmail.split('@')[0] || devEmail;
+    return ensureUserRow(devEmail, devName, devEmail);
+  }
+  // Legacy cookie support (user_id as id, forces email to id@local)
   const userId = cookieStore.get('user_id')?.value;
   const base = userId
     ? { id: userId, name: userId, email: `${userId}@local` }
     : DEV_USER_BASE;
   return ensureUserRow(base.id, base.name, base.email);
+}
+
+// Returns whether the request has a real authenticated identity (JWT in prod, or dev login cookie).
+// Used by console guard: in dev, absence of login cookie means redirect to /signin (instead of fallback dev user).
+export async function isAuthenticated(): Promise<boolean> {
+  const headerStore = await headers();
+  const cfJwt = headerStore.get('CF-Access-Jwt-Assertion');
+  if (cfJwt) {
+    const payload = parseJwtPayload(cfJwt);
+    if (payload) return true;
+  }
+  if (process.env.NODE_ENV === 'development') {
+    const cookieStore = await cookies();
+    const hasLogin = !!(cookieStore.get('user_id')?.value || cookieStore.get('dev_user_email')?.value);
+    return hasLogin;
+  }
+  return false;
 }

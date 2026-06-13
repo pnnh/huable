@@ -35,6 +35,10 @@ export default async function ConsolePage({ params }: Props) {
                     <Link href={`/${l}/console/profile`} className="font-medium text-blue-600 hover:underline">
                         {user.nickname || user.name}
                     </Link>
+                    {" · "}
+                    <Link href={`/${l}/signout`} className="text-sm text-blue-600 hover:underline">
+                        {t(l, "signOut")}
+                    </Link>
                 </p>
                 <div className="grid grid-cols-2 gap-6 mb-10">
                     <div className="rounded-lg border border-gray-200 bg-white p-6">

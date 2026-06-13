@@ -13,7 +13,6 @@
 		},
 		"chat.tools.terminal.autoApprove": {
 			"rtk": true,
-			"bd": true,
 			"cmake": true,
 			"mkdir": true,
 			"tar": true,
@@ -29,7 +28,6 @@
 			"**/.dolt/**": true,
 			"**/.vscode/**": true,
 			"**/.next/**": true,
-			"**/.beads/**": true,
 			"**/.idea/**": true,
 			"**/.open-next/**": true,
 		}

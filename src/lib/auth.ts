@@ -5,7 +5,7 @@
 import { cookies, headers } from 'next/headers';
 import { eq } from 'drizzle-orm';
 import { getDb } from '@/db/index';
-import { users } from '@/db/schema';
+import { users, createId } from '@/db/schema';
 import { parseJwtPayload } from '@/lib/jwt';
 
 export interface CurrentUser {
@@ -14,6 +14,7 @@ export interface CurrentUser {
   email: string;
   nickname: string | null;
   bio: string | null;
+  sysrole: "admin" | "normal";
 }
 
 const DEV_USER_BASE = {
@@ -22,18 +23,54 @@ const DEV_USER_BASE = {
   email: process.env.DEV_USER_EMAIL ?? 'dev@local',
 };
 
-// Ensures the user row exists in the local SQLite DB (dev only).
-async function ensureUserRow(id: string, name: string, email: string): Promise<CurrentUser> {
+// Ensures the user row exists in the DB (dev or prod).
+// For brand new users (first login), the internal id is generated via createId()
+// (base58-encoded uuidv7, consistent with notes/channels/note_attachments).
+// Returning users are matched by their unique email so they keep the same internal id.
+async function ensureUserRow(proposedId: string, name: string, email: string): Promise<CurrentUser> {
   const db = getDb();
-  db.insert(users)
-    .values({ id, name, email })
-    .onConflictDoNothing()
-    .run();
-  const rows = await db.select().from(users).where(eq(users.id, id)).limit(1);
-  if (rows.length > 0) {
-    return { id: rows[0].id, name: rows[0].name, email: rows[0].email, nickname: rows[0].nickname ?? null, bio: rows[0].bio ?? null };
+
+  // Lookup by email first (email is unique and serves as the stable identity from login provider).
+  let rows = await db.select().from(users).where(eq(users.email, email)).limit(1);
+
+  if (rows.length === 0) {
+    // First time seeing this user: generate an opaque id exactly like notes etc.
+    const newId = createId();
+    db.insert(users)
+      .values({ id: newId, name, email })
+      .onConflictDoNothing()
+      .run();
+    rows = await db.select().from(users).where(eq(users.id, newId)).limit(1);
   }
-  return { id, name, email, nickname: null, bio: null };
+
+  if (rows.length > 0) {
+    const row = rows[0];
+    let role = (row.sysrole as "admin" | "normal" | undefined) ?? "normal";
+    if (role === "normal") {
+      // Bootstrap: promote the first user who logs in if there are no admins yet.
+      const existingAdmins = await db
+        .select({ id: users.id })
+        .from(users)
+        .where(eq(users.sysrole, "admin"))
+        .limit(1);
+      if (existingAdmins.length === 0) {
+        db.update(users).set({ sysrole: "admin" }).where(eq(users.id, row.id)).run();
+        role = "admin";
+      }
+    }
+    return {
+      id: row.id,
+      name: row.name,
+      email: row.email,
+      nickname: row.nickname ?? null,
+      bio: row.bio ?? null,
+      sysrole: role,
+    };
+  }
+
+  // Extremely rare fallback (should not normally happen): still generate proper id.
+  const fallbackId = createId();
+  return { id: fallbackId, name, email, nickname: null, bio: null, sysrole: "normal" };
 }
 
 // Returns the current user for server components.

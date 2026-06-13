@@ -64,6 +64,16 @@ export default async function ConsolePage({ params }: Props) {
                         {t(l, "manageNotes")}
                     </Link>
                 </div>
+                {user.sysrole === "admin" && (
+                    <div className="mt-3 flex gap-4">
+                        <Link
+                            href={`/${l}/console/users`}
+                            className="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700"
+                        >
+                            {t(l, "manageUsers")}
+                        </Link>
+                    </div>
+                )}
             </main>
             <SiteFooter lang={l} />
         </>

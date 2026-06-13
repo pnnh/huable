@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `sysrole` text DEFAULT 'normal' NOT NULL;

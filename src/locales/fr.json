@@ -81,5 +81,11 @@
     "profileSaved": "Enregistré !",
     "allChannels": "Toutes les chaînes",
     "searchChannels": "Rechercher des chaînes…",
-    "noChannelsFound": "Aucune chaîne trouvée."
+    "noChannelsFound": "Aucune chaîne trouvée.",
+    "manageUsers": "Manage Users",
+    "users": "Users",
+    "userDetails": "User Details",
+    "systemRole": "System Role",
+    "roleSaved": "Role saved!",
+    "adminMinError": "Cannot demote: at least 2 admin users must remain in the system."
 }

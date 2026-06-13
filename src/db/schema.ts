@@ -28,6 +28,7 @@ export const users = sqliteTable("users", {
   email: text("email").notNull().unique(),
   nickname: text("nickname"),
   bio: text("bio"),
+  sysrole: text("sysrole").notNull().default("normal").$type<"admin" | "normal">(),
   createdAt: integer("created_at").notNull().$defaultFn(() => Date.now()),
 });
 

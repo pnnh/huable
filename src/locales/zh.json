@@ -81,5 +81,11 @@
     "profileSaved": "已保存！",
     "allChannels": "所有频道",
     "searchChannels": "搜索频道…",
-    "noChannelsFound": "未找到相符的频道。"
+    "noChannelsFound": "未找到相符的频道。",
+    "manageUsers": "管理用户",
+    "users": "用户",
+    "userDetails": "用户详情",
+    "systemRole": "系统角色",
+    "roleSaved": "角色已保存！",
+    "adminMinError": "无法降级：系统中必须至少保留 2 个管理员用户。"
 }

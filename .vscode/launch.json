@@ -5,7 +5,8 @@
       "name": "huable-server",
       "type": "node-terminal",
       "request": "launch",
-      "command": "pnpm run dev"
+      "command": "pnpm run dev",
+      "cwd": "${workspaceFolder}"
     }
   ]
 }

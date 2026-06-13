@@ -38,54 +38,6 @@ This AGENTS.md file contains mandatory system-level instructions. You **MUST** r
 
 These rules apply universally across tools (Cursor, Claude Code, Copilot, etc.). Keep exploration focused and purposeful.
 
-<!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:7510c1e2 -->
-## Beads Issue Tracker
-
-This project uses **bd (beads)** for issue tracking. Run `bd prime` to see full workflow context and commands.
-
-### Quick Reference
-
-```bash
-bd ready              # Find available work
-bd show <id>          # View issue details
-bd update <id> --claim  # Claim work
-bd close <id>         # Complete work
-```
-
-### Rules
-
-- Use `bd` for ALL task tracking — do NOT use TodoWrite, TaskCreate, or markdown TODO lists
-- Run `bd prime` for detailed command reference and session close protocol
-- Use `bd remember` for persistent knowledge — do NOT use MEMORY.md files
-
-**Architecture in one line:** issues live in a local Dolt DB; sync uses `refs/dolt/data` on your git remote; `.beads/issues.jsonl` is a passive export. See https://github.com/gastownhall/beads/blob/main/docs/SYNC_CONCEPTS.md for details and anti-patterns.
-
-## Session Completion
-
-**When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
-
-**MANDATORY WORKFLOW:**
-
-1. **File issues for remaining work** - Create issues for anything that needs follow-up
-2. **Run quality gates** (if code changed) - Tests, linters, builds
-3. **Update issue status** - Close finished work, update in-progress items
-4. **PUSH TO REMOTE** - This is MANDATORY:
-   ```bash
-   git pull --rebase
-   git push
-   git status  # MUST show "up to date with origin"
-   ```
-5. **Clean up** - Clear stashes, prune remote branches
-6. **Verify** - All changes committed AND pushed
-7. **Hand off** - Provide context for next session
-
-**CRITICAL RULES:**
-- Work is NOT complete until `git push` succeeds
-- NEVER stop before pushing - that leaves work stranded locally
-- NEVER say "ready to push when you are" - YOU must push
-- If push fails, resolve and retry until it succeeds
-<!-- END BEADS INTEGRATION -->
-
 ## Codebase Memory MCP
 
 **MANDATORY: use Codebase Memory MCP graph tools FIRST — before reading files or making code changes.**
@@ -129,3 +81,28 @@ mcp_codebase-memo_get_architecture({ "project": "<display_name>" })
 - `search_code(pattern, project)` — Grep-like text search within indexed files
 - `manage_adr(action)` — CRUD for Architecture Decision Records
 - `ingest_traces(traces)` — Ingest runtime traces to validate HTTP edges
+
+
+
+## Rule
+
+Always prefix shell commands with `rtk`:
+
+```bash
+# Instead of:              Use:
+git status                 rtk git status
+git log -10                rtk git log -10
+cargo test                 rtk cargo test
+docker ps                  rtk docker ps
+kubectl get pods           rtk kubectl pods
+```
+
+## Meta commands (use directly)
+
+```bash
+rtk gain              # Token savings dashboard
+rtk gain --history    # Per-command savings history
+rtk discover          # Find missed rtk opportunities
+rtk proxy <cmd>       # Run raw (no filtering) but track usage
+```
+<!-- /rtk-instructions -->

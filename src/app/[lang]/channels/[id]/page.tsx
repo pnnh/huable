@@ -19,19 +19,18 @@ export default async function ChannelPage({ params }: Props) {
     const l = lang as LangKey;
 
     const db = getDb();
-    const [channel] = await db
-        .select()
-        .from(channels)
-        .where(eq(channels.id, id))
-        .limit(1);
+    const isDev = process.env.NODE_ENV === "development";
 
-    if (!channel || !channel.isPublic || channel.approvalStatus !== "approved") notFound();
+    const noteConds: any[] = [eq(notes.channelId, id), eq(notes.isPublished, true)];
+    if (!isDev) noteConds.push(eq(notes.approvalStatus, "approved"));
 
-    const publishedNotes = await db
-        .select()
-        .from(notes)
-        .where(and(eq(notes.channelId, id), eq(notes.isPublished, true), eq(notes.approvalStatus, "approved")))
-        .orderBy(desc(notes.updatedAt));
+    const [channelRows, publishedNotes] = await Promise.all([
+        db.select().from(channels).where(eq(channels.id, id)).limit(1),
+        db.select().from(notes).where(and(...noteConds)).orderBy(desc(notes.updatedAt)),
+    ]);
+    const channel = channelRows[0];
+
+    if (!channel || !channel.isPublic || (!isDev && channel.approvalStatus !== "approved")) notFound();
 
     return (
         <>

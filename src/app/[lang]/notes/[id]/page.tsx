@@ -19,6 +19,7 @@ export default async function NotePage({ params }: Props) {
     const l = lang as LangKey;
 
     const db = getDb();
+    const isDev = process.env.NODE_ENV === "development";
     const [result] = await db
         .select()
         .from(notes)
@@ -32,7 +33,12 @@ export default async function NotePage({ params }: Props) {
         )
         .limit(1);
 
-    if (!result) notFound();
+    if (
+        !result ||
+        !result.channels.isPublic ||
+        (!isDev && result.channels.approvalStatus !== "approved") ||
+        (!isDev && result.notes.approvalStatus !== "approved")
+    ) notFound();
 
     const { notes: note, channels: channel } = result;
 

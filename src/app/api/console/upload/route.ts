@@ -42,9 +42,9 @@ export async function POST(req: NextRequest) {
         .values({ noteId, filename, mimeType })
         .onConflictDoNothing();
 
-    // Reset approval status and create approval event only when note is published in a channel
+    // Reset approval status and create approval event only when note is published in a channel (prod only; dev allows immediate public visibility)
     const note = existingNotes[0];
-    if (note.channelId && note.isPublished) {
+    if (note.channelId && note.isPublished && process.env.NODE_ENV !== "development") {
         await db.update(notes).set({ approvalStatus: "pending", updatedAt: Date.now() }).where(eq(notes.id, noteId));
         await db.insert(approvalEvents).values({ noteId, action: "updated", createdAt: Date.now() });
     }

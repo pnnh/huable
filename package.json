@@ -6,7 +6,9 @@
     "dev": "next dev -p 7500 --turbo",
     "build": "next build",
     "start": "next start",
-    "db:migrate": "tsx src/db/migrate.ts"
+    "db:migrate": "tsx src/db/migrate.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -29,15 +31,20 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260604.1",
     "@tailwindcss/postcss": "^4",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/sanitize-html": "^2.16.1",
+    "@vitejs/plugin-react": "^6.0.2",
     "drizzle-kit": "^0.31.10",
+    "jsdom": "^29.1.1",
     "tailwindcss": "^4",
     "tsx": "^4.22.3",
     "typescript": "^5",
+    "vitest": "^4.1.8",
     "wrangler": "^4.81.0"
   },
   "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"

@@ -1,0 +1,62 @@
+src/app/[lang]/console/channels/[channelId]/notes/page.tsx
+  h_de2c1989c48e7b 1-104
+src/locales/pt-PT.json
+  h_de2c1989c48e7b 24-27,65-71
+src/locales/zh.json
+  h_de2c1989c48e7b 24-27,65-71
+src/app/[lang]/console/notes/[noteId]/page.tsx
+  h_de2c1989c48e7b 181,185-194
+  s_87ba4d54ee3ad2::t_25c6bbcf7685c8 13
+src/components/RemoveFromChannelButton.tsx
+  h_de2c1989c48e7b 1-41
+src/app/[lang]/console/channels/[channelId]/page.tsx
+  h_de2c1989c48e7b 2,7,11,35-39,127-138
+src/locales/zh-TW.json
+  h_de2c1989c48e7b 24-27,65-71
+src/app/[lang]/console/channels/page.tsx
+  h_de2c1989c48e7b 64-65,82-89
+src/locales/es.json
+  h_de2c1989c48e7b 24-27,65-71
+src/components/AttachmentPanel.tsx
+  s_87ba4d54ee3ad2::t_a41df44cb5d4ce 13-18,22
+  h_de2c1989c48e7b 30-34,59,61-65
+src/app/api/notes/[noteId]/route.ts
+  h_de2c1989c48e7b 1-82
+src/components/NoteDeleteSection.tsx
+  h_de2c1989c48e7b 1-75
+src/app/api/channels/[channelId]/route.ts
+  h_de2c1989c48e7b 1-45
+src/components/ChannelDeleteSection.tsx
+  h_de2c1989c48e7b 1-61
+src/locales/ja.json
+  h_de2c1989c48e7b 24-27,65-71
+src/locales/de-DE.json
+  h_de2c1989c48e7b 24-27,65-71
+src/locales/fr.json
+  h_de2c1989c48e7b 24-27,65-71
+src/locales/en.json
+  h_de2c1989c48e7b 24-27,65-71
+src/components/SiteHeader.tsx
+  h_de2c1989c48e7b 19-21
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "3da94ddefd34a544894d90fc3d1197c914e496fa",
+  "prompts": {},
+  "humans": {
+    "h_de2c1989c48e7b": {
+      "author": "xspanni <xspanni@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_87ba4d54ee3ad2": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "8ad83a68-ff89-4f88-8b94-cad576c8cea0",
+        "model": "gpt-4.1"
+      },
+      "human_author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

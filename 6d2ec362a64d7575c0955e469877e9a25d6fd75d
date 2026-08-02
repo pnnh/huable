@@ -1,0 +1,77 @@
+src/components/ApprovalActions.tsx
+  h_de2c1989c48e7b 1-70
+src/app/[lang]/console/channels/[channelId]/page.tsx
+  s_84a8e6f3f93aad::t_47785337481458 7
+  h_de2c1989c48e7b 58,61-68,72,74-81
+src/locales/zh-TW.json
+  h_de2c1989c48e7b 90-121
+src/locales/en.json
+  h_de2c1989c48e7b 90-121
+src/app/api/console/approvals/[eventId]/route.ts
+  h_de2c1989c48e7b 1-71
+src/app/[lang]/channels/[id]/page.tsx
+  h_de2c1989c48e7b 28,33
+src/locales/es.json
+  h_de2c1989c48e7b 90-121
+src/app/[lang]/console/notes/[noteId]/page.tsx
+  s_84a8e6f3f93aad::t_4059225df401d6 73-75,85,89-95,112,115-116
+  h_de2c1989c48e7b 8,117-121
+src/app/api/console/upload/route.ts
+  s_84a8e6f3f93aad::t_4059225df401d6 45-50
+  h_de2c1989c48e7b 4,51
+src/app/[lang]/page.tsx
+  h_de2c1989c48e7b 48
+src/app/[lang]/console/approvals/[eventId]/page.tsx
+  h_de2c1989c48e7b 1-175
+migrations/0004_channel_approval.sql
+  h_de2c1989c48e7b 1-25
+src/app/[lang]/console/approvals/page.tsx
+  h_de2c1989c48e7b 1-229
+migrations/0003_approval.sql
+  h_de2c1989c48e7b 1-12
+src/app/api/files/[noteId]/[filename]/route.ts
+  h_de2c1989c48e7b 60
+  s_84a8e6f3f93aad::t_4d6c98de3ca2db 4
+  s_84a8e6f3f93aad::t_4059225df401d6 54-59
+src/db/migrate.ts
+  h_de2c1989c48e7b 22,26-27
+src/app/[lang]/channels/page.tsx
+  h_de2c1989c48e7b 36-37
+src/locales/de-DE.json
+  h_de2c1989c48e7b 90-121
+src/app/[lang]/console/page.tsx
+  s_84a8e6f3f93aad::t_7c1af996f2f4a5 75-80
+src/locales/fr.json
+  h_de2c1989c48e7b 90-121
+src/locales/zh.json
+  h_de2c1989c48e7b 90-121
+migrations/meta/_journal.json
+  h_de2c1989c48e7b 25-38
+src/db/schema.ts
+  h_de2c1989c48e7b 43-46,63-66,106-135
+src/locales/pt-PT.json
+  h_de2c1989c48e7b 90-121
+src/locales/ja.json
+  h_de2c1989c48e7b 90-121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "6d2ec362a64d7575c0955e469877e9a25d6fd75d",
+  "prompts": {},
+  "humans": {
+    "h_de2c1989c48e7b": {
+      "author": "xspanni <xspanni@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_84a8e6f3f93aad": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "bbf1be68-940f-4210-b041-2ea878efdc00",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

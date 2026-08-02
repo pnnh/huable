@@ -1,0 +1,38 @@
+src/app/api/console/attachments/[noteId]/route.ts
+  h_de2c1989c48e7b 1-26
+src/app/api/console/user/profile/route.ts
+  h_de2c1989c48e7b 1-32
+src/app/api/console/channels/[channelId]/route.ts
+  h_de2c1989c48e7b 1-49
+src/app/api/console/upload/route.ts
+  h_de2c1989c48e7b 1-47
+src/app/api/console/user/avatar/[userId]/route.ts
+  h_de2c1989c48e7b 1-32
+src/app/api/console/notes/[noteId]/route.ts
+  h_de2c1989c48e7b 1-89
+src/components/RemoveFromChannelButton.tsx
+  h_de2c1989c48e7b 20
+src/components/ChannelDeleteSection.tsx
+  h_de2c1989c48e7b 31
+src/components/NoteDeleteSection.tsx
+  h_de2c1989c48e7b 23,43
+src/app/api/console/user/avatar/route.ts
+  h_de2c1989c48e7b 1-35
+src/app/api/console/_auth.ts
+  h_de2c1989c48e7b 1-11
+src/components/AttachmentPanel.tsx
+  h_de2c1989c48e7b 29,49
+src/components/UserProfileClient.tsx
+  h_de2c1989c48e7b 27,32,47,49,61
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "20f21ddae7cbdffd52aaca8a002fd2e07bcd4d06",
+  "prompts": {},
+  "humans": {
+    "h_de2c1989c48e7b": {
+      "author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

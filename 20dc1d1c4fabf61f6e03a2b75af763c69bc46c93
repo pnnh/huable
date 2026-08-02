@@ -1,0 +1,23 @@
+src/app/[lang]/console/channels/[channelId]/page.tsx
+  s_2418f9eed23595::t_5ff0255fe56249 1-111
+src/app/[lang]/console/channels/page.tsx
+  s_2418f9eed23595::t_72966a188fc7df 2
+  s_2418f9eed23595::t_1fdb2ed1c15358 25,27,29-39,79
+  s_2418f9eed23595::t_ff8656e78eba37 1,3-24,26,28,40-78,80-91
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "20dc1d1c4fabf61f6e03a2b75af763c69bc46c93",
+  "prompts": {},
+  "sessions": {
+    "s_2418f9eed23595": {
+      "agent_id": {
+        "tool": "github-copilot-cli",
+        "id": "toolu_bdrk_01XTTGeyzXM3dLvTzJRaHzEt",
+        "model": "unknown"
+      },
+      "human_author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

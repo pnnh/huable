@@ -1,0 +1,14 @@
+AGENTS.md
+  h_de2c1989c48e7b 84-108
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "def571348048b51ac7a91575b7dece89e3d258a5",
+  "prompts": {},
+  "humans": {
+    "h_de2c1989c48e7b": {
+      "author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

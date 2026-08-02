@@ -1,0 +1,335 @@
+{
+  "cli_version": "0.9.0",
+  "checkpoint_id": "01KZ1BJNTCDGK102CBS9BTXVZN",
+  "session_id": "0f7e40fc-05af-4412-aae2-3d39a971c807",
+  "strategy": "manual-commit",
+  "created_at": "2026-08-02T13:45:54.739721334Z",
+  "branch": "v0.3.0",
+  "checkpoints_count": 5,
+  "save_step_count": 5,
+  "files_touched": [
+    ".github/copilot-instructions.md",
+    ".vscode/settings.json",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "migrations/meta/_journal.json",
+    "next.config.ts",
+    "specs/001-note-directories/contracts/notes-directory-api.md",
+    "specs/001-note-directories/data-model.md",
+    "specs/001-note-directories/plan.md",
+    "specs/001-note-directories/quickstart.md",
+    "specs/001-note-directories/research.md",
+    "specs/001-note-directories/tasks.md",
+    "src/app/[lang]/console/notes/[noteId]/page.tsx",
+    "src/app/[lang]/console/notes/page.tsx",
+    "src/components/NoteEditorForm.tsx",
+    "src/db/schema.ts",
+    "src/locales/de-DE.json",
+    "src/locales/en.json",
+    "src/locales/es.json",
+    "src/locales/fr.json",
+    "src/locales/ja.json",
+    "src/locales/pt-PT.json",
+    "src/locales/zh-TW.json",
+    "src/locales/zh.json"
+  ],
+  "agent": "Copilot CLI",
+  "model": "",
+  "turn_id": "f48c89a98413",
+  "compact_transcript_start": 0,
+  "token_usage": {
+    "input_tokens": 0,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 0,
+    "output_tokens": 0,
+    "api_call_count": 0
+  },
+  "skill_events_version": 1,
+  "skill_events": [
+    {
+      "id": "prompt-skill-copilot-cli-speckit.plan-2026-08-02T11:44:55.763Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit.plan"
+      },
+      "source": {
+        "agent": "copilot-cli",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "965fb6cd684b",
+      "timestamp": "2026-08-02T11:44:55.763Z",
+      "native": {
+        "command": "/speckit.plan"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit.plan",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-copilot-cli-speckit.tasks-2026-08-02T11:53:46.989Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit.tasks"
+      },
+      "source": {
+        "agent": "copilot-cli",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "e5a3bff86f47",
+      "timestamp": "2026-08-02T11:53:46.989Z",
+      "native": {
+        "command": "/speckit.tasks"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit.tasks",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-copilot-cli-speckit.implement-2026-08-02T11:56:43.201Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "speckit.implement"
+      },
+      "source": {
+        "agent": "copilot-cli",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "10b8ed8f8064",
+      "timestamp": "2026-08-02T11:56:43.201Z",
+      "native": {
+        "command": "/speckit.implement"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/speckit.implement",
+        "default_collapsed": true
+      }
+    },
+    {
+      "id": "prompt-skill-copilot-cli-en/console/notes-2026-08-02T13:30:04.62Z",
+      "event_type": "prompt_invocation",
+      "skill": {
+        "name": "en/console/notes"
+      },
+      "source": {
+        "agent": "copilot-cli",
+        "signal": "prompt_slash_command",
+        "confidence": "explicit"
+      },
+      "turn_id": "87c2538cf4dd",
+      "timestamp": "2026-08-02T13:30:04.62Z",
+      "native": {
+        "command": "/en/console/notes"
+      },
+      "collapse": {
+        "target": "user_message",
+        "label": "/en/console/notes",
+        "default_collapsed": true
+      }
+    }
+  ],
+  "session_metrics": {
+    "turn_count": 5
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-08-02T13:45:54.698888425Z",
+    "agent_lines": 319,
+    "agent_removed": 12,
+    "human_added": 3401,
+    "human_modified": 264,
+    "human_removed": 0,
+    "total_committed": 3966,
+    "total_lines_changed": 4001,
+    "agent_percentage": 8.272931767058235,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 7331,
+      "user_lines_removed": 118,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".claude/settings.json": 77,
+        ".github/agents/speckit.analyze.agent.md": 251,
+        ".github/agents/speckit.bug.assess.agent.md": 177,
+        ".github/agents/speckit.bug.fix.agent.md": 115,
+        ".github/agents/speckit.bug.test.agent.md": 121,
+        ".github/agents/speckit.checklist.agent.md": 365,
+        ".github/agents/speckit.clarify.agent.md": 287,
+        ".github/agents/speckit.constitution.agent.md": 164,
+        ".github/agents/speckit.converge.agent.md": 269,
+        ".github/agents/speckit.implement.agent.md": 215,
+        ".github/agents/speckit.plan.agent.md": 166,
+        ".github/agents/speckit.specify.agent.md": 345,
+        ".github/agents/speckit.tasks.agent.md": 215,
+        ".github/agents/speckit.taskstoissues.agent.md": 102,
+        ".github/copilot-instructions.md": 13,
+        ".github/hooks/entire.json": 61,
+        ".github/prompts/speckit.analyze.prompt.md": 3,
+        ".github/prompts/speckit.bug.assess.prompt.md": 3,
+        ".github/prompts/speckit.bug.fix.prompt.md": 3,
+        ".github/prompts/speckit.bug.test.prompt.md": 3,
+        ".github/prompts/speckit.checklist.prompt.md": 3,
+        ".github/prompts/speckit.clarify.prompt.md": 3,
+        ".github/prompts/speckit.constitution.prompt.md": 3,
+        ".github/prompts/speckit.converge.prompt.md": 3,
+        ".github/prompts/speckit.implement.prompt.md": 3,
+        ".github/prompts/speckit.plan.prompt.md": 3,
+        ".github/prompts/speckit.specify.prompt.md": 3,
+        ".github/prompts/speckit.tasks.prompt.md": 3,
+        ".github/prompts/speckit.taskstoissues.prompt.md": 3,
+        ".graphifyignore": 175,
+        ".specify/extensions.yml": 5,
+        ".specify/extensions/.registry": 21,
+        ".specify/extensions/bug/README.md": 80,
+        ".specify/extensions/bug/commands/speckit.bug.assess.md": 173,
+        ".specify/extensions/bug/commands/speckit.bug.fix.md": 112,
+        ".specify/extensions/bug/commands/speckit.bug.test.md": 117,
+        ".specify/extensions/bug/extension.yml": 31,
+        ".specify/feature.json": 3,
+        ".specify/init-options.json": 8,
+        ".specify/integration.json": 15,
+        ".specify/integrations/copilot.manifest.json": 27,
+        ".specify/integrations/speckit.manifest.json": 22,
+        ".specify/memory/.constitution-template.json": 4,
+        ".specify/memory/constitution.md": 50,
+        ".specify/scripts/bash/check-prerequisites.sh": 195,
+        ".specify/scripts/bash/common.sh": 704,
+        ".specify/scripts/bash/create-new-feature.sh": 392,
+        ".specify/scripts/bash/setup-plan.sh": 83,
+        ".specify/scripts/bash/setup-tasks.sh": 91,
+        ".specify/scripts/python/check_prerequisites.py": 207,
+        ".specify/scripts/python/common.py": 293,
+        ".specify/scripts/python/create_new_feature.py": 422,
+        ".specify/scripts/python/setup_plan.py": 86,
+        ".specify/scripts/python/setup_tasks.py": 145,
+        ".specify/templates/checklist-template.md": 40,
+        ".specify/templates/constitution-template.md": 50,
+        ".specify/templates/plan-template.md": 113,
+        ".specify/templates/spec-template.md": 131,
+        ".specify/templates/tasks-template.md": 252,
+        ".specify/workflows/speckit/workflow.yml": 78,
+        ".specify/workflows/workflow-registry.json": 13,
+        ".vscode/settings.json": 11,
+        "AGENTS.md": 43,
+        "CLAUDE.md": 4,
+        "next.config.ts": 1,
+        "specs/001-note-directories/checklists/requirements.md": 34,
+        "specs/001-note-directories/spec.md": 118
+      },
+      "user_removed_per_file": {
+        ".claude/settings.json": 5,
+        ".github/copilot-instructions.md": 19,
+        ".vscode/settings.json": 2,
+        "AGENTS.md": 89,
+        "CLAUDE.md": 3
+      }
+    },
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 138,
+      "user_lines_removed": 5,
+      "agent_lines_added": 7496,
+      "agent_lines_removed": 113,
+      "user_added_per_file": {
+        ".claude/settings.json": 77,
+        ".github/hooks/entire.json": 61
+      },
+      "user_removed_per_file": {
+        ".claude/settings.json": 5
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 1284,
+      "user_lines_removed": 77,
+      "agent_lines_added": 7662,
+      "agent_lines_removed": 113,
+      "user_added_per_file": {
+        ".claude/settings.json": 77,
+        ".github/hooks/entire.json": 61,
+        "migrations/0005_note_directories.sql": 2,
+        "migrations/meta/0005_snapshot.json": 472,
+        "migrations/meta/_journal.json": 7,
+        "specs/001-note-directories/tasks.md": 18,
+        "src/app/[lang]/console/notes/[noteId]/page.tsx": 33,
+        "src/app/[lang]/console/notes/page.tsx": 78,
+        "src/app/api/console/notes/children/route.ts": 61,
+        "src/app/api/console/notes/directories/route.ts": 65,
+        "src/components/CreateDirectoryDialog.tsx": 124,
+        "src/components/NotesTreeTable.tsx": 162,
+        "src/db/schema.ts": 14,
+        "src/lib/notesTree.ts": 62,
+        "src/locales/de-DE.json": 6,
+        "src/locales/en.json": 6,
+        "src/locales/es.json": 6,
+        "src/locales/fr.json": 6,
+        "src/locales/ja.json": 6,
+        "src/locales/pt-PT.json": 6,
+        "src/locales/zh-TW.json": 6,
+        "src/locales/zh.json": 6
+      },
+      "user_removed_per_file": {
+        ".claude/settings.json": 5,
+        "specs/001-note-directories/tasks.md": 18,
+        "src/app/[lang]/console/notes/[noteId]/page.tsx": 6,
+        "src/app/[lang]/console/notes/page.tsx": 48
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 1104,
+      "user_lines_removed": 23,
+      "agent_lines_added": 7842,
+      "agent_lines_removed": 167,
+      "user_added_per_file": {
+        ".claude/settings.json": 77,
+        ".github/hooks/entire.json": 61,
+        "migrations/0005_note_directories.sql": 2,
+        "migrations/meta/0005_snapshot.json": 472,
+        "specs/001-note-directories/tasks.md": 18,
+        "src/app/api/console/notes/children/route.ts": 61,
+        "src/app/api/console/notes/directories/route.ts": 65,
+        "src/components/CreateDirectoryDialog.tsx": 124,
+        "src/components/NotesTreeTable.tsx": 162,
+        "src/lib/notesTree.ts": 62
+      },
+      "user_removed_per_file": {
+        ".claude/settings.json": 5,
+        "specs/001-note-directories/tasks.md": 18
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 1121,
+      "user_lines_removed": 23,
+      "agent_lines_added": 7842,
+      "agent_lines_removed": 167,
+      "user_added_per_file": {
+        ".claude/settings.json": 77,
+        ".github/hooks/entire.json": 61,
+        "migrations/0005_note_directories.sql": 2,
+        "migrations/meta/0005_snapshot.json": 472,
+        "specs/001-note-directories/tasks.md": 18,
+        "src/app/api/console/notes/children/route.ts": 61,
+        "src/app/api/console/notes/directories/route.ts": 65,
+        "src/components/CreateDirectoryDialog.tsx": 124,
+        "src/components/NotesTreeTable.tsx": 179,
+        "src/lib/notesTree.ts": 62
+      },
+      "user_removed_per_file": {
+        ".claude/settings.json": 5,
+        "specs/001-note-directories/tasks.md": 18
+      }
+    }
+  ]
+}

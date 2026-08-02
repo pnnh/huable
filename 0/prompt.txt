@@ -1,0 +1,181 @@
+/speckit.plan
+
+---
+
+/speckit.tasks
+
+---
+
+/speckit.tasks
+
+---
+
+/speckit.implement
+
+---
+
+/speckit.implement
+
+---
+
+Continue: "Continue to iterate?"
+
+---
+
+Continue: "Continue to iterate?"
+
+---
+
+Continue: "Continue to iterate?"
+
+---
+
+Continue: "Continue to iterate?"
+
+---
+
+/en/console/notes页面存在错误请修复：
+
+react-dom-client.development.js:5465 Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/en/consol..." tree={[...]} params={{lang:"en"}} cacheNode={{rsc:{...}, ...}} ...>
+            <SegmentViewNode type="page" pagePath="[lang]/con...">
+              <SegmentTrieNode>
+              <NotesListPage>
+                <header>
+                <main className="flex-1 w-f...">
+                  <div>
+                  <NotesTreeTable lang="en" items={[...]} labels={{...}}>
+                    <div className="overflow-x...">
+                      <table className="w-full tex...">
+                        <thead>
+                        <tbody className="divide-y d...">
+                          <TreeRow lang="en" item={{id:"CddpKp...", ...}} depth={0} labels={{...}}>
+                            <tr>
+                              <td>
+                              <td>
+                              <td>
+                              <td className="py-3 text-gray-500">
++                               2026/8/2
+-                               8/2/2026
+                          ...
+                ...
+            ...
+          ...
+
+    at throwOnHydrationMismatch (react-dom-client.development.js:5465:11)
+    at prepareToHydrateHostInstance (react-dom-client.development.js:5561:21)
+    at completeWork (react-dom-client.development.js:12924:15)
+    at runWithFiberInDEV (react-dom-client.development.js:986:30)
+    at completeUnitOfWork (react-dom-client.development.js:19132:19)
+    at performUnitOfWork (react-dom-client.development.js:19005:11)
+    at workLoopConcurrentByScheduler (react-dom-client.development.js:18982:9)
+    at renderRootConcurrent (react-dom-client.development.js:18964:15)
+    at performWorkOnRoot (react-dom-client.development.js:17822:11)
+    at performWorkOnRootViaSchedulerTask (react-dom-client.development.js:20471:7)
+    at MessagePort.performWorkUntilDeadline (scheduler.development.js:45:48)
+
+---
+
+/en/console/notes页面存在错误请修复：
+
+react-dom-client.development.js:5465 Uncaught Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/en/consol..." tree={[...]} params={{lang:"en"}} cacheNode={{rsc:{...}, ...}} ...>
+            <SegmentViewNode type="page" pagePath="[lang]/con...">
+              <SegmentTrieNode>
+              <NotesListPage>
+                <header>
+                <main className="flex-1 w-f...">
+                  <div>
+                  <NotesTreeTable lang="en" items={[...]} labels={{...}}>
+                    <div className="overflow-x...">
+                      <table className="w-full tex...">
+                        <thead>
+                        <tbody className="divide-y d...">
+                          <TreeRow lang="en" item={{id:"CddpKp...", ...}} depth={0} labels={{...}}>
+                            <tr>
+                              <td>
+                              <td>
+                              <td>
+                              <td className="py-3 text-gray-500">
++                               2026/8/2
+-                               8/2/2026
+                          ...
+                ...
+            ...
+          ...
+
+    at throwOnHydrationMismatch (react-dom-client.development.js:5465:11)
+    at prepareToHydrateHostInstance (react-dom-client.development.js:5561:21)
+    at completeWork (react-dom-client.development.js:12924:15)
+    at runWithFiberInDEV (react-dom-client.development.js:986:30)
+    at completeUnitOfWork (react-dom-client.development.js:19132:19)
+    at performUnitOfWork (react-dom-client.development.js:19005:11)
+    at workLoopConcurrentByScheduler (react-dom-client.development.js:18982:9)
+    at renderRootConcurrent (react-dom-client.development.js:18964:15)
+    at performWorkOnRoot (react-dom-client.development.js:17822:11)
+    at performWorkOnRootViaSchedulerTask (react-dom-client.development.js:20471:7)
+    at MessagePort.performWorkUntilDeadline (scheduler.development.js:45:48)
+
+---
+
+当创建笔记并保存后存在错误：
+
+page.tsx:52 
+ POST http://127.0.0.1:7500/en/console/notes/new?parentId=Cde1J3PfdiwEaaMfAnbMa 500 (Internal Server Error)
+await in fetchServerAction		
+(anonymous)	@	page.tsx:52
+page.tsx:52 Fetch failed loading: POST "http://127.0.0.1:7500/en/console/notes/new?parentId=Cde1J3PfdiwEaaMfAnbMa".
+page.tsx:89 Uncaught Error: A directory or note with this name already exists here
+    at handleSave (page.tsx:89:27)
+(anonymous)	@	page.tsx:89
+await in fetchServerAction		
+(anonymous)	@	page.tsx:52
+﻿
+提示名称已存在。此时不应该抛出异常，需要在点击保存按钮时判断是否出错并在页面中保存按钮上方一行显示错误提示。
+
+---
+
+当创建笔记并保存后存在错误：
+
+page.tsx:52 
+ POST http://127.0.0.1:7500/en/console/notes/new?parentId=Cde1J3PfdiwEaaMfAnbMa 500 (Internal Server Error)
+await in fetchServerAction		
+(anonymous)	@	page.tsx:52
+page.tsx:52 Fetch failed loading: POST "http://127.0.0.1:7500/en/console/notes/new?parentId=Cde1J3PfdiwEaaMfAnbMa".
+page.tsx:89 Uncaught Error: A directory or note with this name already exists here
+    at handleSave (page.tsx:89:27)
+(anonymous)	@	page.tsx:89
+await in fetchServerAction		
+(anonymous)	@	page.tsx:52
+﻿
+提示名称已存在。此时不应该抛出异常，需要在点击保存按钮时判断是否出错并在页面中保存按钮上方一行显示错误提示。

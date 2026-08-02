@@ -1,0 +1,258 @@
+specs/001-note-directories/checklists/requirements.md
+  s_8186e7273c94b2::t_fa1da611073f86 34
+  s_8186e7273c94b2::t_b974e82a57770b 16-30
+  s_8186e7273c94b2::t_fb1c2a096b3592 13-15
+  s_8186e7273c94b2::t_7db3016a4c9607 31-33
+  h_de2c1989c48e7b 1-12
+.github/copilot-instructions.md
+  h_de2c1989c48e7b 1,3-7,9-10,12-15,17
+specs/001-note-directories/spec.md
+  s_8186e7273c94b2::t_a1a3bc711a0114 1-10,17-87,89-118
+  s_8186e7273c94b2::t_dd9c223df33806 11-16,88
+.specify/feature.json
+  s_8186e7273c94b2::t_487852c99cc9db 1-3
+src/app/[lang]/console/notes/[noteId]/page.tsx
+  s_8186e7273c94b2::t_f09b734fd42198 52,64,77,85-93,99,114,128-132
+  s_8186e7273c94b2::t_7b094c038e9bc8 160-177
+  s_8186e7273c94b2::t_cfc15373bc6152 13
+  s_8186e7273c94b2::t_b017880cb61860 14
+  s_8186e7273c94b2::t_aff87d5ca9a3db 133-135
+  h_de2c1989c48e7b 18-21,23,43-46,136,150,189
+CLAUDE.md
+  h_de2c1989c48e7b 1,3-4
+  h_de2c1989c48e7b 2
+src/components/NotesTreeTable.tsx
+  s_8186e7273c94b2::t_3adc5aade48f9a 1-35,53-148,150-179
+  s_8186e7273c94b2::t_3898b31c4615be 149
+  s_8186e7273c94b2::t_3070b2d731a590 36-52
+specs/001-note-directories/research.md
+  s_8186e7273c94b2::t_c3f5a293e132b5 1-35
+src/db/schema.ts
+  s_8186e7273c94b2::t_a1c4e77555c644 111-116
+  s_8186e7273c94b2::t_7eacff6c3e611f 3
+  s_8186e7273c94b2::t_d5541ef8633934 59
+  s_8186e7273c94b2::t_5d5ac2e6758dda 60-61,64-67
+specs/001-note-directories/data-model.md
+  s_8186e7273c94b2::t_277cc2e0ed3893 1-49
+specs/001-note-directories/plan.md
+  s_8186e7273c94b2::t_aac65f9c667386 2,4,6-10,12-14,16,18,20,22,24,26,28,30,32-36,38-43,45-49,51-57,74-75,77-79
+  s_8186e7273c94b2::t_06fb78cfd454da 44,50,58-73,76,80
+  s_8186e7273c94b2::t_33c5560abc5ebb 1,3,5,11,15,17,19,21,23,25,27,29,31,37
+src/app/[lang]/console/notes/page.tsx
+  s_8186e7273c94b2::t_a7c64077a8b837 2,12-13,17-20,22,26-27,36-41,44-66
+  s_8186e7273c94b2::t_23b830b0bdb96d 99,102-114
+  s_2ffc009f91ea08::t_156b9b44b08d06 67-71,78-97
+src/locales/de-DE.json
+  s_8186e7273c94b2::t_d4e28bd5ecbc29 38-39
+  s_8186e7273c94b2::t_568c337763599c 35-37
+  h_de2c1989c48e7b 32-34
+src/app/api/console/notes/children/route.ts
+  s_8186e7273c94b2::t_044e7edcebadef 1-61
+specs/001-note-directories/quickstart.md
+  s_8186e7273c94b2::t_40fb21f66b5c3e 1-61
+migrations/0005_note_directories.sql
+  s_8186e7273c94b2::t_fefe0f39e08aee 1-2
+src/locales/fr.json
+  s_8186e7273c94b2::t_d4e28bd5ecbc29 38-39
+  s_8186e7273c94b2::t_2ed217204daae5 35-37
+  h_de2c1989c48e7b 32-34
+src/locales/zh-TW.json
+  s_8186e7273c94b2::t_d4e28bd5ecbc29 38-39
+  s_8186e7273c94b2::t_f0ac9f09b08848 35-37
+  h_de2c1989c48e7b 32-34
+migrations/meta/0005_snapshot.json
+  s_8186e7273c94b2::t_e4f88dd5782f6a 1-472
+src/locales/ja.json
+  s_8186e7273c94b2::t_d4e28bd5ecbc29 38-39
+  s_8186e7273c94b2::t_26257584d2d967 35-37
+  h_de2c1989c48e7b 32-34
+src/locales/es.json
+  s_8186e7273c94b2::t_d4e28bd5ecbc29 38-39
+  s_8186e7273c94b2::t_35e5020e10fbc7 35-37
+  h_de2c1989c48e7b 32-34
+src/components/CreateDirectoryDialog.tsx
+  s_8186e7273c94b2::t_958e0bed8b6770 1-124
+src/locales/zh.json
+  s_8186e7273c94b2::t_d4e28bd5ecbc29 38-39
+  s_8186e7273c94b2::t_7cc99606be4c20 35-37
+  h_de2c1989c48e7b 32-34
+specs/001-note-directories/contracts/notes-directory-api.md
+  s_8186e7273c94b2::t_50ba9bc16dab89 1-78
+src/lib/notesTree.ts
+  s_8186e7273c94b2::t_32839d30f00c1f 1-62
+src/components/NoteEditorForm.tsx
+  s_8186e7273c94b2::t_19a4dded224fbf 1-113
+AGENTS.md
+  h_de2c1989c48e7b 1-5,7,9-11,13-62
+next.config.ts
+  h_de2c1989c48e7b 12
+specs/001-note-directories/tasks.md
+  s_8186e7273c94b2::t_e147acf82e2309 54-57
+  s_8186e7273c94b2::t_9af7cd0c9e61ca 1-26,28-36,41-53,58-70,75-87,90-166
+  s_2ffc009f91ea08::t_e72f1925784d6c 27,37-40,71-74,88-89
+src/locales/en.json
+  s_8186e7273c94b2::t_d4e28bd5ecbc29 38-39
+  s_8186e7273c94b2::t_60dc383631256d 35-37
+  h_de2c1989c48e7b 32-34
+src/locales/pt-PT.json
+  s_8186e7273c94b2::t_d4e28bd5ecbc29 38-39
+  s_8186e7273c94b2::t_a7c39831c3e4ec 35-37
+  h_de2c1989c48e7b 32-34
+migrations/meta/_journal.json
+  s_8186e7273c94b2::t_e4f88dd5782f6a 39-45
+src/app/api/console/notes/directories/route.ts
+  s_2ffc009f91ea08::t_465e03ecb614f1 1-65
+.claude/settings.json
+  h_de2c1989c48e7b 3-12,14,16-25,29-50,53,55-81,84-88,90
+.entire/.gitignore
+  h_de2c1989c48e7b 1-5
+.entire/settings.json
+  h_de2c1989c48e7b 1-9
+.github/agents/speckit.analyze.agent.md
+  h_de2c1989c48e7b 1-251
+.github/agents/speckit.bug.assess.agent.md
+  h_de2c1989c48e7b 1-177
+.github/agents/speckit.bug.fix.agent.md
+  h_de2c1989c48e7b 1-115
+.github/agents/speckit.bug.test.agent.md
+  h_de2c1989c48e7b 1-121
+.github/agents/speckit.checklist.agent.md
+  h_de2c1989c48e7b 1-365
+.github/agents/speckit.clarify.agent.md
+  h_de2c1989c48e7b 1-287
+.github/agents/speckit.constitution.agent.md
+  h_de2c1989c48e7b 1-164
+.github/agents/speckit.converge.agent.md
+  h_de2c1989c48e7b 1-269
+.github/agents/speckit.implement.agent.md
+  h_de2c1989c48e7b 1-215
+.github/agents/speckit.plan.agent.md
+  h_de2c1989c48e7b 1-166
+.github/agents/speckit.specify.agent.md
+  h_de2c1989c48e7b 1-345
+.github/agents/speckit.tasks.agent.md
+  h_de2c1989c48e7b 1-215
+.github/agents/speckit.taskstoissues.agent.md
+  h_de2c1989c48e7b 1-102
+.github/hooks/entire.json
+  h_de2c1989c48e7b 1-61
+.github/prompts/speckit.analyze.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.bug.assess.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.bug.fix.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.bug.test.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.checklist.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.clarify.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.constitution.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.converge.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.implement.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.plan.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.specify.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.tasks.prompt.md
+  h_de2c1989c48e7b 1-3
+.github/prompts/speckit.taskstoissues.prompt.md
+  h_de2c1989c48e7b 1-3
+.graphifyignore
+  h_de2c1989c48e7b 1-175
+.specify/extensions.yml
+  h_de2c1989c48e7b 1-5
+.specify/extensions/.registry
+  h_de2c1989c48e7b 1-21
+.specify/extensions/bug/README.md
+  h_de2c1989c48e7b 1-80
+.specify/extensions/bug/commands/speckit.bug.assess.md
+  h_de2c1989c48e7b 1-173
+.specify/extensions/bug/commands/speckit.bug.fix.md
+  h_de2c1989c48e7b 1-112
+.specify/extensions/bug/commands/speckit.bug.test.md
+  h_de2c1989c48e7b 1-117
+.specify/extensions/bug/extension.yml
+  h_de2c1989c48e7b 1-31
+.specify/init-options.json
+  h_de2c1989c48e7b 1-8
+.specify/integration.json
+  h_de2c1989c48e7b 1-15
+.specify/integrations/copilot.manifest.json
+  h_de2c1989c48e7b 1-27
+.specify/integrations/speckit.manifest.json
+  h_de2c1989c48e7b 1-22
+.specify/memory/.constitution-template.json
+  h_de2c1989c48e7b 1-4
+.specify/memory/constitution.md
+  h_de2c1989c48e7b 1-50
+.specify/scripts/bash/check-prerequisites.sh
+  h_de2c1989c48e7b 1-195
+.specify/scripts/bash/common.sh
+  h_de2c1989c48e7b 1-704
+.specify/scripts/bash/create-new-feature.sh
+  h_de2c1989c48e7b 1-392
+.specify/scripts/bash/setup-plan.sh
+  h_de2c1989c48e7b 1-83
+.specify/scripts/bash/setup-tasks.sh
+  h_de2c1989c48e7b 1-91
+.specify/scripts/python/check_prerequisites.py
+  h_de2c1989c48e7b 1-207
+.specify/scripts/python/common.py
+  h_de2c1989c48e7b 1-293
+.specify/scripts/python/create_new_feature.py
+  h_de2c1989c48e7b 1-422
+.specify/scripts/python/setup_plan.py
+  h_de2c1989c48e7b 1-86
+.specify/scripts/python/setup_tasks.py
+  h_de2c1989c48e7b 1-145
+.specify/templates/checklist-template.md
+  h_de2c1989c48e7b 1-40
+.specify/templates/constitution-template.md
+  h_de2c1989c48e7b 1-50
+.specify/templates/plan-template.md
+  h_de2c1989c48e7b 1-113
+.specify/templates/spec-template.md
+  h_de2c1989c48e7b 1-131
+.specify/templates/tasks-template.md
+  h_de2c1989c48e7b 1-252
+.specify/workflows/speckit/workflow.yml
+  h_de2c1989c48e7b 1-78
+.specify/workflows/workflow-registry.json
+  h_de2c1989c48e7b 1-13
+.vscode/settings.json
+  h_de2c1989c48e7b 7-16,18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.20",
+  "base_commit_sha": "0014a7ee479d010f17c5698a8e1ee0ea3ef0af1b",
+  "prompts": {},
+  "humans": {
+    "h_de2c1989c48e7b": {
+      "author": "xspanni <xspanni@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_2ffc009f91ea08": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "f7d1743c-0fcf-4432-a7c0-f5dc3984ec23",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "xspanni <xspanni@gmail.com>"
+    },
+    "s_8186e7273c94b2": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "0f7e40fc-05af-4412-aae2-3d39a971c807",
+        "model": "gpt-5.3-codex"
+      },
+      "human_author": "xspanni <xspanni@gmail.com>"
+    }
+  }
+}

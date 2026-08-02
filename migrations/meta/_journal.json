@@ -36,6 +36,13 @@
       "when": 1781600000000,
       "tag": "0004_channel_approval",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1785672204316,
+      "tag": "0005_note_directories",
+      "breakpoints": true
     }
   ]
 }

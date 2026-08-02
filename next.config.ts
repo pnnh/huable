@@ -9,6 +9,7 @@ const withMDX = createMDX({});
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
+  allowedDevOrigins: ['127.0.0.1']
 };
 
 export default withMDX(nextConfig);

@@ -1,5 +1,6 @@
 import { relations } from "drizzle-orm";
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import type { AnySQLiteColumn } from "drizzle-orm/sqlite-core";
 import bs58 from "bs58";
 import { uuidv7 } from "uuidv7";
 
@@ -55,8 +56,15 @@ export const notes = sqliteTable("notes", {
   channelId: text("channel_id").references(() => channels.id, {
     onDelete: "set null",
   }),
+  parentId: text("parent_id").references((): AnySQLiteColumn => notes.id, {
+    onDelete: "cascade",
+  }),
   title: text("title").notNull(),
   body: text("body").notNull(),
+  mimeType: text("mime_type")
+    .notNull()
+    .default("text/markdown")
+    .$type<"text/markdown" | "directory">(),
   isPublished: integer("is_published", { mode: "boolean" })
     .notNull()
     .default(false),
@@ -100,6 +108,12 @@ export const notesRelations = relations(notes, ({ one, many }) => ({
     fields: [notes.channelId],
     references: [channels.id],
   }),
+  parent: one(notes, {
+    fields: [notes.parentId],
+    references: [notes.id],
+    relationName: "noteParent",
+  }),
+  children: many(notes, { relationName: "noteParent" }),
   attachments: many(noteAttachments),
 }));
 

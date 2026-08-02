@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { and, eq } from "drizzle-orm";
 import { notFound, redirect } from "next/navigation";
 import { isValidLang } from "@/lib/language";
@@ -11,12 +10,17 @@ import SiteFooter from "@/components/SiteFooter";
 import { t } from "@/lib/i18n";
 import AttachmentPanel from "@/components/AttachmentPanel";
 import NoteDeleteSection from "@/components/NoteDeleteSection";
+import NoteEditorForm, { type NoteFormState } from "@/components/NoteEditorForm";
+import { assertUniqueNameInParent, NameConflictError } from "@/lib/notesTree";
 
 export const dynamic = "force-dynamic";
 
-type Props = { params: Promise<{ lang: string; noteId: string }> };
+type Props = {
+    params: Promise<{ lang: string; noteId: string }>;
+    searchParams: Promise<{ parentId?: string }>;
+};
 
-export default async function NoteEditorPage({ params }: Props) {
+export default async function NoteEditorPage({ params, searchParams }: Props) {
     const { lang, noteId } = await params;
     if (!isValidLang(lang)) notFound();
     const l = lang as LangKey;
@@ -36,12 +40,16 @@ export default async function NoteEditorPage({ params }: Props) {
 
     if (!isNew && !existingNote) notFound();
 
+    const { parentId: rawParentId } = await searchParams;
+    const parentId = isNew ? rawParentId || null : (existingNote?.parentId ?? null);
+    const backHref = parentId ? `/${lang}/console/notes?parentId=${parentId}` : `/${lang}/console/notes`;
+
     const userChannels = await db
         .select()
         .from(channels)
         .where(eq(channels.userId, user.id));
 
-    async function handleSave(formData: FormData) {
+    async function handleSave(_prevState: NoteFormState, formData: FormData): Promise<NoteFormState> {
         "use server";
 
         const db2 = getDb();
@@ -53,7 +61,7 @@ export default async function NoteEditorPage({ params }: Props) {
         const now = Date.now();
 
         if (!title) {
-            throw new Error("Title is required");
+            return { error: t(l, "titleRequired") };
         }
 
         const channelId = rawChannelId || null;
@@ -66,7 +74,7 @@ export default async function NoteEditorPage({ params }: Props) {
                 .then((rows) => rows[0] ?? null);
 
             if (!ownedChannel) {
-                throw new Error("Channel not found");
+                return { error: t(l, "channelNotFound") };
             }
         }
 
@@ -74,11 +82,21 @@ export default async function NoteEditorPage({ params }: Props) {
         const needsApproval = !!(channelId && isPublished);
 
         if (isNew) {
+            try {
+                await assertUniqueNameInParent(db2, user2.id, parentId, title);
+            } catch (err) {
+                if (err instanceof NameConflictError) {
+                    return { error: t(l, "nameConflict") };
+                }
+                throw err;
+            }
+
             const id = createId();
             await db2.insert(notes).values({
                 id,
                 userId: user2.id,
                 channelId,
+                parentId,
                 title,
                 body,
                 isPublished,
@@ -93,7 +111,7 @@ export default async function NoteEditorPage({ params }: Props) {
                     createdAt: now,
                 });
             }
-            redirect(`/${lang}/console/notes`);
+            redirect(backHref);
         }
 
         const ownedNote = await db2
@@ -105,6 +123,15 @@ export default async function NoteEditorPage({ params }: Props) {
 
         if (!ownedNote) {
             notFound();
+        }
+
+        try {
+            await assertUniqueNameInParent(db2, user2.id, ownedNote.parentId, title, noteId);
+        } catch (err) {
+            if (err instanceof NameConflictError) {
+                return { error: t(l, "nameConflict") };
+            }
+            throw err;
         }
 
         await db2
@@ -120,7 +147,7 @@ export default async function NoteEditorPage({ params }: Props) {
             });
         }
 
-        redirect(`/${lang}/console/notes`);
+        redirect(backHref);
     }
 
     return (
@@ -130,69 +157,24 @@ export default async function NoteEditorPage({ params }: Props) {
                 <h1 className="text-2xl font-bold text-gray-900 mb-8">
                     {isNew ? t(l, "newNote") : t(l, "editNote")}
                 </h1>
-                <form action={handleSave} className="space-y-6">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">{t(l, "noteTitle")}</label>
-                        <input
-                            name="title"
-                            type="text"
-                            defaultValue={existingNote?.title ?? ""}
-                            required
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">{t(l, "noteBody")}</label>
-                        <textarea
-                            name="body"
-                            rows={16}
-                            defaultValue={existingNote?.body ?? ""}
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">{t(l, "noteChannel")}</label>
-                        <select
-                            name="channelId"
-                            defaultValue={existingNote?.channelId ?? ""}
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        >
-                            <option value="">{t(l, "noChannel")}</option>
-                            {userChannels.map((ch) => (
-                                <option key={ch.id} value={ch.id}>
-                                    {ch.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <input
-                            type="checkbox"
-                            id="isPublished"
-                            name="isPublished"
-                            value="true"
-                            defaultChecked={existingNote?.isPublished ?? false}
-                            className="h-4 w-4 rounded border-gray-300 text-blue-600"
-                        />
-                        <label htmlFor="isPublished" className="text-sm font-medium text-gray-700">
-                            {t(l, "publishToChannel")}
-                        </label>
-                    </div>
-                    <div className="flex gap-3">
-                        <button
-                            type="submit"
-                            className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700"
-                        >
-                            {t(l, "save")}
-                        </button>
-                        <Link
-                            href={`/${lang}/console/notes`}
-                            className="px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50"
-                        >
-                            {t(l, "cancel")}
-                        </Link>
-                    </div>
-                </form>
+                <NoteEditorForm
+                    action={handleSave}
+                    defaultTitle={existingNote?.title ?? ""}
+                    defaultBody={existingNote?.body ?? ""}
+                    defaultChannelId={existingNote?.channelId ?? ""}
+                    defaultIsPublished={existingNote?.isPublished ?? false}
+                    channels={userChannels}
+                    backHref={backHref}
+                    labels={{
+                        noteTitle: t(l, "noteTitle"),
+                        noteBody: t(l, "noteBody"),
+                        noteChannel: t(l, "noteChannel"),
+                        noChannel: t(l, "noChannel"),
+                        publishToChannel: t(l, "publishToChannel"),
+                        save: t(l, "save"),
+                        cancel: t(l, "cancel"),
+                    }}
+                />
                 {!isNew && (
                     <div className="mt-8">
                         <AttachmentPanel
@@ -204,7 +186,7 @@ export default async function NoteEditorPage({ params }: Props) {
                 {!isNew && (
                     <NoteDeleteSection
                         noteId={noteId}
-                        redirectTo={`/${lang}/console/notes`}
+                        redirectTo={backHref}
                         labels={{
                             deleteNote: t(l, "deleteNote"),
                             deleteNoteConfirm: t(l, "deleteNoteConfirm"),

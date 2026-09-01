@@ -1,0 +1,159 @@
+src/locales/en.json
+  s_69d33f192e1467::t_4375ea5c0cf82b 70-77
+  h_6465a203f88bd5 138
+specs/003-reduce-supported-languages/quickstart.md
+  s_69d33f192e1467::t_e962e630bee257 44
+  s_69d33f192e1467::t_09d0d08e70b646 1-43,45-60
+.specify/feature.json
+  s_69d33f192e1467::t_a204faa0746547 2
+  s_69d33f192e1467::t_f7e900c2c744df 3
+specs/002-calieo-oauth-login/data-model.md
+  s_69d33f192e1467::t_bafc143f09a684 1-16,18-71
+  h_6465a203f88bd5 17
+src/lib/language.ts
+  s_69d33f192e1467::t_1ce60c6a451a45 12
+specs/002-calieo-oauth-login/plan.md
+  s_69d33f192e1467::t_9888ac4ed2a0a8 1,3,5,9,13,15,17,19,21,23,25,27,29,35,37-38,44,50,58-61,63-74,77,81
+  s_69d33f192e1467::t_77732f4893ff93 2,4,6-8,10-12,14,16,18,20,22,24,26,28,30-34,36,39-43,45-49,51-57,62,75-76,78-80
+specs/002-calieo-oauth-login/research.md
+  s_69d33f192e1467::t_540b7b3a2cbed0 1-9,11-20,22-30,32-40,42-50,52-58
+  h_6465a203f88bd5 10,21,31,41,51
+specs/002-calieo-oauth-login/tasks.md
+  s_69d33f192e1467::t_52b65cddd4d7a6 107
+  s_69d33f192e1467::t_4f21c1709951b6 48-49
+  s_69d33f192e1467::t_c91aedb7be387c 1-31,34-42,50-62,65-78,80-93,95-104,106,108-167
+  s_69d33f192e1467::t_8f3878dd4ccecf 32-33
+  s_69d33f192e1467::t_fb1aef531716d3 64
+  s_69d33f192e1467::t_cd714581891d9b 43-44
+  s_69d33f192e1467::t_01f871bf7e168d 94
+  s_69d33f192e1467::t_a20e754a04faaf 63,79
+  s_69d33f192e1467::t_1a57b4e4a9f7b9 45-46
+  s_69d33f192e1467::t_e73797b6b0ef9e 105
+  s_69d33f192e1467::t_69b43b994efa36 47
+src/locales/zh.json
+  s_69d33f192e1467::t_4375ea5c0cf82b 70-77
+  h_6465a203f88bd5 138
+src/app/api/auth/calieo/login/route.ts
+  s_69d33f192e1467::t_716dde5c3ef018 1-43
+specs/002-calieo-oauth-login/spec.md
+  s_69d33f192e1467::t_b7c89ca5154a24 1-8,10,19-92,99-102,104-114,116-121,123-124
+  h_6465a203f88bd5 9,11-18,93,97-98,103,115,127-128
+  s_69d33f192e1467::t_cf58c7f5ab94a2 122
+  s_69d33f192e1467::t_c8668bc2070586 94-96,125-126
+.env.local.example
+  s_69d33f192e1467::t_2400c340994869 10-14
+migrations/0006_nasty_jane_foster.sql
+  s_69d33f192e1467::t_90b79efb5487b6 1-7
+src/lib/auth.ts
+  s_69d33f192e1467::t_932c59e1c2993e 1-4,6,10,31-32,79-80,82-87,90-102,104-107,110-111,114-118,120,124
+README.md
+  s_69d33f192e1467::t_2400c340994869 57-59,61
+  h_6465a203f88bd5 153,158,162,166,172
+  s_69d33f192e1467::t_9205aa4b16b410 18,108
+  h_6465a203f88bd5 8,52,131
+.specify/memory/constitution.md
+  s_69d33f192e1467::t_864dd0f4f76875 9
+  s_69d33f192e1467::t_5579e2cf0c8a52 1-3,17-19,23-47,49-51,53,55,57-59,61,63,65-68,70-80,82-90,94-107
+  s_69d33f192e1467::t_2cd8cfe292a50e 4-8,10-16,81,109
+specs/003-reduce-supported-languages/spec.md
+  s_69d33f192e1467::t_064a322e72fb7c 1-16,21-55,57-59,61-63,66-84,86-96,98-105
+  s_69d33f192e1467::t_19565f257580ff 17-20,56,60,64-65,85,97,106
+src/lib/calieo.ts
+  s_69d33f192e1467::t_30613363e31330 81-83,88,102,106-112,114-116,125
+  s_69d33f192e1467::t_a7895a919eb3f0 1-80,84-87,89-101,103-105,113,117-124
+specs/003-reduce-supported-languages/research.md
+  s_69d33f192e1467::t_50f8fdd336b6df 1-50
+src/locales/es.json
+  s_69d33f192e1467::t_4375ea5c0cf82b 70-77
+  h_6465a203f88bd5 138
+specs/003-reduce-supported-languages/checklists/requirements.md
+  s_69d33f192e1467::t_d48ffb88f121bc 1-34,36
+  s_69d33f192e1467::t_eca3124f7ddbed 35
+specs/003-reduce-supported-languages/plan.md
+  s_69d33f192e1467::t_ea2ebcb14a8b4e 1,3,5,9-14,18,20,22,24,26,28,30,32,34,39-46,48,50-51,57,60,64-65,71-89,92,100-102
+  s_69d33f192e1467::t_68a7932a5a14d6 2,4,6-8,15-17,19,21,23,25,27,29,31,33,35-38,47,49,52-56,58-59,61-63,66-70,90-91,93-99
+migrations/meta/0006_snapshot.json
+  s_69d33f192e1467::t_90b79efb5487b6 1-524
+specs/002-calieo-oauth-login/checklists/requirements.md
+  s_69d33f192e1467::t_f33bb705197302 1-15,17-33
+  s_69d33f192e1467::t_4b3a943d11b45f 16,35-37
+  s_69d33f192e1467::t_67ab7a5b8b6630 34,38-41
+src/data/tools.ts
+  h_6465a203f88bd5 43,53,63,73,78-81,124-127,232,256,260,263,292,302,312,322,361,400,404-406
+  s_69d33f192e1467::t_f1859e83d829f9 240,248,374,387,407
+huable.code-workspace
+  h_6465a203f88bd5 20-36
+  s_69d33f192e1467::t_9daf8c770c9867 43
+specs/002-calieo-oauth-login/contracts/calieo-oauth-routes.md
+  s_69d33f192e1467::t_8c2dd2fde6f8cd 1-9,11-13,15-20,22-29,31-47,49-55,57-59
+  h_6465a203f88bd5 10,14,21,30,48,56
+specs/003-reduce-supported-languages/tasks.md
+  s_69d33f192e1467::t_e962e630bee257 91
+  s_69d33f192e1467::t_e4d3729ba05b95 101-104
+  s_69d33f192e1467::t_bdd0dbf45b0ba4 32,44-49
+  s_69d33f192e1467::t_977c7d51c07037 1-31,33-43,50-62,64-76,78-90,92-100,106-165
+  s_69d33f192e1467::t_460e2d50511318 63,77,105
+package.json
+  s_69d33f192e1467::t_bc731d0469e3a6 25
+src/db/schema.ts
+  s_69d33f192e1467::t_7367b3c3f02bd8 89-98,102-109
+src/lib/language.test.ts
+  s_69d33f192e1467::t_e0081937792115 18,23-24,26,33,35-36,45-47
+src/app/[lang]/signout/page.tsx
+  s_69d33f192e1467::t_4e41b326f1a5fb 5,26-32,66,74
+specs/002-calieo-oauth-login/quickstart.md
+  s_69d33f192e1467::t_fd32a695b72fad 1-61
+src/lib/i18n.test.ts
+  s_69d33f192e1467::t_e0081937792115 9,21
+src/app/[lang]/signin/page.tsx
+  s_69d33f192e1467::t_4a4266d86b335f 12-15,17-27,37-53,56,60-64,106,145-152,154,161
+src/app/[lang]/layout.tsx
+  h_6465a203f88bd5 45
+.gitignore
+  h_6465a203f88bd5 52-54
+  h_6465a203f88bd5 51
+specs/003-reduce-supported-languages/data-model.md
+  s_69d33f192e1467::t_7825c3c6cbb608 1-47
+src/app/api/auth/calieo/callback/route.ts
+  s_69d33f192e1467::t_1099c088f4b00c 1-114
+src/app/[lang]/console/layout.tsx
+  s_69d33f192e1467::t_6ca2b5fa781486 16-17,21
+src/components/ToolGrid.test.tsx
+  s_69d33f192e1467::t_e0081937792115 33,40-41,48,55-56
+migrations/meta/_journal.json
+  s_69d33f192e1467::t_90b79efb5487b6 46-52
+src/lib/session.ts
+  s_69d33f192e1467::t_583c2711bcfaad 1-59
+src/locales/fr.json
+  s_69d33f192e1467::t_4375ea5c0cf82b 70-77
+  h_6465a203f88bd5 138
+pnpm-lock.yaml
+  s_69d33f192e1467::t_2446a1cc6bf4a9 44-46,3159-3161,7235-7236
+.claude/settings.json
+  h_6465a203f88bd5 73-83
+.codex/hooks.json
+  h_6465a203f88bd5 1-88
+.cursor/hooks.json
+  h_6465a203f88bd5 1-40
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.0",
+  "base_commit_sha": "8cf6744d926b883cb9d9967e06ba6408e480207f",
+  "prompts": {},
+  "humans": {
+    "h_6465a203f88bd5": {
+      "author": "larry <xspanni@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_69d33f192e1467": {
+      "agent_id": {
+        "tool": "github-copilot",
+        "id": "982c50a7-4a6a-432d-baa2-86b6fe6b1c04",
+        "model": "copilot/claude-sonnet-5"
+      },
+      "human_author": "larry <xspanni@gmail.com>"
+    }
+  }
+}

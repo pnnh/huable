@@ -6,7 +6,7 @@ describe('i18n', () => {
   it('returns translated string for supported lang and existing key', () => {
     expect(t('en', 'launchTool')).toBe('Launch Tool')
     expect(t('zh', 'learnMore')).toBe('了解更多')
-    expect(t('ja', 'launchTool')).toBe('ツールを開く')
+    expect(t('fr', 'launchTool')).toBe('Lancer l\'outil')
     expect(t('en', 'siteName')).toBe('Huable')
   })
 
@@ -18,7 +18,7 @@ describe('i18n', () => {
   it('returns the key itself when key missing in locale and English', () => {
     const missing = 'thisKeyDoesNotExist123' as any
     expect(t('en', missing)).toBe(missing)
-    expect(t('de-DE', missing)).toBe(missing)
+    expect(t('zh', missing)).toBe(missing)
   })
 
   it('uses the requested lang translation when the key exists for that lang', () => {

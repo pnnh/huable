@@ -86,9 +86,27 @@ export const noteAttachments = sqliteTable("note_attachments", {
   createdAt: integer("created_at").notNull().$defaultFn(() => Date.now()),
 });
 
+// Server-side login sessions (Calieo OIDC). One user can have many concurrent sessions (multi-device).
+export const sessions = sqliteTable("sessions", {
+  id: text("id").primaryKey().$defaultFn(createId),
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  createdAt: integer("created_at").notNull().$defaultFn(() => Date.now()),
+  expiresAt: integer("expires_at").notNull(),
+});
+
 export const usersRelations = relations(users, ({ many }) => ({
   channels: many(channels),
   notes: many(notes),
+  sessions: many(sessions),
+}));
+
+export const sessionsRelations = relations(sessions, ({ one }) => ({
+  user: one(users, {
+    fields: [sessions.userId],
+    references: [users.id],
+  }),
 }));
 
 export const channelsRelations = relations(channels, ({ one, many }) => ({

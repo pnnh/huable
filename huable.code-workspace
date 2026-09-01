@@ -17,14 +17,30 @@
 			"mkdir": true,
 			"tar": true,
 			"sqlite3": true,
-			"pnpm": true
+			"pnpm": true,
+			"/^python3 \\.specify/scripts/python/check_prerequisites\\.py --json --paths-only$/": {
+				"approve": true,
+				"matchCommandLine": true
+			},
+			"/^python3 \\.specify/scripts/python/setup_plan\\.py --json$/": {
+				"approve": true,
+				"matchCommandLine": true
+			},
+			"/^python3 \\.specify/scripts/python/setup_tasks\\.py --json$/": {
+				"approve": true,
+				"matchCommandLine": true
+			},
+			"/^python3 \\.specify/scripts/python/check_prerequisites\\.py --json --require-tasks --include-tasks$/": {
+				"approve": true,
+				"matchCommandLine": true
+			}
 		},
 		"search.useIgnoreFiles": false,
 		"search.exclude": {
 			"tsconfig.tsbuildinfo": true,
 			"build/**": true,
 			"**/node_modules/**": true,
-			"**/target/**": true, 
+			"**/target/**": true,
 			"**/.dolt/**": true,
 			"**/.vscode/**": true,
 			"**/.next/**": true,

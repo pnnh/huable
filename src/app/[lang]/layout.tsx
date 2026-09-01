@@ -42,7 +42,7 @@ export default async function LangLayout({ params, children }: Props) {
             </head>
             <body className="min-h-full flex flex-col bg-gray-50 text-gray-900 antialiased">
                 {children}
-                <CookieBanner lang={lang as LangKey} />
+                {/* <CookieBanner lang={lang as LangKey} /> */}
             </body>
         </html>
     );

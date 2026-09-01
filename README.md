@@ -5,7 +5,7 @@ The main portal site for [huable.xyz](https://huable.xyz). Provides a multilingu
 ## Tools
 
 | Tool | Subdomain | Description |
-|------|-----------|-------------|
+| ------ | ----------- | ------------- |
 | **BaseX** | basex.huable.xyz | Base64 / Base32 / Base58 / Hex encoding & decoding |
 | **CryptoX** | cryptox.huable.xyz | AES & RSA encryption / decryption |
 | **HashX** | hashx.huable.xyz | MD5 / SHA / BLAKE2b / BLAKE3 / HMAC hashing |
@@ -15,7 +15,7 @@ The main portal site for [huable.xyz](https://huable.xyz). Provides a multilingu
 
 ## Features
 
-- **8 languages** — `en`, `es`, `fr`, `de-DE`, `pt-PT`, `ja`, `zh`, `zh-TW`; URL-based routing via `/[lang]/`
+- **4 languages** — `en`, `es`, `fr`, `zh`; URL-based routing via `/[lang]/`
 - **Auto language detection** — root `/` redirects to the best-match language from `Accept-Language`
 - **Public channels** — browse and search public channels at `/{lang}/channels`; per-channel note listing at `/{lang}/channels/[id]`
 - **Public notes** — paginated, searchable note feed at `/{lang}/` (title + body fuzzy search)
@@ -49,13 +49,16 @@ pnpm build        # production build
 ### Environment Variables (`.env.local`)
 
 | Variable | Default | Description |
-|----------|---------|-------------|
+| ---------- | --------- | ------------- |
 | `DB_PATH` | `./.data/huable.db` | Local SQLite database path |
 | `NOTE_STORAGE_PATH` | `./.data/uploads` | Local file attachment storage |
 | `DEV_USER_ID` | `dev-user-001` | Hardcoded dev user ID (dev auth only) |
 | `DEV_USER_NAME` | `Dev User` | Hardcoded dev user display name |
+| `CALIEO_CLIENT_ID` | _(none)_ | OAuth2/OIDC client ID registered with Calieo (`https://portal.calieo.xyz`) |
+| `CALIEO_CLIENT_SECRET` | _(none)_ | OAuth2/OIDC client secret registered with Calieo |
+| `NEXT_PUBLIC_BASE_URL` | `http://localhost:7500` | Base URL used to build the Calieo callback `redirect_uri` |
 
-> **Auth note:** In development, identity is read from a `user_id` cookie (falling back to the `DEV_USER_*` env vars). In production, Cloudflare Zero Trust headers are used.
+> **Auth note:** In development, identity is read from a `session_id` cookie (Calieo login) or the `dev_user_email`/`dev_user_name` cookies set by `/signin` (falling back to the `DEV_USER_*` env vars). In production, identity is read exclusively from the `session_id` cookie, backed by a server-side session table created via "Sign in with Calieo" (Authorization Code Flow + PKCE).
 
 ## Project Structure
 
@@ -102,7 +105,7 @@ src/
     ChannelSearch.tsx           # search input that updates ?q= param (client)
     UserProfileClient.tsx       # profile form (nickname, bio, avatar) (client)
   data/
-    tools.ts                    # 6 tools × 8 languages content
+    tools.ts                    # 6 tools × 4 languages content
     privacy.ts                  # 8-language privacy policy content
   db/
     schema.ts                   # Drizzle schema (users, channels, notes, note_attachments)
@@ -125,7 +128,7 @@ Drizzle ORM with SQLite (dev) and Cloudflare D1 (prod).
 ### Schema
 
 | Table | Key columns |
-|-------|-------------|
+| ------- | ------------- |
 | `users` | `id`, `name`, `email`, `nickname`, `bio`, `created_at` |
 | `channels` | `id`, `user_id`, `name`, `description`, `is_public`, `created_at` |
 | `notes` | `id`, `user_id`, `channel_id`, `title`, `body`, `is_published`, `created_at`, `updated_at` |
@@ -147,23 +150,27 @@ wrangler d1 execute huable-db --remote --file=./migrations/0001_user_profile.sql
 ## Cloudflare Deployment
 
 ### Prerequisites
+
 - A Cloudflare account with Workers, D1, and R2 enabled
 - `wrangler` CLI authenticated: `wrangler login`
 
 ### Create D1 Database
+
 ```bash
 wrangler d1 create huable-db
 ```
+
 Copy the `database_id` from the output and replace `REPLACE_WITH_YOUR_D1_DATABASE_ID` in `wrangler.jsonc`.
 
 ### Create R2 Bucket
+
 ```bash
 wrangler r2 bucket create huable-notes
 ```
 
 ### Build and Deploy
+
 ```bash
 pnpm build
 wrangler deploy
 ```
-

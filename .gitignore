@@ -49,3 +49,6 @@ next-env.d.ts
 .codebase-memory/
 
 *.db
+
+# python cache speckit可能会生成 __pycache__ 目录
+**/__pycache__/

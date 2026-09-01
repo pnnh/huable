@@ -39,11 +39,7 @@ const DATE_LOCALE: Record<LangKey, string> = {
     en: "en-US",
     es: "es-ES",
     fr: "fr-FR",
-    "de-DE": "de-DE",
-    "pt-PT": "pt-PT",
-    ja: "ja-JP",
     zh: "zh-CN",
-    "zh-TW": "zh-TW",
 };
 
 function formatUpdatedAt(updatedAt: number, lang: LangKey): string {

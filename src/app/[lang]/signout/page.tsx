@@ -2,6 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import { isValidLang } from "@/lib/language";
 import type { LangKey } from "@/lib/language";
 import { isAuthenticated } from "@/lib/auth";
+import { deleteSession, SESSION_COOKIE_NAME } from "@/lib/session";
 import { t } from "@/lib/i18n";
 import { cookies } from "next/headers";
 import SiteHeader from "@/components/SiteHeader";
@@ -18,27 +19,17 @@ export default async function SignOutPage({ params }: Props) {
     const l = lang as LangKey;
 
     const authed = await isAuthenticated();
-    const isDev = process.env.NODE_ENV === "development";
-
-    if (!isDev) {
-        // Non-dev: show empty no-access prompt
-        return (
-            <>
-                <SiteHeader lang={l} />
-                <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="text-center text-gray-500 py-16">
-                        <p className="text-xl font-medium mb-2">{t(l, "accessDenied")}</p>
-                        <p className="text-sm">{t(l, "devOnly")}</p>
-                    </div>
-                </main>
-                <SiteFooter lang={l} />
-            </>
-        );
-    }
 
     async function handleSignOut() {
         "use server";
         const cookieStore = await cookies();
+        const sessionId = cookieStore.get(SESSION_COOKIE_NAME)?.value;
+        if (sessionId) {
+            // Only this session is invalidated; other devices/browsers keep their sessions (FR-010, FR-014).
+            deleteSession(sessionId);
+            console.info("[auth] calieo session revoked", { sessionId });
+        }
+        cookieStore.delete(SESSION_COOKIE_NAME);
         cookieStore.delete("user_id");
         cookieStore.delete("dev_user_email");
         cookieStore.delete("dev_user_name");
@@ -72,7 +63,7 @@ export default async function SignOutPage({ params }: Props) {
 
                 {!authed && (
                     <p className="mt-4 text-xs text-gray-400 text-center">
-                        You are not currently signed in via dev cookie.
+                        You are not currently signed in.
                     </p>
                 )}
             </main>
@@ -80,3 +71,4 @@ export default async function SignOutPage({ params }: Props) {
         </>
     );
 }
+

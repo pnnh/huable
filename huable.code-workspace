@@ -7,9 +7,6 @@
 	"settings": {
 		"git.openRepositoryInParentFolders": "never",
 		"files.exclude": {
-			"**/.git": true,
-			"node_modules": true,
-			".next": true,
 		},
 		"chat.tools.terminal.autoApprove": {
 			"rtk": true,
@@ -39,6 +36,9 @@
 		"search.exclude": {
 			"tsconfig.tsbuildinfo": true,
 			"build/**": true,
+			"**/.git/**": true,
+			"**/.github/**": true,
+			"**/.kilo/**": true,
 			"**/node_modules/**": true,
 			"**/target/**": true,
 			"**/.dolt/**": true,

@@ -30,7 +30,7 @@ description: "Task list template for feature implementation"
 **Purpose**: 引入依赖与环境变量文档，为后续开发做准备
 
 - [X] T001 [P] 执行 `pnpm add oauth4webapi` 添加运行时依赖（更新 `package.json`/`pnpm-lock.yaml`）
-- [X] T002 [P] 在 [.env.local.example](../../.env.local.example) 中补充 `CALIEO_CLIENT_ID`、`CALIEO_CLIENT_SECRET`、`NEXT_PUBLIC_BASE_URL` 占位项，并在 [README.md](../../README.md) 的 Environment Variables 表格中补充说明
+- [X] T002 [P] 在 [.env.local.example](../../.env.local.example) 中补充 `CALIEO_CLIENT_ID`、`CALIEO_CLIENT_SECRET`、`CALIEO_OIDC_REDIRECT_BASE_URL` 占位项，并在 [README.md](../../README.md) 的 Environment Variables 表格中补充说明
 
 ---
 

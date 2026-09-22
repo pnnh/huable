@@ -41,7 +41,7 @@ function parseStateCookie(raw: string | undefined): StateCookiePayload | null {
 
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || url.origin;
+  const baseUrl = process.env.CALIEO_OIDC_REDIRECT_BASE_URL || url.origin;
   const payload = parseStateCookie(req.cookies.get(STATE_COOKIE_NAME)?.value);
   const lang = payload && isValidLang(payload.lang) ? payload.lang : defaultLanguage;
 
@@ -98,7 +98,7 @@ export async function GET(req: NextRequest) {
   }
 
   const user = await ensureUserRow(identity.email, identity.name, identity.email);
-  const sessionId = createSession(user.id);
+  const sessionId = await createSession(user.id);
   console.info("[auth] calieo login success", { userId: user.id, sessionId });
 
   const response = NextResponse.redirect(new URL(`/${lang}/console`, baseUrl));

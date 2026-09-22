@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isValidLang, supportedLanguages } from "@/lib/language";
 import type { LangKey } from "@/lib/language";
-import { t } from "@/lib/i18n";
-import CookieBanner from "@/components/CookieBanner";
+import { t } from "@/lib/i18n"; 
 import "../globals.css";
 
 type Props = {
@@ -41,8 +40,7 @@ export default async function LangLayout({ params, children }: Props) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </head>
             <body className="min-h-full flex flex-col bg-gray-50 text-gray-900 antialiased">
-                {children}
-                {/* <CookieBanner lang={lang as LangKey} /> */}
+                {children} 
             </body>
         </html>
     );

@@ -118,7 +118,7 @@
 
 - 复用现有 `ensureUserRow` 用户查找/创建逻辑：按邮箱唯一匹配已存在用户，不存在则创建新用户，首个登录的用户自动提升为管理员；本功能不改变该规则。
 - Calieo（`https://portal.calieo.xyz`）是标准的 OIDC Provider，提供标准的 discovery 文档（`/.well-known/openid-configuration`）、`authorization_endpoint`、`token_endpoint`，并在 ID 令牌中返回 `email`、`name` 等声明。
-- 使用 `oauth4webapi` 以 confidential client 方式（`CALIEO_CLIENT_ID`/`CALIEO_CLIENT_SECRET`）实现 Authorization Code Flow + PKCE；相关客户端凭据与回调地址（基于 `NEXT_PUBLIC_BASE_URL`）已经/将会配置在环境变量与生产环境密钥中。
+- 使用 `oauth4webapi` 以 confidential client 方式（`CALIEO_CLIENT_ID`/`CALIEO_CLIENT_SECRET`）实现 Authorization Code Flow + PKCE；相关客户端凭据与回调地址（基于 `CALIEO_OIDC_REDIRECT_BASE_URL`）已经/将会配置在环境变量与生产环境密钥中。
 - 登出操作默认只使应用侧的服务端会话记录失效并清除会话 Cookie；是否需要同时触发 Calieo 远端会话登出（RP-Initiated Logout）由实现阶段根据 Calieo 是否提供 `end_session_endpoint` 决定，不影响本功能的用户可见行为范围。
 - 本功能仅涉及登录/登出与身份识别链路，不改变现有控制台内基于 `sysrole`（admin/normal）的权限模型。
 - 多语言路由（`/{lang}/signin`、`/{lang}/console` 等）保持现有约定，Calieo 登录回调完成后按发起登录时的语言重定向。

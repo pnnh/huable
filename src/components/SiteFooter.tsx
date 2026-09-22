@@ -11,12 +11,6 @@ export default function SiteFooter({ lang }: Props) {
                 <p className="text-sm text-gray-400">
                     © {new Date().getFullYear()} {t(lang, "siteName")}
                 </p>
-                <Link
-                    href={`/${lang}/privacy/`}
-                    className="text-sm text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                    {t(lang, "privacyPolicy")}
-                </Link>
             </div>
         </footer>
     );

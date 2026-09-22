@@ -3,15 +3,29 @@
   "name": "huable",
   "compatibility_date": "2026-04-20",
   "main": ".open-next/worker.js",
+  "upload_source_maps": true,
+  "workers_dev": false,
   "observability": {
     "enabled": true
   },
+  "routes": [
+    {
+      "pattern": "huable.xyz",
+      "zone_name": "huable.xyz",
+      "custom_domain": true
+    }
+  ],
   "compatibility_flags": [
     "nodejs_compat"
   ],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
+  },
+  "vars": {
+    "CALIEO_OIDC_CLIENT_ID": "prism_8nStXRkJBZm_U9Se8RIs4Q",
+    "CALIEO_OIDC_ISSUER": "https://portal.calieo.xyz",
+    "CALIEO_OIDC_REDIRECT_BASE_URL": "https://huable.xyz"
   },
   "d1_databases": [
     {

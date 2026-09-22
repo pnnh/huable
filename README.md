@@ -24,7 +24,6 @@ The main portal site for [huable.xyz](https://huable.xyz). Provides a multilingu
 - **User profiles** — nickname, bio, and avatar (JPG/PNG/GIF/WebP, max 2 MB)
 - **Channel avatars** — per-channel avatar upload with first-character fallback
 - **Cookie consent banner** — EU-compliant; sets `cookie-consent` with `Domain=.huable.xyz`
-- **Privacy policy** — `/{lang}/privacy`
 
 ## Tech Stack
 
@@ -56,7 +55,7 @@ pnpm build        # production build
 | `DEV_USER_NAME` | `Dev User` | Hardcoded dev user display name |
 | `CALIEO_CLIENT_ID` | _(none)_ | OAuth2/OIDC client ID registered with Calieo (`https://portal.calieo.xyz`) |
 | `CALIEO_CLIENT_SECRET` | _(none)_ | OAuth2/OIDC client secret registered with Calieo |
-| `NEXT_PUBLIC_BASE_URL` | `http://localhost:7500` | Base URL used to build the Calieo callback `redirect_uri` |
+| `CALIEO_OIDC_REDIRECT_BASE_URL` | `http://localhost:7500` | Base URL used to build the Calieo callback `redirect_uri` |
 
 > **Auth note:** In development, identity is read from a `session_id` cookie (Calieo login) or the `dev_user_email`/`dev_user_name` cookies set by `/signin` (falling back to the `DEV_USER_*` env vars). In production, identity is read exclusively from the `session_id` cookie, backed by a server-side session table created via "Sign in with Calieo" (Authorization Code Flow + PKCE).
 

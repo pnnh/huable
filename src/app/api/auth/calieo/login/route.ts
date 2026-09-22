@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
   const rawLang = searchParams.get("lang") ?? "";
   const lang = isValidLang(rawLang) ? rawLang : defaultLanguage;
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || origin;
+  const baseUrl = process.env.CALIEO_OIDC_REDIRECT_BASE_URL || origin;
   const redirectUri = new URL("/api/auth/calieo/callback", baseUrl).toString();
 
   try {

@@ -11,11 +11,11 @@ export const SESSION_COOKIE_NAME = "session_id";
 export const SESSION_MAX_AGE_SECONDS = SESSION_TTL_MS / 1000;
 
 // Creates a new session row for the user and returns its opaque id (FR-011, FR-014).
-export function createSession(userId: string): string {
+export async function createSession(userId: string): Promise<string> {
   const db = getDb();
   const id = createId();
   const now = Date.now();
-  db.insert(sessions)
+  await db.insert(sessions)
     .values({ id, userId, createdAt: now, expiresAt: now + SESSION_TTL_MS })
     .run();
   return id;

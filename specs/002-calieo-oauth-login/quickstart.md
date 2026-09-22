@@ -10,7 +10,7 @@
 2. 在 `.env.local`（开发）与生产环境密钥（Cloudflare Workers Secrets）中配置：
    - `CALIEO_CLIENT_ID`
    - `CALIEO_CLIENT_SECRET`
-   - `NEXT_PUBLIC_BASE_URL`（用于构造 `redirect_uri`）
+   - `CALIEO_OIDC_REDIRECT_BASE_URL`（用于构造 `redirect_uri`）
 3. 执行数据库迁移，确保本地 `sessions` 表已创建：
 
    ```bash

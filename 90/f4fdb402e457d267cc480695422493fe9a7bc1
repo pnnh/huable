@@ -1,0 +1,86 @@
+.claude/settings.json
+  h_6465a203f88bd5 6,11,18,36,43,50,57,63
+.claude/skills/speckit-analyze/SKILL.md
+  h_6465a203f88bd5 2-10,13,32,60,66,202,204,219
+.claude/skills/speckit-bug-assess/SKILL.md
+  h_6465a203f88bd5 2,5-8,13,102,172
+.claude/skills/speckit-bug-fix/SKILL.md
+  h_6465a203f88bd5 2,4-7,12,31,41,56,110
+.claude/skills/speckit-bug-test/SKILL.md
+  h_6465a203f88bd5 2,5-8,13,32,43,111,117
+.claude/skills/speckit-checklist/SKILL.md
+  h_6465a203f88bd5 2-10,13,53,262,354
+.claude/skills/speckit-clarify/SKILL.md
+  h_6465a203f88bd5 2-10,13,32,62,70,234,255,286
+.claude/skills/speckit-constitution/SKILL.md
+  h_6465a203f88bd5 2-10,13,38,51,149
+.claude/skills/speckit-converge/SKILL.md
+  h_6465a203f88bd5 2-9,12,32,70-71,85,106-107,236,253
+.claude/skills/speckit-implement/SKILL.md
+  h_6465a203f88bd5 2-10,13,32,180,194
+.claude/skills/speckit-plan/SKILL.md
+  h_6465a203f88bd5 2-10,13,32,84
+.claude/skills/speckit-specify/SKILL.md
+  h_6465a203f88bd5 2-10,13,32,60,108,111,184,250,279
+.claude/skills/speckit-tasks/SKILL.md
+  h_6465a203f88bd5 2-10,13,32,104
+.claude/skills/speckit-taskstoissues/SKILL.md
+  h_6465a203f88bd5 2-10,13,32,90
+.env.local.example
+  h_6465a203f88bd5 14
+.specify/extensions/.registry
+  h_6465a203f88bd5 11
+.specify/init-options.json
+  h_6465a203f88bd5 2-3,6,8
+.specify/integration.json
+  h_6465a203f88bd5 2,5,8,10,13-14
+.specify/integrations/claude.manifest.json
+  h_6465a203f88bd5 1-17
+.specify/integrations/speckit.manifest.json
+  h_6465a203f88bd5 3,12-13,18-20
+.specify/scripts/bash/check-prerequisites.sh
+  h_6465a203f88bd5 123,129,136
+.specify/scripts/bash/setup-tasks.sh
+  h_6465a203f88bd5 33,39
+.specify/templates/checklist-template.md
+  h_6465a203f88bd5 7,13
+.specify/templates/plan-template.md
+  h_6465a203f88bd5 7,51-56
+.specify/templates/tasks-template.md
+  h_6465a203f88bd5 33
+README.md
+  h_6465a203f88bd5 58
+huable.code-workspace
+  h_6465a203f88bd5 39-41
+specs/002-calieo-oauth-login/quickstart.md
+  h_6465a203f88bd5 13
+specs/002-calieo-oauth-login/spec.md
+  h_6465a203f88bd5 121
+specs/002-calieo-oauth-login/tasks.md
+  h_6465a203f88bd5 33
+src/app/[lang]/layout.tsx
+  h_6465a203f88bd5 5,43
+src/app/api/auth/calieo/callback/route.ts
+  h_6465a203f88bd5 44,101
+src/app/api/auth/calieo/login/route.ts
+  h_6465a203f88bd5 17
+src/components/CookieBanner.tsx
+  h_6465a203f88bd5 22
+src/instrumentation.ts
+  h_6465a203f88bd5 1-38
+src/lib/session.ts
+  h_6465a203f88bd5 14,18
+wrangler.jsonc
+  h_6465a203f88bd5 6-7,11-17,25-29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "90f4fdb402e457d267cc480695422493fe9a7bc1",
+  "prompts": {},
+  "humans": {
+    "h_6465a203f88bd5": {
+      "author": "larry <xspanni@gmail.com>"
+    }
+  }
+}

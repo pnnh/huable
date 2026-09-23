@@ -1,6 +1,19 @@
-import { marked } from "marked";
+import { Marked } from "marked";
+import { markedHighlight } from "marked-highlight";
+import hljs from "highlight.js";
 import sanitizeHtml from "sanitize-html";
 import type { IOptions } from "sanitize-html";
+
+const marked = new Marked(
+    markedHighlight({
+        emptyLangClass: "hljs",
+        langPrefix: "hljs language-",
+        highlight(code, lang) {
+            const language = hljs.getLanguage(lang) ? lang : "plaintext";
+            return hljs.highlight(code, { language }).value;
+        },
+    })
+);
 
 const SANITIZE_OPTIONS: IOptions = {
     allowedTags: [
@@ -8,7 +21,7 @@ const SANITIZE_OPTIONS: IOptions = {
         "p", "br", "hr",
         "ul", "ol", "li",
         "strong", "em", "del", "s",
-        "code", "pre",
+        "code", "pre", "span",
         "blockquote",
         "a",
         "img",
@@ -21,6 +34,11 @@ const SANITIZE_OPTIONS: IOptions = {
         td: ["align"],
         code: ["class"],
         pre: ["class"],
+        span: ["class"],
+    },
+    allowedClasses: {
+        code: ["hljs", "language-*"],
+        span: ["hljs-*"],
     },
     allowedSchemes: ["http", "https", "mailto"],
     allowedSchemesByTag: {

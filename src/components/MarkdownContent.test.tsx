@@ -28,6 +28,7 @@ describe('MarkdownContent', () => {
 <img src="https://example.com/x.png" alt="good" title="img" />
 <p onclick="evil()">no events</p>
 <code class="lang-ts">const x=1</code>
+<span class="evil-tracker" onclick="evil()">hi</span>
 `
     const { container } = render(<MarkdownContent content={malicious} />)
 
@@ -52,9 +53,25 @@ describe('MarkdownContent', () => {
     const p = container.querySelector('p')
     expect(p?.hasAttribute('onclick')).toBe(false)
 
-    // code with class kept
+    // arbitrary classes outside the hljs/language-* allowlist are stripped
     const code = container.querySelector('code')
-    expect(code).toHaveClass('lang-ts')
+    expect(code).not.toHaveClass('lang-ts')
+
+    // span is allowed for highlight tokens, but arbitrary classes/handlers are not
+    const span = container.querySelector('span')
+    expect(span?.hasAttribute('onclick')).toBe(false)
+    expect(span).not.toHaveClass('evil-tracker')
+  })
+
+  it('applies syntax highlighting classes to fenced code blocks', () => {
+    const md = '```ts\nconst x: number = 1;\n```'
+    const { container } = render(<MarkdownContent content={md} />)
+
+    const code = container.querySelector('code')
+    expect(code).toHaveClass('hljs')
+    expect(code).toHaveClass('language-ts')
+    // highlight.js wraps tokens in spans with hljs-* classes
+    expect(container.querySelector('span[class*="hljs-"]')).toBeTruthy()
   })
 
   it('supports lists, links with http/https, and relative links', () => {

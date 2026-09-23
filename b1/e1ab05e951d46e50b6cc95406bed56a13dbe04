@@ -1,0 +1,367 @@
+specs/004-upload-notes/research.md
+  s_ae4c2f09c86c56::t_c40b002a393581 1-61
+src/locales/es.json
+  s_fa3377dbd4cb44::t_1e3ab3c0769c27 55-59
+  s_fa3377dbd4cb44::t_a1f481e04ce112 68-83
+  s_fa3377dbd4cb44::t_44051c77d4b6e7 61-67
+  s_fa3377dbd4cb44::t_e5bd026597e08e 50-53
+  s_fa3377dbd4cb44::t_90cb2805ea0e5d 42-44
+  s_fa3377dbd4cb44::t_2a2a649a222a1d 60
+specs/006-publish-approval-flow/contracts/notes-publish.md
+  s_fa3377dbd4cb44::t_91705e3998ee97 1-38
+specs/005-notes-batch-actions/quickstart.md
+  s_c8e4d72a8457ea::t_dde407bebf04c5 1-59
+src/locales/zh.json
+  s_fa3377dbd4cb44::t_a86c1e1a8101b7 68-83
+  s_fa3377dbd4cb44::t_041e36f7c2c1df 55-59
+  s_fa3377dbd4cb44::t_60e21aa3e242da 61-67
+  s_fa3377dbd4cb44::t_aa4e021ebf5c44 50-53
+  s_fa3377dbd4cb44::t_dce9c943682da2 42-44
+  s_fa3377dbd4cb44::t_fa392020cc9c11 60
+src/app/api/console/channels/[channelId]/route.ts
+  s_fa3377dbd4cb44::t_1ad8da57966ac6 5
+  s_fa3377dbd4cb44::t_2aa78009ead2db 36,40
+src/app/api/files/[noteId]/[filename]/route.ts
+  s_fa3377dbd4cb44::t_d2cd3debc32de7 4,6
+  s_fa3377dbd4cb44::t_f0b4537417d010 101-105
+  s_fa3377dbd4cb44::t_7f162da7869bff 26-62
+  s_fa3377dbd4cb44::t_ff7569b08ad78f 8-15
+  s_fa3377dbd4cb44::t_91c8ebe2ba5110 7
+migrations/meta/0007_snapshot.json
+  s_fa3377dbd4cb44::t_f41d6d995b98a6 1-508
+specs/004-upload-notes/checklists/requirements.md
+  s_ae4c2f09c86c56::t_520acbc6ba6592 1-35
+src/locales/fr.json
+  s_fa3377dbd4cb44::t_a7d27e67b874d6 50-53
+  s_fa3377dbd4cb44::t_7ceeb3c251973c 42-44
+  s_fa3377dbd4cb44::t_1935272071ba35 55-59
+  s_fa3377dbd4cb44::t_e85057a5fb26c0 61-67
+  s_fa3377dbd4cb44::t_4e76dafbb81778 60
+  s_fa3377dbd4cb44::t_122030200fef73 68-83
+src/app/api/console/notes/batch/route.test.ts
+  s_c8e4d72a8457ea::t_b79e2a404e6957 1-5,7-17,19-27,29-63,65-88,90-100,102-112,114-124,126-138,140-141,143-150,152-165,167-170,172-177,180-181,183-184,193-194,198-199,201,233-234
+  s_fa3377dbd4cb44::t_4d2ea792ed3f3d 18,28,64,89,101,113,125,139,142,151,171,178-179,185-192,195-197,202-232
+  s_c8e4d72a8457ea::t_26257219799f33 166,182,200
+  s_fa3377dbd4cb44::t_7cbaef144f4d69 6
+src/components/NotePublishDialog.tsx
+  s_fa3377dbd4cb44::t_d796bda49509db 1-118
+specs/006-publish-approval-flow/plan.md
+  s_fa3377dbd4cb44::t_51f74a0e7f7c05 1,3,5,9,13,15,17,19,21,23,25,27,29-31,33,39-44,46-47,55-65,68,71-79,81-86,90-100,104-110,114,118
+  s_fa3377dbd4cb44::t_a61335e325f479 48-49
+  s_fa3377dbd4cb44::t_9d4a50b298607b 80,87-89
+  s_fa3377dbd4cb44::t_906892f7cfcb7f 101-103
+  s_fa3377dbd4cb44::t_990bc18ed8a844 111
+  s_fa3377dbd4cb44::t_a1d8ca68804536 2,4,6-8,10-12,14,16,18,20,22,24,26,32,34-38,45,50-54,66-67,69-70,112-113,115-117
+  s_fa3377dbd4cb44::t_4722b4fdf64468 28
+migrations/meta/_journal.json
+  s_fa3377dbd4cb44::t_f41d6d995b98a6 53-59
+specs/004-upload-notes/plan.md
+  s_ae4c2f09c86c56::t_d3eb023dcc981c 2,4,6,8-10,12-14,16,18,20,22,24,26,28,30,32-35,38,45,50-54,56-60,62-68,86-87,89-91
+  s_ae4c2f09c86c56::t_7dca0d32dd8f05 1,3,5,11,15,17,19,21,23,25,27,29,31,36-37,39-44,46-47,55,61,69-85,88,92
+  s_ae4c2f09c86c56::t_0baea50362fdc8 48-49
+  s_ae4c2f09c86c56::t_8e4d94d4d4b55d 7
+src/app/api/console/notes/[noteId]/route.ts
+  s_fa3377dbd4cb44::t_7a7db7d012860f 79-80,82-85,88,90-96
+  s_fa3377dbd4cb44::t_f61fae34a9a690 4
+src/components/NotesConsole.tsx
+  s_fa3377dbd4cb44::t_1b067d7a6f6e75 31,34
+  s_c8e4d72a8457ea::t_ba6e2bccbd1aaf 15
+  s_c8e4d72a8457ea::t_2220eccfb680f4 44
+  s_c8e4d72a8457ea::t_fe94c47a3a3221 103-114
+  s_c8e4d72a8457ea::t_740d0e54686116 1-14,16-23,28-30,32-33,35-43,45-102,115-132
+  s_fa3377dbd4cb44::t_9cb854885f2ddb 24-27
+src/components/NoteUploadQueue.tsx
+  s_ae4c2f09c86c56::t_d0c4e6fec6c42a 163-166
+  s_fa3377dbd4cb44::t_b9f373917d606a 32-35
+  s_ae4c2f09c86c56::t_8df61b827e6d16 1-31,37-64,66,68,70,72-162,167-259,277-285
+  s_ae4c2f09c86c56::t_8b23c6222bf396 36
+  s_fa3377dbd4cb44::t_a61854085ef25e 65,67,69,71
+  s_ae4c2f09c86c56::t_09e1654ab51f59 260-276
+src/app/[lang]/console/channels/[channelId]/page.tsx
+  s_fa3377dbd4cb44::t_40b4fd36d298b3 12
+  s_fa3377dbd4cb44::t_54c7853fbdaafb 2
+  s_fa3377dbd4cb44::t_f16b7c38a66d4a 40,51-52,60,66,68-74
+  s_fa3377dbd4cb44::t_5c09dedab5d1e6 84-99
+  s_fa3377dbd4cb44::t_5a1367483620f2 151
+  s_fa3377dbd4cb44::t_dc5e90736787ef 13
+  s_fa3377dbd4cb44::t_958cecf5ac3b21 100-104
+  s_fa3377dbd4cb44::t_9be4feade8ff85 143-150,152-155
+specs/005-notes-batch-actions/research.md
+  s_c8e4d72a8457ea::t_fcae04d379b5cd 1-64
+specs/006-publish-approval-flow/quickstart.md
+  s_fa3377dbd4cb44::t_075931e0e9112c 1-101
+specs/004-upload-notes/data-model.md
+  s_ae4c2f09c86c56::t_7d97977d9b2135 1-63
+src/app/[lang]/console/notes/upload/page.tsx
+  s_ae4c2f09c86c56::t_21afa42f843782 1-45,51-62
+  s_fa3377dbd4cb44::t_d7b7061ec9ae71 46-49
+  s_ae4c2f09c86c56::t_ac8495521c9391 50
+specs/005-notes-batch-actions/contracts/batch-update.md
+  s_c8e4d72a8457ea::t_8bbe2679aad42e 1-94
+src/app/[lang]/console/notes/page.tsx
+  s_c8e4d72a8457ea::t_6c1689d107bace 85-95,100-102,104-105,107-115,117-123,126-138
+  s_fa3377dbd4cb44::t_8e5ad19fb14c41 103,106
+  s_c8e4d72a8457ea::t_c4fec029c89f8b 59-63
+  s_fa3377dbd4cb44::t_3a4407f1047264 96-99
+  s_fa3377dbd4cb44::t_da22155134b6c6 71
+  s_ae4c2f09c86c56::t_4d19d2861436d5 77-79
+  s_c8e4d72a8457ea::t_ec5aa7a4c48ab8 13-14
+specs/004-upload-notes/tasks.md
+  s_ae4c2f09c86c56::t_a61c72fc9d46fc 98-100
+  s_ae4c2f09c86c56::t_0b052f54507a82 27,37-38,52-53,59-60,74,88
+  s_ae4c2f09c86c56::t_3e535fbfb95eac 1-26,28-36,39-51,54-58,61-73,75-87,89-97,101-176
+specs/005-notes-batch-actions/tasks.md
+  s_c8e4d72a8457ea::t_36063a5760a2a1 69
+  s_c8e4d72a8457ea::t_30f088d30a04d5 1-35,40-50,53-65,71-83,87-99,101-109,113,115-199
+  s_c8e4d72a8457ea::t_6b9d46b8137684 110
+  s_c8e4d72a8457ea::t_8d8337034aa7f8 51-52
+  s_c8e4d72a8457ea::t_f94d124a552ca7 84
+  s_c8e4d72a8457ea::t_b3b35b297d5247 86
+  s_c8e4d72a8457ea::t_c6f173933c9dfd 112
+  s_c8e4d72a8457ea::t_c8036bda3bbe74 100
+  s_c8e4d72a8457ea::t_a44435fdb60e40 36-39
+  s_c8e4d72a8457ea::t_6e83887deca579 66
+  s_c8e4d72a8457ea::t_3833f2a20e046e 114
+  s_c8e4d72a8457ea::t_dda79db9aecc34 68
+  s_c8e4d72a8457ea::t_40fa52278074a2 111
+  s_c8e4d72a8457ea::t_f374a2502a5905 85
+  s_c8e4d72a8457ea::t_c99815c4638c8b 67
+  s_c8e4d72a8457ea::t_d443c2b4b3eb70 70
+src/components/ChannelPublishButton.tsx
+  s_fa3377dbd4cb44::t_b58b904e01b0a6 1-83
+README.md
+  s_fa3377dbd4cb44::t_dd4d9c2db30e25 23
+  s_fa3377dbd4cb44::t_466d2557852542 132-134,136,144-155
+  s_fa3377dbd4cb44::t_4a53ee41c9db3d 156
+src/app/api/console/notes/[noteId]/publish/route.test.ts
+  s_fa3377dbd4cb44::t_67768941f4c1c8 1-148
+specs/004-upload-notes/quickstart.md
+  s_ae4c2f09c86c56::t_fcb804b04fc549 1-85
+specs/006-publish-approval-flow/checklists/requirements.md
+  s_fa3377dbd4cb44::t_9c35acd56b3772 34-36
+  s_fa3377dbd4cb44::t_9475c8b740fd63 16,27
+  s_fa3377dbd4cb44::t_9173f70121786b 1-15,17-26,28-33
+src/app/api/console/notes/directories/route.ts
+  s_fa3377dbd4cb44::t_3c1a572c9315d6 55
+specs/005-notes-batch-actions/spec.md
+  s_c8e4d72a8457ea::t_d44c85f9c10bdc 76
+  s_c8e4d72a8457ea::t_8c92b43a036be8 1-75,77-108
+specs/004-upload-notes/spec.md
+  s_ae4c2f09c86c56::t_5b95aa8c18378a 1-116
+  s_ae4c2f09c86c56::t_9341501f804f85 117
+src/app/api/files/[noteId]/[filename]/route.test.ts
+  s_fa3377dbd4cb44::t_ddbf85b342ff2a 1-58,60-149
+  s_fa3377dbd4cb44::t_a2a4d13fc9c88c 59
+specs/005-notes-batch-actions/checklists/requirements.md
+  s_c8e4d72a8457ea::t_44c84ddf235484 1-35
+src/components/ApprovalStatusBadge.tsx
+  s_fa3377dbd4cb44::t_abf288c6ff756e 1-33
+specs/006-publish-approval-flow/contracts/approvals-patch.md
+  s_fa3377dbd4cb44::t_c5df5a5400c541 1-28
+src/app/api/console/notes/batch/route.ts
+  s_c8e4d72a8457ea::t_8a7630c2330d21 1-4,6-32,36-37,45-55,58-75,77,98-103
+  s_fa3377dbd4cb44::t_bc15d2f0279537 5,33-35,38-44,56-57,76,78-97
+src/app/api/console/approvals/[eventId]/route.ts
+  s_fa3377dbd4cb44::t_2508612a346456 56-66
+specs/006-publish-approval-flow/tasks.md
+  s_fa3377dbd4cb44::t_81ad0382300f94 170
+  s_fa3377dbd4cb44::t_dcee927964f6d9 171
+  s_fa3377dbd4cb44::t_6c2f5e934a79c3 172
+  s_fa3377dbd4cb44::t_b6f7c6de22474f 48
+  s_fa3377dbd4cb44::t_7a26b1733f21c7 69
+  s_fa3377dbd4cb44::t_d2a1e1ba23f72b 31
+  s_fa3377dbd4cb44::t_1ba3abfb44c56c 117
+  s_fa3377dbd4cb44::t_71ef2c05b47670 102
+  s_fa3377dbd4cb44::t_9756f3e162252a 42
+  s_fa3377dbd4cb44::t_89cda52219e8de 189-198
+  s_fa3377dbd4cb44::t_8b69b08e65d66f 65
+  s_fa3377dbd4cb44::t_59fb1909eb1006 86
+  s_fa3377dbd4cb44::t_9c4a4cfca66f79 122
+  s_fa3377dbd4cb44::t_6e30183c29c679 187
+  s_fa3377dbd4cb44::t_380aa37f50ea58 44
+  s_fa3377dbd4cb44::t_00e06f4ed08b65 49
+  s_fa3377dbd4cb44::t_a4e013413d146b 202-209,211-215
+  s_fa3377dbd4cb44::t_2111b98271be75 50
+  s_fa3377dbd4cb44::t_4a34ddd15263ef 67
+  s_fa3377dbd4cb44::t_38d8547d4e61cf 68
+  s_fa3377dbd4cb44::t_6e94695ef9d261 103
+  s_fa3377dbd4cb44::t_0f05baab6a9082 101
+  s_fa3377dbd4cb44::t_ae91094dce9615 41
+  s_fa3377dbd4cb44::t_27c40d12382299 100
+  s_fa3377dbd4cb44::t_0c5c7b17449949 137
+  s_fa3377dbd4cb44::t_bd8199ae0c5e7b 139
+  s_fa3377dbd4cb44::t_b0bcdbe6ef2b07 176
+  s_fa3377dbd4cb44::t_a05df47d16d84c 136
+  s_fa3377dbd4cb44::t_98781058ece6d7 121
+  s_fa3377dbd4cb44::t_a2f0cb495194b0 51
+  s_fa3377dbd4cb44::t_432376ace3ad10 154
+  s_fa3377dbd4cb44::t_76fd12ecd79262 47
+  s_fa3377dbd4cb44::t_4b340c0dfe38f2 168
+  s_fa3377dbd4cb44::t_455093807bceed 188
+  s_fa3377dbd4cb44::t_13ae3618f8d4d2 174
+  s_fa3377dbd4cb44::t_d1f6b8fc0f50c2 186
+  s_fa3377dbd4cb44::t_b79e282767dc63 1-30,32-40,52-64,70-82,87-99,104-116,123-135,140-152,155-167,177-185,199-201,216-309
+  s_fa3377dbd4cb44::t_b70a073cb3b316 43
+  s_fa3377dbd4cb44::t_7b90944d58bff5 175
+  s_fa3377dbd4cb44::t_9f4008aa94bcfe 84
+  s_fa3377dbd4cb44::t_8d360030ed60b0 120
+  s_fa3377dbd4cb44::t_cac985e160a4df 83
+  s_fa3377dbd4cb44::t_c2afab9aecc7f0 169
+  s_fa3377dbd4cb44::t_629fbc942c9b75 173
+  s_fa3377dbd4cb44::t_b672a3c572d70c 153
+  s_fa3377dbd4cb44::t_526e5157341b37 210
+  s_fa3377dbd4cb44::t_e8316dd5a660f9 46
+  s_fa3377dbd4cb44::t_8773021159d893 85
+  s_fa3377dbd4cb44::t_f5d92e61bb2b18 66
+  s_fa3377dbd4cb44::t_36e49314b1f016 138
+  s_fa3377dbd4cb44::t_02a11a0c270bb6 45
+  s_fa3377dbd4cb44::t_01afc8006da704 118
+  s_fa3377dbd4cb44::t_77f5148d9698f7 119
+src/app/[lang]/console/notes/[noteId]/page.tsx
+  s_fa3377dbd4cb44::t_bf51af56dc61d6 14
+  s_fa3377dbd4cb44::t_6b06263a95114d 150,152-154
+  s_fa3377dbd4cb44::t_4d8812e3df47fb 134-149
+  s_fa3377dbd4cb44::t_b05c4e82f9efd7 15
+  s_fa3377dbd4cb44::t_ff1d97b8ff2bb9 67-68,83,87,116,119-124
+  s_fa3377dbd4cb44::t_d018c6c98c848d 160-179
+  s_fa3377dbd4cb44::t_8d1467f4934332 151
+src/app/[lang]/page.tsx
+  s_fa3377dbd4cb44::t_0498a7fa6cd172 49-51
+src/app/[lang]/channels/page.tsx
+  s_fa3377dbd4cb44::t_ed4e598d817885 77
+  s_fa3377dbd4cb44::t_224e1ebdaf4ecf 37-38,40
+src/app/[lang]/notes/[id]/page.tsx
+  s_fa3377dbd4cb44::t_ef2852653ff1e9 27
+src/app/[lang]/console/channels/[channelId]/notes/page.tsx
+  s_fa3377dbd4cb44::t_9ff151c18b70c5 13
+  s_fa3377dbd4cb44::t_3e5155836dbd08 81-89
+migrations/0007_publish_approval_flow.sql
+  s_fa3377dbd4cb44::t_5433343c2b30e3 1-4
+  s_fa3377dbd4cb44::t_f41d6d995b98a6 5-38
+src/app/api/console/channels/[channelId]/publish/route.test.ts
+  s_fa3377dbd4cb44::t_93f46eb8622ee0 1-115
+src/app/api/console/upload/route.ts
+  s_fa3377dbd4cb44::t_62b22f69e95d75 5
+  s_fa3377dbd4cb44::t_1d787e66f82810 45-46,48-54
+specs/006-publish-approval-flow/contracts/notes-batch-publish.md
+  s_fa3377dbd4cb44::t_33d55ddf1118b8 1-52
+specs/005-notes-batch-actions/plan.md
+  s_c8e4d72a8457ea::t_337bed22c864e5 1,3,5,9,13,15,17,19,21,23,25,27,29,35-42,44-45,51-58,65-78,80,82-87,90,94
+  s_c8e4d72a8457ea::t_e0f62f6f05ad67 2,4,6-8,10-12,14,16,18,20,22,24,26,28,30-34,43,46-50,59-64,79,81,88-89,91-93
+src/locales/en.json
+  s_fa3377dbd4cb44::t_81fcf32bf51092 50-53
+  s_fa3377dbd4cb44::t_08b7ce2067b284 61-67
+  s_fa3377dbd4cb44::t_830d97fc424128 60
+  s_fa3377dbd4cb44::t_4c6704f7c7b7aa 42-44
+  s_fa3377dbd4cb44::t_16ac62149e1e2e 68-83
+  s_fa3377dbd4cb44::t_7f9e65ae899d65 55-59
+specs/006-publish-approval-flow/research.md
+  s_fa3377dbd4cb44::t_87b50289a12741 1-67
+src/app/api/console/notes/[noteId]/publish/route.ts
+  s_fa3377dbd4cb44::t_3bf5e1a8d7ba79 1-81
+src/components/NotesTreeTable.tsx
+  s_c8e4d72a8457ea::t_79e53d3df101c4 3,29-30,37-41,59-76,82-91,100-109,122-124,130-132,139-150,173-183,222,232,241-250
+  s_fa3377dbd4cb44::t_247193bc72de8b 213
+  s_fa3377dbd4cb44::t_a7179ed1bd4eff 7,16,24-27
+src/db/schema.ts
+  s_fa3377dbd4cb44::t_e28f3ae47ea8e1 69-70
+  s_fa3377dbd4cb44::t_6fdd36f2f6664a 45-46
+specs/006-publish-approval-flow/spec.md
+  s_fa3377dbd4cb44::t_f289e4d74778ec 123-137
+  s_fa3377dbd4cb44::t_848ceb959f1d83 176-178
+  s_fa3377dbd4cb44::t_cb0dc7f6ce2517 195
+  s_fa3377dbd4cb44::t_4a64250ca016d1 145-146
+  s_fa3377dbd4cb44::t_b10290a1732a28 158
+  s_fa3377dbd4cb44::t_0aaa2516132b20 193-194,196
+  s_fa3377dbd4cb44::t_9c13b8c57fde81 1-10,20-34,36-53,55-68,72-106,138-142,147-157,159-165,173-175,179-188,190-192,197-199
+  s_fa3377dbd4cb44::t_5a47ba658e78fc 189
+  s_fa3377dbd4cb44::t_e561bc5c86f4df 107-122,143-144
+  s_fa3377dbd4cb44::t_bc5728b10b7b7b 35
+  s_fa3377dbd4cb44::t_78dc418a0bc47a 11-19
+  s_fa3377dbd4cb44::t_6271bab2193ef6 54
+  s_fa3377dbd4cb44::t_8e6dfe0fcc1c46 169-172
+  s_fa3377dbd4cb44::t_255cb59f2e98e3 69-71
+  s_fa3377dbd4cb44::t_57437bd5d68e91 166-168
+specs/006-publish-approval-flow/contracts/channels-publish.md
+  s_fa3377dbd4cb44::t_33c8798cce1fd1 1-34
+src/app/[lang]/channels/[id]/page.tsx
+  s_fa3377dbd4cb44::t_d0853d7518874b 24,33
+src/lib/noteUploadLimits.ts
+  s_ae4c2f09c86c56::t_e5541c6f6d71c8 1-17
+specs/005-notes-batch-actions/data-model.md
+  s_c8e4d72a8457ea::t_6b1b26bbf56d3d 1-69
+specs/004-upload-notes/contracts/notes-upload-api.md
+  s_ae4c2f09c86c56::t_27d77ca87fbdb0 1-59
+src/app/api/console/notes/upload/route.ts
+  s_fa3377dbd4cb44::t_0d03c2e0a6e432 66
+  s_ae4c2f09c86c56::t_f87c8a8d4aa6c7 1-65,67-72
+src/components/NotesBatchToolbar.tsx
+  s_c8e4d72a8457ea::t_566e45c4dbbeff 3-5,27-31,35,37,39-40,43-48,50-72,74-80,86-87,89,94-98,101-103,106-111,113-122,124-125,127-130,132-147,149-158,167-173
+  s_fa3377dbd4cb44::t_4c12088e73da00 17,20,38,42,49,73,88,92,99-100,104-105,112,123,126,131,148,159-166
+  s_c8e4d72a8457ea::t_6883f21184d596 1-2,6-16,18-19,21-26,32-34,36,41,81-85,90-91,93,174-176
+src/components/NotesConsole.test.tsx
+  s_fa3377dbd4cb44::t_5d438d910de4fb 34,37
+  s_fa3377dbd4cb44::t_a6aac0dfc28896 27-30
+  s_c8e4d72a8457ea::t_7fd1a98c4fe298 1-26,31-33,35-36,38-46,49-67,69-70,72-73,75-78,80-102,115
+  s_fa3377dbd4cb44::t_409f6c6404623b 47-48
+  s_fa3377dbd4cb44::t_f1d2fc70677785 68,71,74,79
+  s_fa3377dbd4cb44::t_b6cf95df0b3c0f 103-114
+specs/006-publish-approval-flow/data-model.md
+  s_fa3377dbd4cb44::t_c72abeb0cc94f0 8,16,36,52
+  s_fa3377dbd4cb44::t_6594e72fe45e82 22
+  s_fa3377dbd4cb44::t_f3bf41d13d81e0 1-7,9-15,17-21,23,25-35,37-40,42-51,53-55,57-104
+  s_fa3377dbd4cb44::t_86b0f005b48533 24,41,56
+.specify/feature.json
+  s_fa3377dbd4cb44::t_116b8b743d94a8 2
+  s_ae4c2f09c86c56::t_1d1d47d7413116 3
+src/components/NoteEditorForm.tsx
+  s_fa3377dbd4cb44::t_52f7d83889ee0c 15,29
+  s_fa3377dbd4cb44::t_6ed32262ec4d70 70
+src/app/api/console/notes/upload/route.test.ts
+  s_fa3377dbd4cb44::t_fb787eb24c8b0c 2-64,66-74
+  s_fa3377dbd4cb44::t_7f7fa597c7272a 1
+  s_fa3377dbd4cb44::t_0477e9d1ab5c17 65
+src/app/[lang]/console/channels/page.tsx
+  s_fa3377dbd4cb44::t_a0bc7b7ceb66fd 78-86
+  s_fa3377dbd4cb44::t_bdf905ae051fef 63
+  s_fa3377dbd4cb44::t_0306a7fa190f2a 12
+src/app/api/console/channels/[channelId]/publish/route.ts
+  s_fa3377dbd4cb44::t_a9ff953b16fab9 1-65
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "b1e1ab05e951d46e50b6cc95406bed56a13dbe04",
+  "prompts": {},
+  "humans": {
+    "h_6465a203f88bd5": {
+      "author": "larry <xspanni@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_ae4c2f09c86c56": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6944e87b-9dc8-4f9f-9e22-41aa570239d9",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "larry <xspanni@gmail.com>"
+    },
+    "s_c8e4d72a8457ea": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "649b7cb2-ab5e-40bf-9293-f56105a64844",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "larry <xspanni@gmail.com>"
+    },
+    "s_fa3377dbd4cb44": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ad688f51-56eb-4d7f-b992-531ef73797f4",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "larry <xspanni@gmail.com>"
+    }
+  }
+}

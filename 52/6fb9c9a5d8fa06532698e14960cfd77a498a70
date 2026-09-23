@@ -1,0 +1,58 @@
+src/components/MarkdownContent.test.tsx
+  s_a17a80c294d9c8::t_50e94e82dd7857 31,56,58-74
+src/app/globals.css
+  s_a17a80c294d9c8::t_e881ee0e33940a 2
+  s_a17a80c294d9c8::t_633802597346c9 3
+.gitignore
+  s_ee66ceba449899::t_e5132d05fb17b3 15-18
+package.json
+  s_a17a80c294d9c8::t_5bf657ca3bf6e6 20,26,28
+  s_ee66ceba449899::t_9b80500f3bf452 11-13
+  s_ee66ceba449899::t_6dbf24273c5f0e 39
+.specify/bugs/markdown-style-not-rendered/assessment.md
+  s_a17a80c294d9c8::t_f6109ffdc10a9d 1-75
+src/components/MarkdownContent.tsx
+  s_a17a80c294d9c8::t_31e2512c30c05e 1-3,7-17,24,37-41
+playwright.config.ts
+  s_ee66ceba449899::t_9c75675d3422a3 1-28
+e2e/utils/auth.ts
+  s_ee66ceba449899::t_217ff3b3a533e4 1-15
+e2e/console-home.spec.ts
+  s_ee66ceba449899::t_6b98cc0c736787 29-32
+  s_ee66ceba449899::t_330a09c82dc747 1-28,33-41
+.specify/bugs/markdown-style-not-rendered/fix.md
+  s_a17a80c294d9c8::t_715d4d3fe69738 1-71
+e2e/public-home.spec.ts
+  s_ee66ceba449899::t_c5311e61b693e6 1-49
+pnpm-lock.yaml
+  s_a17a80c294d9c8::t_9e50d1b3b54979 22-25,41-43,47-49,52,75-77,1451-1455,1880-1884,2257-2261,2721-2724,2930-2934,3272-3285,5288,5304,5312,5316,5321,5332-5335,5811-5815,6176-6177,6706-6707,6881-6884,7264,7283,7369-7379
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "526fb9c9a5d8fa06532698e14960cfd77a498a70",
+  "prompts": {},
+  "humans": {
+    "h_6465a203f88bd5": {
+      "author": "larry <xspanni@gmail.com>"
+    }
+  },
+  "sessions": {
+    "s_a17a80c294d9c8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f9c1b08-3624-448a-b8f2-dd9ec189cb19",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "larry <xspanni@gmail.com>"
+    },
+    "s_ee66ceba449899": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "5861f85b-1373-4518-a25f-b78060e9e65a",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "larry <xspanni@gmail.com>"
+    }
+  }
+}

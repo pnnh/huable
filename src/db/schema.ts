@@ -40,11 +40,10 @@ export const channels = sqliteTable("channels", {
     .references(() => users.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
   description: text("description"),
-  isPublic: integer("is_public", { mode: "boolean" }).notNull().default(false),
   approvalStatus: text("approval_status")
     .notNull()
-    .default("pending")
-    .$type<"pending" | "approved">(),
+    .default("draft")
+    .$type<"draft" | "pending" | "approved" | "rejected">(),
   createdAt: integer("created_at").notNull().$defaultFn(() => Date.now()),
 });
 
@@ -65,13 +64,10 @@ export const notes = sqliteTable("notes", {
     .notNull()
     .default("text/markdown")
     .$type<"text/markdown" | "directory">(),
-  isPublished: integer("is_published", { mode: "boolean" })
-    .notNull()
-    .default(false),
   approvalStatus: text("approval_status")
     .notNull()
-    .default("pending")
-    .$type<"pending" | "approved">(),
+    .default("draft")
+    .$type<"draft" | "pending" | "approved" | "rejected">(),
   createdAt: integer("created_at").notNull().$defaultFn(() => Date.now()),
   updatedAt: integer("updated_at").notNull().$defaultFn(() => Date.now()),
 });

@@ -21,7 +21,7 @@ export default async function ChannelPage({ params }: Props) {
     const db = getDb();
     const isDev = process.env.NODE_ENV === "development";
 
-    const noteConds: any[] = [eq(notes.channelId, id), eq(notes.isPublished, true)];
+    const noteConds: any[] = [eq(notes.channelId, id)];
     if (!isDev) noteConds.push(eq(notes.approvalStatus, "approved"));
 
     const [channelRows, publishedNotes] = await Promise.all([
@@ -30,7 +30,7 @@ export default async function ChannelPage({ params }: Props) {
     ]);
     const channel = channelRows[0];
 
-    if (!channel || !channel.isPublic || (!isDev && channel.approvalStatus !== "approved")) notFound();
+    if (!channel || (!isDev && channel.approvalStatus !== "approved")) notFound();
 
     return (
         <>

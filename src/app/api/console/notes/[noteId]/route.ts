@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { getDb } from "@/db/index";
-import { notes, noteAttachments } from "@/db/schema";
+import { notes, noteAttachments, approvalEvents } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
 import { getStorage } from "@/lib/storage";
 import { requireConsoleAuth } from "../../_auth";
@@ -76,13 +76,24 @@ export async function PATCH(req: NextRequest, { params }: Props) {
 
     const body = await req.json().catch(() => ({})) as Record<string, unknown>;
 
-    // Only channelId updates are supported via this endpoint
+    // Only clearing the channel (removing a note from it) is supported via this endpoint;
+    // assigning a channel now happens exclusively through the publish flow (see FR-010).
     if ("channelId" in body) {
-        const channelId = body.channelId === null ? null : String(body.channelId);
+        if (body.channelId !== null) {
+            return NextResponse.json({ error: "channel_id_must_be_null" }, { status: 400 });
+        }
+        const now = Date.now();
         await db
             .update(notes)
-            .set({ channelId, updatedAt: Date.now() })
+            .set({ channelId: null, approvalStatus: "draft", updatedAt: now })
             .where(and(eq(notes.id, noteId), eq(notes.userId, user.id)));
+
+        if (note.approvalStatus === "pending") {
+            await db
+                .update(approvalEvents)
+                .set({ isHandled: true, handledBy: null, result: null, handledAt: now })
+                .where(and(eq(approvalEvents.noteId, noteId), eq(approvalEvents.isHandled, false)));
+        }
     }
 
     return NextResponse.json({ ok: true });

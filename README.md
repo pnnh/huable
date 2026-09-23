@@ -20,6 +20,7 @@ The main portal site for [huable.xyz](https://huable.xyz). Provides a multilingu
 - **Public channels** — browse and search public channels at `/{lang}/channels`; per-channel note listing at `/{lang}/channels/[id]`
 - **Public notes** — paginated, searchable note feed at `/{lang}/` (title + body fuzzy search)
 - **Console** — authenticated CRUD for channels, notes, profile, and avatar upload at `/{lang}/console/`
+- **Save vs. publish** — editing and saving a note or channel only ever writes a draft; publishing (with review, unless you're an admin) is a separate explicit action. See "Publish workflow" below.
 - **File attachments** — notes support file uploads stored in local filesystem (dev) or Cloudflare R2 (prod)
 - **User profiles** — nickname, bio, and avatar (JPG/PNG/GIF/WebP, max 2 MB)
 - **Channel avatars** — per-channel avatar upload with first-character fallback
@@ -128,16 +129,30 @@ Drizzle ORM with SQLite (dev) and Cloudflare D1 (prod).
 
 | Table | Key columns |
 | ------- | ------------- |
-| `users` | `id`, `name`, `email`, `nickname`, `bio`, `created_at` |
-| `channels` | `id`, `user_id`, `name`, `description`, `is_public`, `created_at` |
-| `notes` | `id`, `user_id`, `channel_id`, `title`, `body`, `is_published`, `created_at`, `updated_at` |
+| `users` | `id`, `name`, `email`, `nickname`, `bio`, `sysrole`, `created_at` |
+| `channels` | `id`, `user_id`, `name`, `description`, `approval_status`, `created_at` |
+| `notes` | `id`, `user_id`, `channel_id`, `title`, `body`, `approval_status`, `created_at`, `updated_at` |
 | `note_attachments` | `id`, `note_id`, `filename`, `mime_type`, `created_at` |
+| `approval_events` | `id`, `type`, `note_id`, `channel_id`, `action`, `is_handled`, `handled_at`, `handled_by`, `result`, `created_at` |
 
 ### Migrations
 
 ```bash
 pnpm db:migrate    # dev: applies all pending migrations to .data/huable.db
 ```
+
+## Publish workflow
+
+Saving a note or channel (create or edit) only ever writes `approval_status = 'draft'` — it never
+touches the review queue. Publishing is a separate, explicit action:
+
+- Clicking **Publish** on a note opens a dialog to pick a target channel; clicking **Publish** on a
+  channel just asks for confirmation.
+- Non-admins move to `pending` and get an `approval_events` row for an admin to review at
+  `/{lang}/console/approvals`; admins go straight to `approved`.
+- `approved`/`pending`/`rejected` content that gets edited and saved again reverts to `draft`
+  (and voids any still-pending review), so publishing is always a conscious, separate step.
+- A note is shown on public pages only when **both** the note itself and its channel are `approved`.
 
 Migrations live in `./migrations/`. To apply them to D1 in production:
 

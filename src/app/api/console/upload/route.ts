@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStorage } from "@/lib/storage";
 import { getDb } from "@/db/index";
 import { noteAttachments, notes, approvalEvents } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { requireConsoleAuth } from "../_auth";
 
 export const runtime = "nodejs";
@@ -42,11 +42,16 @@ export async function POST(req: NextRequest) {
         .values({ noteId, filename, mimeType })
         .onConflictDoNothing();
 
-    // Reset approval status and create approval event only when note is published in a channel (prod only; dev allows immediate public visibility)
+    // Uploading an attachment counts as editing the note: revert any non-draft status back to
+    // "draft" and void the pending approval event, if any (see spec.md FR-003/FR-017).
     const note = existingNotes[0];
-    if (note.channelId && note.isPublished && process.env.NODE_ENV !== "development") {
-        await db.update(notes).set({ approvalStatus: "pending", updatedAt: Date.now() }).where(eq(notes.id, noteId));
-        await db.insert(approvalEvents).values({ noteId, action: "updated", createdAt: Date.now() });
+    if (note.approvalStatus !== "draft") {
+        const now = Date.now();
+        await db.update(notes).set({ approvalStatus: "draft", updatedAt: now }).where(eq(notes.id, noteId));
+        await db
+            .update(approvalEvents)
+            .set({ isHandled: true, handledBy: null, result: null, handledAt: now })
+            .where(and(eq(approvalEvents.noteId, noteId), eq(approvalEvents.isHandled, false)));
     }
 
     const url = `/api/files/${noteId}/${encodeURIComponent(filename)}`;

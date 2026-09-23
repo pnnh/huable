@@ -34,10 +34,10 @@ export default async function ChannelsPage({ params, searchParams }: Props) {
     const db = getDb();
     const isDev = process.env.NODE_ENV === "development";
 
-    // Build WHERE clause: isPublic=true (+ approvalStatus=approved in prod), optionally fuzzy match
-    const baseConds = [eq(channels.isPublic, true)];
+    // Build WHERE clause: approvalStatus=approved in prod (skipped in dev), optionally fuzzy match
+    const baseConds = [];
     if (!isDev) baseConds.push(eq(channels.approvalStatus, "approved"));
-    const baseCondition = and(...baseConds);
+    const baseCondition = baseConds.length > 0 ? and(...baseConds) : undefined;
     const condition = query
         ? and(
               baseCondition,
@@ -74,7 +74,7 @@ export default async function ChannelsPage({ params, searchParams }: Props) {
     const noteCounts: Record<string, number> = {};
 
     if (channelIds.length > 0) {
-        const noteConds = [eq(notes.isPublished, true)];
+        const noteConds = [];
         if (!isDev) noteConds.push(eq(notes.approvalStatus, "approved"));
         const counts = await db
             .select({ channelId: notes.channelId, cnt: count() })

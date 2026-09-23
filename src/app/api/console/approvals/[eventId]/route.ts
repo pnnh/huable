@@ -53,18 +53,17 @@ export async function PATCH(req: NextRequest, { params }: Props) {
         .set({ isHandled: true, handledAt: now, handledBy: user.id, result })
         .where(eq(approvalEvents.id, eventId));
 
-    if (action === "approve") {
-        if (event.type === "channel" && event.channelId) {
-            await db
-                .update(channels)
-                .set({ approvalStatus: "approved" })
-                .where(eq(channels.id, event.channelId));
-        } else if (event.noteId) {
-            await db
-                .update(notes)
-                .set({ approvalStatus: "approved" })
-                .where(eq(notes.id, event.noteId));
-        }
+    const targetApprovalStatus = action === "approve" ? "approved" : "rejected";
+    if (event.type === "channel" && event.channelId) {
+        await db
+            .update(channels)
+            .set({ approvalStatus: targetApprovalStatus })
+            .where(eq(channels.id, event.channelId));
+    } else if (event.noteId) {
+        await db
+            .update(notes)
+            .set({ approvalStatus: targetApprovalStatus })
+            .where(eq(notes.id, event.noteId));
     }
 
     return NextResponse.json({ ok: true });

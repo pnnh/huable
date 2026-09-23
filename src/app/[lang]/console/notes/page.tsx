@@ -10,7 +10,8 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { t } from "@/lib/i18n";
 import CreateDirectoryDialog from "@/components/CreateDirectoryDialog";
-import NotesTreeTable, { type NoteTreeItem } from "@/components/NotesTreeTable";
+import NotesConsole from "@/components/NotesConsole";
+import type { NoteTreeItem } from "@/components/NotesTreeTable";
 
 export const dynamic = "force-dynamic";
 
@@ -55,6 +56,11 @@ export default async function NotesListPage({ params, searchParams }: Props) {
 
     const countByParentId = new Map(childCounts.map((row) => [row.parentId, row.cnt]));
 
+    const userChannels = await db
+        .select({ id: channels.id, name: channels.name })
+        .from(channels)
+        .where(eq(channels.userId, user.id));
+
     const treeItems: NoteTreeItem[] = userNotes.map(({ notes: note, channels: channel }) => ({
         id: note.id,
         title: note.title,
@@ -62,57 +68,74 @@ export default async function NotesListPage({ params, searchParams }: Props) {
         hasChildren: (countByParentId.get(note.id) ?? 0) > 0,
         updatedAt: note.updatedAt,
         channelName: channel?.name ?? null,
-        isPublished: note.isPublished,
+        approvalStatus: note.approvalStatus,
     }));
 
     const newNoteHref = parentId
         ? `/${l}/console/notes/new?parentId=${parentId}`
         : `/${l}/console/notes/new`;
+    const uploadNotesHref = parentId
+        ? `/${l}/console/notes/upload?parentId=${parentId}`
+        : `/${l}/console/notes/upload`;
 
     return (
         <>
             <SiteHeader lang={l} />
             <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="flex items-center justify-between mb-8">
-                    <h1 className="text-2xl font-bold text-gray-900">{t(l, "notes")}</h1>
-                    <div className="flex items-center gap-3">
-                        <CreateDirectoryDialog
-                            parentId={parentId}
-                            labels={{
-                                newDirectory: t(l, "newDirectory"),
-                                directoryName: t(l, "directoryName"),
-                                directoryDescription: t(l, "directoryDescription"),
-                                directoryNameRequired: t(l, "directoryNameRequired"),
-                                nameConflict: t(l, "nameConflict"),
-                                save: t(l, "save"),
-                                cancel: t(l, "cancel"),
-                            }}
-                        />
-                        <Link
-                            href={newNoteHref}
-                            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700"
-                        >
-                            {t(l, "newNote")}
-                        </Link>
-                    </div>
-                </div>
-                {treeItems.length === 0 ? (
-                    <p className="text-gray-500">{t(l, "noNotesYet")}</p>
-                ) : (
-                    <NotesTreeTable
-                        lang={l}
-                        items={treeItems}
+                <NotesConsole
+                    lang={l}
+                    title={t(l, "notes")}
+                    items={treeItems}
+                    channels={userChannels}
+                    noNotesYet={t(l, "noNotesYet")}
+                    labels={{
+                        noteTitle: t(l, "noteTitle"),
+                        noteChannel: t(l, "noteChannel"),
+                        noteStatus: t(l, "noteStatus"),
+                        updated: t(l, "updated"),
+                        statusDraft: t(l, "statusDraft"),
+                        statusPending: t(l, "statusPending"),
+                        statusApproved: t(l, "statusApproved"),
+                        statusRejected: t(l, "statusRejected"),
+                        noContentInDirectory: t(l, "noContentInDirectory"),
+                        selectAllNotes: t(l, "selectAllNotes"),
+                        selectNote: t(l, "selectNote"),
+                        batchPublish: t(l, "batchPublish"),
+                        noChannel: t(l, "noChannel"),
+                        noChannelsAvailable: t(l, "noChannelsAvailable"),
+                        channelRequired: t(l, "channelRequired"),
+                        batchUpdateSuccess: t(l, "batchUpdateSuccess"),
+                        batchUpdatePartial: t(l, "batchUpdatePartial"),
+                        batchUpdateFailed: t(l, "batchUpdateFailed"),
+                        save: t(l, "save"),
+                        cancel: t(l, "cancel"),
+                    }}
+                >
+                    <CreateDirectoryDialog
+                        parentId={parentId}
                         labels={{
-                            noteTitle: t(l, "noteTitle"),
-                            noteChannel: t(l, "noteChannel"),
-                            noteStatus: t(l, "noteStatus"),
-                            updated: t(l, "updated"),
-                            notePublished: t(l, "notePublished"),
-                            noteDraft: t(l, "noteDraft"),
-                            noContentInDirectory: t(l, "noContentInDirectory"),
+                            newDirectory: t(l, "newDirectory"),
+                            directoryName: t(l, "directoryName"),
+                            directoryDescription: t(l, "directoryDescription"),
+                            directoryNameRequired: t(l, "directoryNameRequired"),
+                            nameConflict: t(l, "nameConflict"),
+                            save: t(l, "save"),
+                            cancel: t(l, "cancel"),
                         }}
                     />
-                )}
+                    <Link
+                        href={uploadNotesHref}
+                        className="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50"
+                    >
+                        {t(l, "uploadNotes")}
+                    </Link>
+                    <Link
+                        href={newNoteHref}
+                        className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700"
+                    >
+                        {t(l, "newNote")}
+                    </Link>
+                </NotesConsole>
             </main>
             <SiteFooter lang={l} />
         </>

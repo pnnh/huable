@@ -24,18 +24,11 @@ export default async function NotePage({ params }: Props) {
         .select()
         .from(notes)
         .innerJoin(channels, eq(notes.channelId, channels.id))
-        .where(
-            and(
-                eq(notes.id, id),
-                eq(notes.isPublished, true),
-                eq(channels.isPublic, true),
-            ),
-        )
+        .where(eq(notes.id, id))
         .limit(1);
 
     if (
         !result ||
-        !result.channels.isPublic ||
         (!isDev && result.channels.approvalStatus !== "approved") ||
         (!isDev && result.notes.approvalStatus !== "approved")
     ) notFound();

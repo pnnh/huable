@@ -52,8 +52,7 @@ export async function POST(req: NextRequest) {
         title,
         body: description,
         mimeType: "directory",
-        isPublished: false,
-        approvalStatus: "approved",
+        approvalStatus: "draft",
         createdAt: now,
         updatedAt: now,
     });

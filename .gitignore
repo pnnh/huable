@@ -52,3 +52,5 @@ next-env.d.ts
 
 # python cache speckit可能会生成 __pycache__ 目录
 **/__pycache__/
+
+.idea/

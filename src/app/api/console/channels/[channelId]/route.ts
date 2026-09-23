@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { getDb } from "@/db/index";
 import { channels, notes } from "@/db/schema";
-import { and, count, eq } from "drizzle-orm";
+import { and, count, eq, ne } from "drizzle-orm";
 import { requireConsoleAuth } from "../../_auth";
 
 export const runtime = "nodejs";
@@ -33,11 +33,11 @@ export async function DELETE(_req: NextRequest, { params }: Props) {
         return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
 
-    // Refuse if any published notes are still assigned to this channel
+    // Refuse if any published (non-draft) notes are still assigned to this channel
     const [{ cnt }] = await db
         .select({ cnt: count() })
         .from(notes)
-        .where(and(eq(notes.channelId, channelId), eq(notes.isPublished, true)));
+        .where(and(eq(notes.channelId, channelId), ne(notes.approvalStatus, "draft")));
 
     if (cnt > 0) {
         return NextResponse.json({ error: "Channel has published notes" }, { status: 409 });

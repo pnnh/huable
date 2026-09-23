@@ -9,6 +9,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import { t } from "@/lib/i18n";
+import ApprovalStatusBadge from "@/components/ApprovalStatusBadge";
 
 export const dynamic = "force-dynamic";
 
@@ -59,7 +60,7 @@ export default async function ChannelsListPage({ params }: Props) {
                             <thead className="text-xs text-gray-500 uppercase border-b border-gray-200">
                                 <tr>
                                     <th className="py-3 pr-4">{t(l, "channelName")}</th>
-                                    <th className="py-3 pr-4">{t(l, "channelVisibility")}</th>
+                                    <th className="py-3 pr-4">{t(l, "noteStatus")}</th>
                                     <th className="py-3 pr-4">{t(l, "notes")}</th>
                                     <th className="py-3 pr-4">{t(l, "created")}</th>
                                     <th className="py-3"></th>
@@ -74,9 +75,15 @@ export default async function ChannelsListPage({ params }: Props) {
                                             </Link>
                                         </td>
                                         <td className="py-3 pr-4">
-                                            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${ch.isPublic ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-600"}`}>
-                                                {ch.isPublic ? t(l, "channelPublic") : t(l, "channelPrivate")}
-                                            </span>
+                                            <ApprovalStatusBadge
+                                                status={ch.approvalStatus}
+                                                labels={{
+                                                    statusDraft: t(l, "statusDraft"),
+                                                    statusPending: t(l, "statusPending"),
+                                                    statusApproved: t(l, "statusApproved"),
+                                                    statusRejected: t(l, "statusRejected"),
+                                                }}
+                                            />
                                         </td>
                                         <td className="py-3 pr-4 text-gray-500">{noteCounts.get(ch.id) ?? 0}</td>
                                         <td className="py-3 pr-4 text-gray-500">{new Date(ch.createdAt).toLocaleDateString()}</td>

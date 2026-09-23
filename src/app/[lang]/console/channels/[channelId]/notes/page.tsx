@@ -10,6 +10,7 @@ import SiteFooter from "@/components/SiteFooter";
 import RemoveFromChannelButton from "@/components/RemoveFromChannelButton";
 import Link from "next/link";
 import { t } from "@/lib/i18n";
+import ApprovalStatusBadge from "@/components/ApprovalStatusBadge";
 
 export const dynamic = "force-dynamic";
 
@@ -77,9 +78,15 @@ export default async function ChannelNotesPage({ params }: Props) {
                                             </Link>
                                         </td>
                                         <td className="py-3 pr-4">
-                                            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${note.isPublished ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-600"}`}>
-                                                {note.isPublished ? t(l, "notePublished") : t(l, "noteDraft")}
-                                            </span>
+                                            <ApprovalStatusBadge
+                                                status={note.approvalStatus}
+                                                labels={{
+                                                    statusDraft: t(l, "statusDraft"),
+                                                    statusPending: t(l, "statusPending"),
+                                                    statusApproved: t(l, "statusApproved"),
+                                                    statusRejected: t(l, "statusRejected"),
+                                                }}
+                                            />
                                         </td>
                                         <td className="py-3 pr-4 text-gray-500">
                                             {new Date(note.updatedAt).toLocaleDateString()}

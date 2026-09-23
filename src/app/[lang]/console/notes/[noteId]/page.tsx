@@ -11,6 +11,8 @@ import { t } from "@/lib/i18n";
 import AttachmentPanel from "@/components/AttachmentPanel";
 import NoteDeleteSection from "@/components/NoteDeleteSection";
 import NoteEditorForm, { type NoteFormState } from "@/components/NoteEditorForm";
+import NotePublishDialog from "@/components/NotePublishDialog";
+import ApprovalStatusBadge from "@/components/ApprovalStatusBadge";
 import { assertUniqueNameInParent, NameConflictError } from "@/lib/notesTree";
 
 export const dynamic = "force-dynamic";
@@ -56,31 +58,14 @@ export default async function NoteEditorPage({ params, searchParams }: Props) {
         const user2 = await getCurrentUser();
         const title = ((formData.get("title") as string | null) ?? "").trim();
         const body = (formData.get("body") as string | null) ?? "";
-        const rawChannelId = (formData.get("channelId") as string | null) ?? "";
-        const isPublished = formData.get("isPublished") === "true";
         const now = Date.now();
 
         if (!title) {
             return { error: t(l, "titleRequired") };
         }
 
-        const channelId = rawChannelId || null;
-        if (channelId) {
-            const ownedChannel = await db2
-                .select()
-                .from(channels)
-                .where(and(eq(channels.id, channelId), eq(channels.userId, user2.id)))
-                .limit(1)
-                .then((rows) => rows[0] ?? null);
-
-            if (!ownedChannel) {
-                return { error: t(l, "channelNotFound") };
-            }
-        }
-
-        // Approval is only required when the note is published and linked to a channel
-        const needsApproval = !!(channelId && isPublished);
-
+        // Saving (as opposed to publishing) never touches the channel or triggers approval:
+        // every save always resets the note to "draft" (see spec.md FR-002/FR-003).
         if (isNew) {
             try {
                 await assertUniqueNameInParent(db2, user2.id, parentId, title);
@@ -95,22 +80,14 @@ export default async function NoteEditorPage({ params, searchParams }: Props) {
             await db2.insert(notes).values({
                 id,
                 userId: user2.id,
-                channelId,
+                channelId: null,
                 parentId,
                 title,
                 body,
-                isPublished,
-                approvalStatus: needsApproval ? "pending" : "approved",
+                approvalStatus: "draft",
                 createdAt: now,
                 updatedAt: now,
             });
-            if (needsApproval) {
-                await db2.insert(approvalEvents).values({
-                    noteId: id,
-                    action: "created",
-                    createdAt: now,
-                });
-            }
             redirect(backHref);
         }
 
@@ -136,15 +113,15 @@ export default async function NoteEditorPage({ params, searchParams }: Props) {
 
         await db2
             .update(notes)
-            .set({ title, body, channelId, isPublished, approvalStatus: needsApproval ? "pending" : "approved", updatedAt: now })
+            .set({ title, body, approvalStatus: "draft", updatedAt: now })
             .where(and(eq(notes.id, noteId), eq(notes.userId, user2.id)));
 
-        if (needsApproval) {
-            await db2.insert(approvalEvents).values({
-                noteId,
-                action: "updated",
-                createdAt: now,
-            });
+        // Editing a note that already had a pending review voids that review (see FR-017).
+        if (ownedNote.approvalStatus === "pending") {
+            await db2
+                .update(approvalEvents)
+                .set({ isHandled: true, handledBy: null, result: null, handledAt: now })
+                .where(and(eq(approvalEvents.noteId, noteId), eq(approvalEvents.isHandled, false)));
         }
 
         redirect(backHref);
@@ -154,23 +131,55 @@ export default async function NoteEditorPage({ params, searchParams }: Props) {
         <>
             <SiteHeader lang={l} />
             <main className="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <h1 className="text-2xl font-bold text-gray-900 mb-8">
-                    {isNew ? t(l, "newNote") : t(l, "editNote")}
-                </h1>
+                <div className={`flex items-center gap-3 ${existingNote?.approvalStatus === "rejected" ? "mb-2" : "mb-8"}`}>
+                    <h1 className="text-2xl font-bold text-gray-900">
+                        {isNew ? t(l, "newNote") : t(l, "editNote")}
+                    </h1>
+                    {!isNew && existingNote && (
+                        <ApprovalStatusBadge
+                            status={existingNote.approvalStatus}
+                            labels={{
+                                statusDraft: t(l, "statusDraft"),
+                                statusPending: t(l, "statusPending"),
+                                statusApproved: t(l, "statusApproved"),
+                                statusRejected: t(l, "statusRejected"),
+                            }}
+                        />
+                    )}
+                </div>
+                {existingNote?.approvalStatus === "rejected" && (
+                    <p className="mb-8 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md px-3 py-2">
+                        {t(l, "rejectedNotice")}
+                    </p>
+                )}
                 <NoteEditorForm
                     action={handleSave}
                     defaultTitle={existingNote?.title ?? ""}
                     defaultBody={existingNote?.body ?? ""}
-                    defaultChannelId={existingNote?.channelId ?? ""}
-                    defaultIsPublished={existingNote?.isPublished ?? false}
-                    channels={userChannels}
                     backHref={backHref}
+                    toolbarExtra={
+                        !isNew && (
+                            <NotePublishDialog
+                                noteId={noteId}
+                                channels={userChannels}
+                                defaultChannelId={existingNote?.channelId ?? ""}
+                                labels={{
+                                    publish: t(l, "publish"),
+                                    publishNote: t(l, "publishNote"),
+                                    noteChannel: t(l, "noteChannel"),
+                                    noChannel: t(l, "noChannel"),
+                                    noChannelsAvailable: t(l, "noChannelsAvailable"),
+                                    channelRequired: t(l, "channelRequired"),
+                                    publishFailed: t(l, "publishFailed"),
+                                    save: t(l, "save"),
+                                    cancel: t(l, "cancel"),
+                                }}
+                            />
+                        )
+                    }
                     labels={{
                         noteTitle: t(l, "noteTitle"),
                         noteBody: t(l, "noteBody"),
-                        noteChannel: t(l, "noteChannel"),
-                        noChannel: t(l, "noChannel"),
-                        publishToChannel: t(l, "publishToChannel"),
                         save: t(l, "save"),
                         cancel: t(l, "cancel"),
                     }}

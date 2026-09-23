@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaCaretRight, FaCaretDown, FaRegFolder, FaRegFileAlt } from "react-icons/fa";
 import type { LangKey } from "@/lib/language";
+import ApprovalStatusBadge from "@/components/ApprovalStatusBadge";
 
 export interface NoteTreeItem {
     id: string;
@@ -12,7 +13,7 @@ export interface NoteTreeItem {
     hasChildren: boolean;
     updatedAt: number;
     channelName?: string | null;
-    isPublished?: boolean;
+    approvalStatus?: "draft" | "pending" | "approved" | "rejected";
 }
 
 interface Labels {
@@ -20,15 +21,24 @@ interface Labels {
     noteChannel: string;
     noteStatus: string;
     updated: string;
-    notePublished: string;
-    noteDraft: string;
+    statusDraft: string;
+    statusPending: string;
+    statusApproved: string;
+    statusRejected: string;
     noContentInDirectory: string;
+    selectAllNotes: string;
+    selectNote: string;
 }
 
 interface NotesTreeTableProps {
     lang: LangKey;
     items: NoteTreeItem[];
     labels: Labels;
+    selectedIds: Set<string>;
+    onToggleRow: (id: string) => void;
+    onToggleAll: () => void;
+    onClearIds: (ids: string[]) => void;
+    headerState: "all" | "partial" | "none";
 }
 
 const INDENT_STEP = 20;
@@ -46,12 +56,39 @@ function formatUpdatedAt(updatedAt: number, lang: LangKey): string {
     return new Date(updatedAt).toLocaleDateString(DATE_LOCALE[lang]);
 }
 
-export default function NotesTreeTable({ lang, items, labels }: NotesTreeTableProps) {
+export default function NotesTreeTable({
+    lang,
+    items,
+    labels,
+    selectedIds,
+    onToggleRow,
+    onToggleAll,
+    onClearIds,
+    headerState,
+}: NotesTreeTableProps) {
+    const headerCheckboxRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (headerCheckboxRef.current) {
+            headerCheckboxRef.current.indeterminate = headerState === "partial";
+        }
+    }, [headerState]);
+
     return (
         <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
                 <thead className="text-xs text-gray-500 uppercase border-b border-gray-200">
                     <tr>
+                        <th className="py-3 pr-2 w-8">
+                            <input
+                                ref={headerCheckboxRef}
+                                type="checkbox"
+                                checked={headerState === "all"}
+                                onChange={onToggleAll}
+                                aria-label={labels.selectAllNotes}
+                                className="h-4 w-4 rounded border-gray-300 text-blue-600"
+                            />
+                        </th>
                         <th className="py-3 pr-4">{labels.noteTitle}</th>
                         <th className="py-3 pr-4">{labels.noteChannel}</th>
                         <th className="py-3 pr-4">{labels.noteStatus}</th>
@@ -60,7 +97,16 @@ export default function NotesTreeTable({ lang, items, labels }: NotesTreeTablePr
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                     {items.map((item) => (
-                        <TreeRow key={item.id} lang={lang} item={item} depth={0} labels={labels} />
+                        <TreeRow
+                            key={item.id}
+                            lang={lang}
+                            item={item}
+                            depth={0}
+                            labels={labels}
+                            selectedIds={selectedIds}
+                            onToggleRow={onToggleRow}
+                            onClearIds={onClearIds}
+                        />
                     ))}
                 </tbody>
             </table>
@@ -73,16 +119,34 @@ function TreeRow({
     item,
     depth,
     labels,
+    selectedIds,
+    onToggleRow,
+    onClearIds,
 }: {
     lang: LangKey;
     item: NoteTreeItem;
     depth: number;
     labels: Labels;
+    selectedIds: Set<string>;
+    onToggleRow: (id: string) => void;
+    onClearIds: (ids: string[]) => void;
 }) {
     const [expanded, setExpanded] = useState(false);
     const [children, setChildren] = useState<NoteTreeItem[] | null>(null);
     const [loading, setLoading] = useState(false);
     const isDirectory = item.mimeType === "directory";
+
+    // When this row's loaded children go out of view (parent directory
+    // collapses/unmounts), drop their ids from the selection so batch
+    // actions never target notes the user can no longer see.
+    useEffect(() => {
+        return () => {
+            if (children) {
+                const ids = children.filter((c) => c.mimeType !== "directory").map((c) => c.id);
+                if (ids.length) onClearIds(ids);
+            }
+        };
+    }, [children, onClearIds]);
 
     async function toggleExpand() {
         const next = !expanded;
@@ -106,6 +170,17 @@ function TreeRow({
     return (
         <>
             <tr>
+                <td className="py-3 pr-2 w-8">
+                    {!isDirectory && (
+                        <input
+                            type="checkbox"
+                            checked={selectedIds.has(item.id)}
+                            onChange={() => onToggleRow(item.id)}
+                            aria-label={`${labels.selectNote}: ${item.title}`}
+                            className="h-4 w-4 rounded border-gray-300 text-blue-600"
+                        />
+                    )}
+                </td>
                 <td className="py-3 pr-4">
                     <div className="flex items-center gap-2" style={{ paddingLeft: depth * INDENT_STEP }}>
                         {isDirectory && item.hasChildren ? (
@@ -135,11 +210,7 @@ function TreeRow({
                     {isDirectory ? (
                         "—"
                     ) : (
-                        <span
-                            className={`text-xs font-medium px-2 py-0.5 rounded-full ${item.isPublished ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-600"}`}
-                        >
-                            {item.isPublished ? labels.notePublished : labels.noteDraft}
-                        </span>
+                        <ApprovalStatusBadge status={item.approvalStatus ?? "draft"} labels={labels} />
                     )}
                 </td>
                 <td className="py-3 text-gray-500">{formatUpdatedAt(item.updatedAt, lang)}</td>
@@ -148,7 +219,7 @@ function TreeRow({
                 (loading ? (
                     <tr>
                         <td
-                            colSpan={4}
+                            colSpan={5}
                             className="py-2 text-gray-400 text-xs"
                             style={{ paddingLeft: (depth + 1) * INDENT_STEP + 24 }}
                         >
@@ -158,7 +229,7 @@ function TreeRow({
                 ) : children && children.length === 0 ? (
                     <tr>
                         <td
-                            colSpan={4}
+                            colSpan={5}
                             className="py-2 text-gray-400 text-xs"
                             style={{ paddingLeft: (depth + 1) * INDENT_STEP + 24 }}
                         >
@@ -167,7 +238,16 @@ function TreeRow({
                     </tr>
                 ) : (
                     children?.map((child) => (
-                        <TreeRow key={child.id} lang={lang} item={child} depth={depth + 1} labels={labels} />
+                        <TreeRow
+                            key={child.id}
+                            lang={lang}
+                            item={child}
+                            depth={depth + 1}
+                            labels={labels}
+                            selectedIds={selectedIds}
+                            onToggleRow={onToggleRow}
+                            onClearIds={onClearIds}
+                        />
                     ))
                 ))}
         </>
